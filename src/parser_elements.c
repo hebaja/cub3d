@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_elements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/12 19:38:32 by hebatist         ###   ########.fr       */
+/*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
+/*   Updated: 2025/07/12 19:49:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
-
-int	main(int argc, char **argv)
+void	parse_elements(char)
 {
-	(void)argc;
-	(void)argv;
-	return (0);
+
 }
