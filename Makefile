@@ -4,7 +4,7 @@ MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
 NAME=cub3d
 INC_DIR=include
 SRC_DIR=src
-SRC_FILES=main.c
+SRC_FILES=main.c parser_elements.c
 LIBFT_DIR=libft
 LIBFT=$(LIBFT_DIR)/libft.a
 MINILIBX_DIR=minilibx-linux
@@ -13,7 +13,7 @@ SRCS=$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS=$(SRCS:.c=.o)
 
 all: $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CC_FLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)
+	$(CC) $(CC_FLAGS) -o $(NAME) -g $(OBJS) $(LIBFT) $(MLX_FLAGS)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -22,7 +22,7 @@ $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
 .c.o:
-	$(CC) $(CC_FLAGS) -c $< -o $@
+	$(CC) $(CC_FLAGS) -g -c $< -o $@
 
 clean:
 	make -C $(LIBFT_DIR) clean

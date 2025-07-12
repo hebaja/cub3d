@@ -16,4 +16,6 @@
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+int	is_valid_map_path(int argc, char **argv);
+
 #endif

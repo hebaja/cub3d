@@ -12,9 +12,9 @@
 
 #include "../include/cub3d.h"
 
+
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	is_valid_map_path(argc, argv);
 	return (0);
 }
