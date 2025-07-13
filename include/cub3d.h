@@ -6,16 +6,32 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/12 19:38:43 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/13 19:05:29 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdio.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-int	is_valid_map_path(int argc, char **argv);
+typedef struct s_map
+{
+	char	**map;
+	char	*path;
+	int		height;
+
+}	t_map;
+
+t_map	*build_st_map(char *map_path);
+void	clean_st_map(t_map *st_map);
+void	open_map_error(void);
+void	case_error_reading_file(void);
+int		is_valid_map_path(int argc, char **argv);
+
+/* DEBUG */
+void	print_map(char **map);
 
 #endif
