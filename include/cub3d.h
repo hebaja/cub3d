@@ -35,6 +35,7 @@ void	clean_st_map(t_map *st_map);
 void	open_map_error(void);
 void	case_error_reading_file(void);
 int		is_valid_map_path(int argc, char **argv);
+int		parse_elements(t_map *st_map);
 
 /* DEBUG */
 void	print_map(char **map);

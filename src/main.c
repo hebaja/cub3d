@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 	if (is_valid_map_path(argc, argv))
 	{
 		st_map = build_st_map(argv[1]);
-		print_map(st_map->map);
+	//	print_map(st_map->map);
+		parse_elements(st_map);
 	}
 	clean_st_map(st_map);
 	return (0);
