@@ -1,5 +1,5 @@
 CC=cc
-CC_FLAGS=-Wall -Wextra -Werror
+CC_FLAGS=-Wall -Wextra -Werror -g
 MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
 NAME=cub3d
 INC_DIR=include

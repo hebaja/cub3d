@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_elements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/13 19:12:15 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:45:44 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	check_texture_element(char *elem, char *line, t_map *st_map)
 {
 	int		i;
 	char	**args;
-	(void)st_map;
 
+	(void)st_map;
 	i = -1;
 	if (ft_strncmp(line, elem, 2) == 0)
 	{
@@ -45,8 +45,6 @@ int	check_texture_element(char *elem, char *line, t_map *st_map)
 	return (1);
 }
 
-
-
 /* TODO Need to check empty files and files with blank lines & invalid lines */
 int	parse_elements(t_map *st_map)
 {
@@ -56,9 +54,9 @@ int	parse_elements(t_map *st_map)
 	while (*map)
 	{
 		check_texture_element("NO", *map, st_map);
-		check_texture_element("SO", *map, st_map);	
-		check_texture_element("WE", *map, st_map);	
-		check_texture_element("EA", *map, st_map);	
+		check_texture_element("SO", *map, st_map);
+		check_texture_element("WE", *map, st_map);
+		check_texture_element("EA", *map, st_map);
 		map++;
 	}
 	ft_printf("%s\n", st_map->no_texture);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st_map_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/13 19:10:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/15 21:10:18 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,19 @@ char	**get_map_content(char *map_path, int height)
 	close(fd);
 	return (map);
 }
+void	get_cood_height(char **map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		if ((map[i] == ' ' || map[i] == '1') && (map[len - 1] == ' ' || map[len - 1] == '1'))
+	}
+}
+
 
 t_map	*build_st_map(char *map_path)
 {
@@ -93,6 +106,7 @@ t_map	*build_st_map(char *map_path)
 	st_map->path = map_path;
 	st_map->height = get_map_height(map_path);
 	st_map->map = get_map_content(map_path, st_map->height);
+	get_coord_height(st_map->map);
 	st_map->no_texture = NULL;
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
