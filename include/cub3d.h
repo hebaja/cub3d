@@ -13,6 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <unistd.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -26,8 +28,8 @@ typedef struct s_map
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	int		f_color;
-	int		c_color;
+	int		f_color[3];
+	int		c_color[3];
 }	t_map;
 
 t_map	*build_st_map(char *map_path);

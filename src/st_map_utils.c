@@ -27,10 +27,14 @@ void	clean_st_map(t_map *st_map)
 {
 	if (st_map)
 	{
-		free(st_map->no_texture);
-		free(st_map->so_texture);
-		free(st_map->we_texture);
-		free(st_map->ea_texture);
+		if (st_map->no_texture)
+			free(st_map->no_texture);
+		if (st_map->so_texture)
+			free(st_map->so_texture);
+		if (st_map->we_texture)
+			free(st_map->we_texture);
+		if (st_map->ea_texture)
+			free(st_map->ea_texture);
 		clean_map(st_map->map);
 		free(st_map);
 		st_map = NULL;
@@ -96,7 +100,8 @@ t_map	*build_st_map(char *map_path)
 	st_map->no_texture = NULL;
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
-	st_map->f_color = -1;
-	st_map->c_color = -1;
+	st_map->ea_texture = NULL;
+	// st_map->f_color;
+	// st_map->c_color = -1;
 	return (st_map);
 }
