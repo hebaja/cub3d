@@ -36,8 +36,13 @@ t_map	*build_st_map(char *map_path);
 void	clean_st_map(t_map *st_map);
 void	open_map_error(void);
 void	case_error_reading_file(void);
+void	put_error(char *msg, char *data);
+void	put_perror(char *msg);
+void	clean_args(char **args);
 int		is_valid_map_path(int argc, char **argv);
 int		parse_elements(t_map *st_map);
+int		check_texture_element(char *elem, char *line, t_map *st_map);
+int		check_color_element(char elem, char *line, t_map *st_map);
 
 /* DEBUG */
 void	print_map(char **map);
