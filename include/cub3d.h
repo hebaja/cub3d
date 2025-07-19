@@ -38,11 +38,12 @@ void	open_map_error(void);
 void	case_error_reading_file(void);
 void	put_error(char *msg, char *data);
 void	put_perror(char *msg);
+void	put_error_char(char *msg, char elem);
 void	clean_args(char **args);
 int		is_valid_map_path(int argc, char **argv);
 int		parse_elements(t_map *st_map);
 int		check_texture_element(char *elem, char *line, t_map *st_map);
-int		check_color_line(char *line);
+int		check_color_line(char *line, char elem);
 
 /* DEBUG */
 void	print_map(char **map);

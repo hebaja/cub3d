@@ -12,14 +12,14 @@
 
 #include "../include/cub3d.h"
 
-int	check_start_line(char **line)
+int	check_start_line(char **line, char elem)
 {
 	if ((**line == 'C' || **line == 'F') && *(*line + 1) != ' ')
 	{
 		if (*(*line + 1) == '\n')
-			put_error("Color line is not complete", NULL);
+			put_error_char("Color line is not complete", elem);
 		else
-			put_error("Color line must start with only F or C", NULL);
+			put_error_char("Color line must start with only F or C", elem);
 		return (0);
 	}
 	(*line)++;
@@ -27,7 +27,7 @@ int	check_start_line(char **line)
 	{
 		if (**line != ' ' && **line != '\n')
 		{
-			put_error("Invalid character in color line", NULL);
+			put_error_char("Invalid character in color line", elem);
 			return (0);
 		}
 		(*line)++;
@@ -35,18 +35,18 @@ int	check_start_line(char **line)
 	return (1);
 }
 
-int	check_misplaced_elements(char **line)
+int	check_misplaced_elements(char **line, char elem)
 {
 	while (**line && **line != '\n' && **line != ',')
 	{
 		if (**line && ft_isdigit(**line))
 		{
-			put_error("Misplaced color element", NULL);
+			put_error_char("Misplaced color element", elem);
 			return (0);
 		}
 		if (**line != ' ')
 		{
-			put_error("Invalid character in color line", NULL);
+			put_error_char("Invalid character in color line", elem);
 			return (0);
 		}
 		(*line)++;
@@ -54,7 +54,7 @@ int	check_misplaced_elements(char **line)
 	return (1);
 }
 
-int	check_last_elements(char **line, int *i)
+int	check_last_elements(char **line, int *i, char elem)
 {
 	while (**line && **line != '\n' && ++(*i) < 2)
 	{
@@ -62,19 +62,19 @@ int	check_last_elements(char **line, int *i)
 		{
 			if (**line && !ft_isdigit(**line))
 			{
-				put_error("Invalid character in color line", NULL);
+				put_error_char("Invalid character in color line", elem);
 				return (0);
 			}
 			(*line)++;
 		}
-		if (!check_misplaced_elements(line))
+		if (!check_misplaced_elements(line, elem))
 			return (0);
 		(*line)++;
 		while (**line && **line != '\n' && !ft_isdigit(**line))
 		{
 			if (**line != ' ')
 			{
-				put_error("Invalid character in color line", NULL);
+				put_error_char("Invalid character in color line", elem);
 				return (0);
 			}
 			(*line)++;
@@ -83,7 +83,7 @@ int	check_last_elements(char **line, int *i)
 	return (1);
 }
 
-int	check_end_line(char **line)
+int	check_end_line(char **line, char elem)
 {
 	int	comma_flag;
 
@@ -94,33 +94,33 @@ int	check_end_line(char **line)
 			comma_flag = 1;
 		if (ft_isdigit(**line))
 		{
-			put_error("Too many elements in color line", NULL);
+			put_error_char("Too many elements in color line", elem);
 			return (0);
 		}
 		if (**line != ' ' && **line != '\n' && **line != ',')
 		{
-			put_error("Invalid character in color line", NULL);
+			put_error_char("Invalid character in color line", elem);
 			return (0);
 		}
 		(*line)++;
 	}
 	if (comma_flag)
 	{
-		put_error("Invalid character in color line", NULL);
+		put_error_char("Invalid character in color line", elem);
 		return (0);
 	}
 	return (1);
 }
 
-int	check_color_line(char *line)
+int	check_color_line(char *line, char elem)
 {
 	int	i;
 
 	i = -1;
-	if (!check_start_line(&line))
+	if (!check_start_line(&line, elem))
 		return (0);
 	line++;
-	if (!check_last_elements(&line, &i))
+	if (!check_last_elements(&line, &i, elem))
 		return (0);
 	if (i < 2)
 	{
@@ -130,7 +130,7 @@ int	check_color_line(char *line)
 	while (ft_isdigit(*line))
 		line++;
 	if (*line)
-		if (!check_end_line(&line))
+		if (!check_end_line(&line, elem))
 			return (0);
 	return (1);
 }

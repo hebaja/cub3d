@@ -16,6 +16,7 @@ int	invalid_line(char *line)
 {
 	char	*origin_line;
 
+	origin_line = line;
 	if (*line != 'N' && *line != 'S' && *line != 'W' && *line != 'E'
 		&& *line != 'F' && *line != 'C' && *line != '\n')
 	{
@@ -23,13 +24,13 @@ int	invalid_line(char *line)
 		{
 			if (*line != ' ' && *line != '\n')
 			{
-				origin_line = ft_strtrim(line, "\n");
+				origin_line = ft_strtrim(origin_line, "\n");
 				put_error("invalid line", origin_line);
 				free(origin_line);
 				return (1);
 			}
+			line++;
 		}
-		line++;
 	}
 	return (0);
 }
@@ -62,7 +63,7 @@ int	check_c_color_element(char elem, char *line, t_map *st_map)
 			put_error("Repated color element", "C");
 			return (0);
 		}
-		if (!check_color_line(line))
+		if (!check_color_line(line, elem))
 			return (0);
 		line++;
 		args = ft_split(line, ',');
@@ -88,7 +89,7 @@ int	check_f_color_element(char elem, char *line, t_map *st_map)
 			put_error("Repated color element", "F");
 			return (0);
 		}
-		if (!check_color_line(line))
+		if (!check_color_line(line, elem))
 			return (0);
 		line++;
 		args = ft_split(line, ',');
