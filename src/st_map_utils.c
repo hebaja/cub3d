@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/13 19:10:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/19 04:09:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_map	*build_st_map(char *map_path)
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
 	st_map->ea_texture = NULL;
-	// st_map->f_color;
-	// st_map->c_color = -1;
+	st_map->f_color[0] = -1;
+	st_map->c_color[0] = -1;
 	return (st_map);
 }

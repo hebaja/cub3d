@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/13 19:05:29 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:44:18 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	clean_args(char **args);
 int		is_valid_map_path(int argc, char **argv);
 int		parse_elements(t_map *st_map);
 int		check_texture_element(char *elem, char *line, t_map *st_map);
-int		check_color_element(char elem, char *line, t_map *st_map);
+int		check_color_line(char *line);
 
 /* DEBUG */
 void	print_map(char **map);

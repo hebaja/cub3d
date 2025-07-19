@@ -1,182 +1,136 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_element_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/19 03:45:04 by hebatist          #+#    #+#             */
+/*   Updated: 2025/07/19 04:44:04 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-int	validate_color(char *str_color)
+int	check_start_line(char **line)
 {
-	int	i;
-	int	len;
-	int	color;	
-
-	i = -1;
-	len = ft_strlen(str_color);
-	color = 0;
-	while (*str_color && ++i < len)
+	if ((**line == 'C' || **line == 'F') && *(*line + 1) != ' ')
 	{
-		if (str_color[i] == ' ' || str_color[i] == ',' || str_color[i] == '\n')
-			break ;
-		if (!ft_isdigit(str_color[i]) || i > 2)
-			return (-1);
-	}
-	color = ft_atoi(str_color);
-	return (color);
-}
-
-int	is_color_line_valid(char *line)
-{
-	char	type;
-
-	type = *line;
-	while (*line)
-	{
-		if (*line != 'F' && *line != 'C' && *line != ' ' && *line != ','
-			&& *line != '\n' && !ft_isdigit(*line))
-		{
-			if (type == 'F')
-				put_error("Invalid F color element", NULL);
-			else
-				put_error("Invalid C color element", NULL);
-			return (0);
-		}
-		line++;
-	}
-	return (1);
-}
-
-int	validate_end_line(char *line)
-{
-	while (*line)
-	{
-		if (*line != ' ' && *line != '\n')
-		{
-			put_error("Color: Too many elements", NULL);
-			return (0);
-		}
-		line++;
-	}
-	return (1);
-}
-
-int	is_number(char *line, char **args)
-{
-	int	i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (!ft_isdigit(line[i]))
-		{
-			put_error("line contains invalid charcter", line);
-			clean_args(args);
-			free(line);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-int	check_color_element(char elem, char *line, t_map *st_map)
-{
-	int		i;
-	int		empty_flag;
-	int		size;
-	int		limit;
-	char	**args;
-	char	*filtered;
-
-	if (elem != 'C')
-		return (1);
-
-	i = -1;
-	empty_flag = 0;
-	args = ft_split(&line[1], ' ');
-	limit = -1;
-	while (args[++i])
-	{
-		filtered = ft_strtrim(args[i], ",");
-		size = ft_strlen(filtered);
-		if (!size || filtered[0] == '\n')
-		{
-			if (empty_flag)
-			{
-				put_error("empty element", line);
-				clean_args(args);
-				free(filtered);
-				return (0);
-			}
-			free(filtered);
-			filtered = NULL;
-			empty_flag = 1;
-		}
-		else if (!is_number(filtered, args))
-			return (0);
+		if (*(*line + 1) == '\n')
+			put_error("Color line is not complete", NULL);
 		else
-		{
-			limit++;
-			if (limit > 2)
-			{
-				put_error("wrong quantity of elements", line);
-				clean_args(args);
-				free(filtered);
-				return (0);
-			}
-
-			int	n = ft_atoi(filtered);
-
-			if (elem == 'F')
-				st_map->f_color[limit] = n;
-			else
-				st_map->c_color[limit] = n;
-			free(filtered);
-			filtered = NULL;
-			empty_flag = 0;
-		}
-	}
-	if (limit != 2)
-	{
-		put_error("wrong quantity of elements", line);
-		clean_args(args);
+			put_error("Color line must start with only F or C", NULL);
 		return (0);
 	}
-	clean_args(args);
-	return (1);
-}
-
-/*
-int	check_color_element(char elem, char *line, t_map *st_map)
-{
-	int	i;
-	int	tmp_color;
-
-	i = 0;
-	if (elem == line[0] && line[1] == ' ')
+	(*line)++;
+	while (**line && !ft_isdigit(**line))
 	{
-		if (!is_color_line_valid(line))
-			return (0);
-		line++;
-		while (*line)
+		if (**line != ' ' && **line != '\n')
 		{
-			while (!ft_isdigit(*line) && *line != '\n')
-				line++;
-			if (*line == '\n' || i > 3)
-				break ;
-			tmp_color = validate_color(line);
-			if (tmp_color < 0)
-				return (0);
-			if (elem == 'F')
-				st_map->f_color[i] = tmp_color;
-			else
-				st_map->c_color[i] = tmp_color;
-			while (ft_isdigit(*line) || *line == '\n')
-				line++;
-			i++;	
-		}
-		if (i != 3)
-		{
-			put_error("Color: Wrong quantity of elements", NULL);
+			put_error("Invalid character in color line", NULL);
 			return (0);
 		}
-		if (!validate_end_line(line))
-			return (0);
+		(*line)++;
 	}
 	return (1);
 }
-*/
+
+int	check_misplaced_elements(char **line)
+{
+	while (**line && **line != '\n' && **line != ',')
+	{
+		if (**line && ft_isdigit(**line))
+		{
+			put_error("Misplaced color element", NULL);
+			return (0);
+		}
+		if (**line != ' ')
+		{
+			put_error("Invalid character in color line", NULL);
+			return (0);
+		}
+		(*line)++;
+	}
+	return (1);
+}
+
+int	check_last_elements(char **line, int *i)
+{
+	while (**line && **line != '\n' && ++(*i) < 2)
+	{
+		while (ft_isdigit(**line))
+		{
+			if (**line && !ft_isdigit(**line))
+			{
+				put_error("Invalid character in color line", NULL);
+				return (0);
+			}
+			(*line)++;
+		}
+		if (!check_misplaced_elements(line))
+			return (0);
+		(*line)++;
+		while (**line && **line != '\n' && !ft_isdigit(**line))
+		{
+			if (**line != ' ')
+			{
+				put_error("Invalid character in color line", NULL);
+				return (0);
+			}
+			(*line)++;
+		}
+	}
+	return (1);
+}
+
+int	check_end_line(char **line)
+{
+	int	comma_flag;
+
+	comma_flag = 0;
+	while (**line && **line != '\n')
+	{
+		if (**line == ',')
+			comma_flag = 1;
+		if (ft_isdigit(**line))
+		{
+			put_error("Too many elements in color line", NULL);
+			return (0);
+		}
+		if (**line != ' ' && **line != '\n' && **line != ',')
+		{
+			put_error("Invalid character in color line", NULL);
+			return (0);
+		}
+		(*line)++;
+	}
+	if (comma_flag)
+	{
+		put_error("Invalid character in color line", NULL);
+		return (0);
+	}
+	return (1);
+}
+
+int	check_color_line(char *line)
+{
+	int	i;
+
+	i = -1;
+	if (!check_start_line(&line))
+		return (0);
+	line++;
+	if (!check_last_elements(&line, &i))
+		return (0);
+	if (i < 2)
+	{
+		put_error("Not enough color elements", NULL);
+		return (0);
+	}
+	while (ft_isdigit(*line))
+		line++;
+	if (*line)
+		if (!check_end_line(&line))
+			return (0);
+	return (1);
+}
