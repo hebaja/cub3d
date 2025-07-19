@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/17 20:32:47 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:19:53 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,18 @@ int	parse_elements(t_map *st_map)
 		check_texture_element("EA", *map, st_map);
 		if (is_map(*map))
 		{
+			if (st_map->map_finish)
+			{
+				ft_printf("invalid Map ❌\n");
+				ft_printf("the map has empty line\n");
+				exit(1);
+			}
+			st_map->map_start = 1;
 			st_map->map[i] = ft_strdup(*map);
 			i++;
 		}
+		else if (st_map->map_start)
+			st_map->map_finish = 1;
 		map++;
 	}
 	st_map->map[i] = NULL;

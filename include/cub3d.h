@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/17 20:53:53 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:09:08 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_map
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
+	int		map_start;
+	int		map_finish;
 	int		player_pos;
 	int		player_x;
 	int		player_y;
@@ -44,6 +46,7 @@ int		parse_elements(t_map *st_map);
 int		is_not_coord(char *line);
 int		valid_map(t_map	*st_map);
 int		find_line_map(char **line);
+int		is_map(char *line);
 
 /* DEBUG */
 void	print_map(char **map);

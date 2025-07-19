@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:30:52 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/17 20:30:58 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:04:47 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ void	get_coord_height(t_map *st_map)
 	start = find_line_map(st_map->file_map);
 	count = 0;
 	while (st_map->file_map[start + count])
-		count++;
+	{
+		if (is_map(st_map->file_map[start + count]))
+			count++;
+		else
+			break ;
+	}
 	st_map->map = ft_calloc(count + 1, sizeof(char *));
 	if (!st_map->map)
 		return ;

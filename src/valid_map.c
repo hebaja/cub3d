@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:31:49 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/17 21:01:03 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:34:12 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,77 @@ static int	valid_character(char **map)
 	return (1);
 }
 
-static int	has_empty_line(char **map)
+int	get_width_map(char **map)
 {
 	int	i;
-	int	empty_line;
+	int	len;
+	int	max;
 
 	i = 0;
-	empty_line = 0;
+	max = 0;
 	while (map[i])
 	{
-		if (map[i][0] == '\0' || map[i][0] == '\n')
-		{
-			if (empty_line)
-				return (1);
-			else
-				empty_line = 1;
-		}
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
 		i++;
 	}
-	return (0);
+	return (max);
+}
+
+char	**flood_fill_map(char **map)
+{
+	int		i;
+	int		j;
+	int		width;
+	char	**map_filled;
+
+	i = 0;
+	width = get_width_map(map);
+	while (map[i])
+		i++;
+	map_filled = malloc(sizeof(char *) * (i + 1));
+	if (!map_filled)
+		return (NULL);
+	i = 0;
+	while (map[i])
+	{
+		map_filled[i] = malloc(sizeof(char) * (width + 1));
+		if (!map_filled[i])
+			return (NULL);
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+		{
+			map_filled[i][j] = map[i][j];
+			j++;
+		}
+		while (j < width)
+		{
+			map_filled[i][j] = '-';
+			j++;
+		}
+		map_filled[i][j] = '\0';
+		i++;
+	}
+	map_filled[i] = NULL;
+	return (map_filled);
 }
 
 static int	valid_border(char **map)
 {
-	//char	**map_filled;
+	char	**map_filled;
+	int		i;
 
-	if (!has_empty_line(map))
-		return (print_error("Map has a empty_line"));
+	map_filled = flood_fill_map(map);
+	i = 0;
+	ft_printf("---Map Filled---\n");
+	while (map_filled[i])
+	{
+		ft_printf("map_filled[%d]: %s\n", i, map_filled[i]);
+		i++;
+	}
+	if (!map_filled)
+		return (print_error("Error: flood fill failure\n"));
 	return (1);
 }
 
@@ -92,10 +136,10 @@ static int	valid_position_player(char **map, t_map *st_map)
 int	valid_map(t_map	*st_map)
 {
 	if (!valid_character(st_map->map))
-		return (print_error("Error character"));
+		return (print_error("Error: Invalid character\n"));
 	if (!valid_border(st_map->map))
-		return (print_error("Error Border\n"));
+		return (print_error("Error: Invalid Border\n"));
 	if (!valid_position_player(st_map->map, st_map))
-		return (print_error("Error position player\n"));
+		return (print_error("Error: Has more than one player\n"));
 	return (1);
 }
