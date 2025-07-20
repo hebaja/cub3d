@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/20 17:21:44 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:36:05 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	check_f_color_element(char elem, char *line, t_map *st_map)
 int	parse_elements(t_map *st_map)
 {
 	char	**file_content;
+	int		i;
 
 	file_content = st_map->file_content;
 	while (*file_content)
@@ -119,7 +120,19 @@ int	parse_elements(t_map *st_map)
 			|| invalid_line(*file_content))
 			return (0);
 		file_content++;
+		if (st_map->no_texture != NULL && st_map->so_texture != NULL
+			&& st_map->we_texture != NULL && st_map->ea_texture
+			&& st_map->c_color[0] != -1 && st_map->f_color[0] != -1)
+			break ;
 	}
+	st_map->map = (char **)malloc(sizeof(char *) * 6);
+	i = -1;
+	while (*file_content)
+	{
+		st_map->map[++i] = ft_strdup(*file_content);
+		file_content++;
+	}
+	st_map->map[++i] = NULL;
 	return (1);
 }
 

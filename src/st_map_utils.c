@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/20 17:19:26 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:27:48 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	clean_st_map(t_map *st_map)
 		if (st_map->ea_texture)
 			free(st_map->ea_texture);
 		clean_file_content(st_map->file_content);
+		clean_file_content(st_map->map);
 		free(st_map);
 		st_map = NULL;
 	}
