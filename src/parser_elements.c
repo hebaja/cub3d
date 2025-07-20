@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/19 11:32:00 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:21:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,20 @@ int	check_f_color_element(char elem, char *line, t_map *st_map)
 
 int	parse_elements(t_map *st_map)
 {
-	char	**map;
+	char	**file_content;
 
-	map = st_map->map;
-	while (*map)
+	file_content = st_map->file_content;
+	while (*file_content)
 	{
-		if (!check_texture_element("NO", *map, st_map)
-			|| !check_texture_element("SO", *map, st_map)
-			|| !check_texture_element("WE", *map, st_map)
-			|| !check_texture_element("EA", *map, st_map)
-			|| !check_f_color_element('F', *map, st_map)
-			|| !check_c_color_element('C', *map, st_map)
-			|| invalid_line(*map))
+		if (!check_texture_element("NO", *file_content, st_map)
+			|| !check_texture_element("SO", *file_content, st_map)
+			|| !check_texture_element("WE", *file_content, st_map)
+			|| !check_texture_element("EA", *file_content, st_map)
+			|| !check_f_color_element('F', *file_content, st_map)
+			|| !check_c_color_element('C', *file_content, st_map)
+			|| invalid_line(*file_content))
 			return (0);
-		map++;
+		file_content++;
 	}
 	return (1);
 }
