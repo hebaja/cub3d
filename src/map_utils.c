@@ -18,9 +18,10 @@ void	open_map_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	case_error_reading_file(void)
+void	case_error_reading_file(t_map *st_map)
 {
 	put_perror("Problem reading map file");
+	clean_st_map(st_map);
 	exit(EXIT_FAILURE);
 }
 

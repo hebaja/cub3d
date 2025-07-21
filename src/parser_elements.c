@@ -103,6 +103,15 @@ int	check_f_color_element(char elem, char *line, t_map *st_map)
 	return (1);
 }
 
+int	elements_complete(t_map *st_map)
+{
+	if (st_map->no_texture != NULL && st_map->so_texture != NULL
+		&& st_map->we_texture != NULL && st_map->ea_texture
+		&& st_map->c_color[0] != -1 && st_map->f_color[0] != -1)
+		return (1);
+	return (0);
+}
+
 int	parse_elements(t_map *st_map)
 {
 	char	**file_content;
@@ -120,10 +129,13 @@ int	parse_elements(t_map *st_map)
 			|| invalid_line(*file_content))
 			return (0);
 		file_content++;
-		if (st_map->no_texture != NULL && st_map->so_texture != NULL
-			&& st_map->we_texture != NULL && st_map->ea_texture
-			&& st_map->c_color[0] != -1 && st_map->f_color[0] != -1)
+		if (elements_complete(st_map))
 			break ;
+	}
+	if (!elements_complete(st_map))
+	{
+		put_error("An element is missing", NULL);
+		return (0);
 	}
 	st_map->map = (char **)malloc(sizeof(char *) * 6);
 	i = -1;

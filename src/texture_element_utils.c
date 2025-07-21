@@ -12,6 +12,7 @@
 
 #include "../include/cub3d.h"
 
+/* TODO move to a more generic file */
 void	clean_args(char **args)
 {
 	int		i;
@@ -34,12 +35,26 @@ void	update_st_map_texture(char *elem, char *path, t_map *st_map)
 		st_map->ea_texture = ft_strtrim(path, "\n");
 }
 
+char	*clean_path(char *str)
+{
+	char	*path;
+	char	*tmp1;
+	// char	*tmp2;
+
+	tmp1 = ft_strtrim(str, "\t\n");
+	// tmp2 = ft_strtrim(tmp1, "\t");
+	path = ft_strtrim(tmp1, " ");
+	free(tmp1);
+	// free(tmp2);
+	return (path);
+}
+
 int	validate_texture_element(char *elem, char *str, t_map *st_map)
 {
 	char	*path;
 	char	*xpm_ext;
 
-	path = ft_strtrim(str, "\n");
+	path = ft_strtrim(str, " \t\n");
 	if (access(path, F_OK) == 0 && access(path, R_OK) == 0)
 	{
 		xpm_ext = ft_strrchr(path, '.');

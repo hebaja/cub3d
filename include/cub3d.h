@@ -36,7 +36,7 @@ typedef struct s_map
 t_map	*build_st_map(char *map_path);
 void	clean_st_map(t_map *st_map);
 void	open_map_error(void);
-void	case_error_reading_file(void);
+void	case_error_reading_file(t_map *st_map);
 void	put_error(char *msg, char *data);
 void	put_perror(char *msg);
 void	put_error_char(char *msg, char elem);

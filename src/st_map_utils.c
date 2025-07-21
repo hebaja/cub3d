@@ -35,14 +35,16 @@ void	clean_st_map(t_map *st_map)
 			free(st_map->we_texture);
 		if (st_map->ea_texture)
 			free(st_map->ea_texture);
-		clean_file_content(st_map->file_content);
-		clean_file_content(st_map->map);
+		if (st_map->file_content)
+			clean_file_content(st_map->file_content);
+		if (st_map->map)
+			clean_file_content(st_map->map);
 		free(st_map);
 		st_map = NULL;
 	}
 }
 
-int	get_file_content_height(char *map_path)
+int	get_file_content_height(char *map_path, t_map *st_map)
 {
 	int		fd;
 	char	*line;
@@ -51,7 +53,7 @@ int	get_file_content_height(char *map_path)
 	len = 0;
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-		case_error_reading_file();
+		case_error_reading_file(st_map);
 	line = get_next_line(fd);
 	if (line == NULL)
 		return (0);
@@ -96,13 +98,15 @@ t_map	*build_st_map(char *map_path)
 
 	st_map = (t_map *)malloc(sizeof(t_map));
 	st_map->path = map_path;
-	st_map->height = get_file_content_height(map_path);
-	st_map->file_content = get_file_content(map_path, st_map->height);
 	st_map->no_texture = NULL;
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
 	st_map->ea_texture = NULL;
+	st_map->file_content = NULL;
+	st_map->map = NULL;
 	st_map->f_color[0] = -1;
 	st_map->c_color[0] = -1;
+	st_map->height = get_file_content_height(map_path, st_map);
+	st_map->file_content = get_file_content(map_path, st_map->height);
 	return (st_map);
 }
