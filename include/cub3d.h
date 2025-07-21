@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/20 17:16:52 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:53:10 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ typedef struct s_map
 	int		f_color[3];
 	int		c_color[3];
 }	t_map;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*no_texture;
+	t_map	*st_map;
+	
+
+}	t_mlx;
 
 t_map	*build_st_map(char *map_path);
 void	clean_st_map(t_map *st_map);
