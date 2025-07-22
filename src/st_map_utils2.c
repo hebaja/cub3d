@@ -6,10 +6,9 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:30:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/17 20:31:07 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/21 22:42:33 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 
@@ -61,6 +60,7 @@ void	clean_st_map(t_map *st_map)
 		free(st_map->we_texture);
 		free(st_map->ea_texture);
 		clean_map(st_map->file_map);
+		clean_map(st_map->map);
 		free(st_map);
 		st_map = NULL;
 	}

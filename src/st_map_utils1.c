@@ -6,14 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:30:52 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/18 16:04:47 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/21 22:46:37 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/cub3d.h"
 
-int	get_map_height(char *map_path)
+int	get_height_file(char *map_path)
 {
 	int		fd;
 	char	*line;
@@ -80,19 +79,20 @@ void	get_coord_height(t_map *st_map)
 		return ;
 }
 
-
 t_map	*build_st_map(char *map_path)
 {
 	t_map	*st_map;
 
 	st_map = (t_map *)malloc(sizeof(t_map));
 	st_map->path = map_path;
-	st_map->height = get_map_height(map_path);
+	st_map->height = get_height_file(map_path);
 	st_map->file_map = get_map_content(map_path, st_map->height);
 	get_coord_height(st_map);
 	st_map->no_texture = NULL;
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
+	st_map->map_start = 0;
+	st_map->map_finish = 0;
 	st_map->f_color = -1;
 	st_map->c_color = -1;
 	return (st_map);

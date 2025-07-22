@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/18 16:19:53 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/21 22:38:20 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	check_texture_element(char *elem, char *line, t_map *st_map)
 	if (ft_strncmp(line, elem, 2) == 0)
 	{
 		args = ft_split(line, ' ');
-		if (ft_strcmp(args[0], elem) == 0 
+		if (ft_strcmp(args[0], elem) == 0
 			&& (args[1] != NULL && ft_strcmp(args[1], "\n") != 0
-			&& (args[2] == NULL || ft_strcmp(args[2], "\n") == 0)))
+				&& (args[2] == NULL || ft_strcmp(args[2], "\n") == 0)))
 			update_st_map_texture(elem, args[1], st_map);
 		while (args[++i])
 			free(args[i]);
@@ -103,7 +103,8 @@ int	parse_elements(t_map *st_map)
 	ft_printf("\n");
 	if (!valid_map(st_map))
 	{
-		ft_printf("invalid Map ❌ ");
+		ft_printf("Invalid Map ❌ ");
+		clean_st_map(st_map);
 		exit(1);
 	}
 	ft_printf("Valid Map ✅");
