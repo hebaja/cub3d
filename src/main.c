@@ -32,13 +32,13 @@ void    draw_screen(t_mlx *st_mlx, t_map *st_map, int size)
 	int             w;
 	int             h;
 
-	y = -1;
+	x = -1;
 	h = 0;
-	while (++y < st_map->height)
+	while (++x < 5)
 	{
-		x = -1;
+		y = -1;
 		w = 0;
-		while (++y < 7)
+		while (++y < 6)
 		{
 			put_assets(st_mlx, st_map->map[x][y], w, h);
 			w += size;
@@ -47,16 +47,66 @@ void    draw_screen(t_mlx *st_mlx, t_map *st_map, int size)
 	}
 }
 
+void	my_mlx_pixel_put(t_mlx *st_mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = st_mlx->addr + (y * st_mlx->line_length + x * (st_mlx->bits_per_pixel / 8));
+	*(unsigned int*)dst = (unsigned int)color;
+}
+
+void	ray_cast(t_mlx *st_mlx, int width, int dirX, int dirY, float planeX, float planeY, int x)
+{
+	double cameraX = 2 * x / (double)width - 1;
+	float rayDirX = dirX + planeX * cameraX;
+	float rayDirY = dirY + planeY * cameraX;
+
+}
+
 void	load(t_map *st_map)
 {
 	t_mlx	*st_mlx;
-	int		size = 256;
+	int		size = 128;
+	int		white = 16777215;
+	int		width;
+	int		height;
+
+	width = 7 * size;
+	height = 5 * size;
 
 	st_mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	st_mlx->st_map = st_map;
 	st_mlx->mlx = mlx_init();
-	st_mlx->win = mlx_new_window(st_mlx->mlx, 6 * 256, 6 * 256, "cub3d");
-	st_mlx->no_texture = mlx_xpm_file_to_image(st_mlx->mlx, st_map->no_texture, &size, &size);
+	st_mlx->win = mlx_new_window(st_mlx->mlx, width, height, "cub3d");
+	
+	st_mlx->img = mlx_new_image(st_mlx->mlx, width, height);
+	st_mlx->addr = mlx_get_data_addr(st_mlx->img, &st_mlx->bits_per_pixel, &st_mlx->line_length, &st_mlx->endian);
+
+	// st_mlx->no_texture = mlx_xpm_file_to_image(st_mlx->mlx, st_map->no_texture, &size, &size);
+	st_mlx->st_map = st_map;
+
+	//draw_screen(st_mlx, st_mlx->st_map, size);
+
+	int	i;
+	float	p_posx = 3.5;
+	float	p_posy = 4.5;
+
+	int		dirX = 0;
+	int		dirY = -1;
+
+	float	planeX = 0.66;
+	float	playeY = 0;
+
+
+
+	i = -1;
+	while (++i < height)
+	{
+		// mlx_pixel_put(st_mlx->mlx, st_mlx->win, 128, i, white);
+		my_mlx_pixel_put(st_mlx, 128, i, white);
+	}
+
+	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->img, 0, 0);
+
 
 	mlx_loop(st_mlx->mlx);
 }
