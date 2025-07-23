@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/23 04:09:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/23 05:10:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,41 @@ char	**get_file_content(char *map_path, int height)
 	return (file_content);
 }
 
+char	**get_map_content(char *map_path, int height)
+{
+	int		fd;
+	int		i;
+	char	**map;
+	char	*str;
+
+	fd = open(map_path, O_RDONLY);
+	if (fd < 0)
+		open_map_error();
+	map = ft_calloc(height + 1, sizeof(char *));
+	if (map == NULL)
+		return (NULL);
+	i = -1;
+	str = get_next_line(fd);
+	while (str != NULL)
+	{
+		map[++i] = ft_strdup(str);
+		free(str);
+		str = get_next_line(fd);
+	}
+	close(fd);
+	return (map);
+}
+
 void	get_coord_height(t_map *st_map)
 {
 	int	start;
 	int	count;
 
-	start = find_line_map(st_map->map);
+	start = find_line_map(st_map->file_content);
 	count = 0;
-	while (st_map->map[start + count])
+	while (st_map->file_content[start + count])
 	{
-		if (is_map(st_map->map[start + count]))
+		if (is_map(st_map->file_content[start + count]))
 			count++;
 		else
 			break ;
@@ -121,15 +146,15 @@ t_map	*build_st_map(char *map_path)
 	st_map->so_texture = NULL;
 	st_map->we_texture = NULL;
 	st_map->ea_texture = NULL;
-	st_map->file_content = NULL;
-	st_map->map = NULL;
+	// st_map->file_content = NULL;
+	// st_map->map = NULL;
 	st_map->f_color[0] = -1;
 	st_map->c_color[0] = -1;
 	st_map->height = get_file_content_height(map_path, st_map);
 	st_map->file_content = get_file_content(map_path, st_map->height);
+	get_coord_height(st_map);
 	// st_map->height = get_height_file(map_path);
 	// st_map->map = get_map_content(map_path, st_map->height);
-	get_coord_height(st_map);
 	st_map->map_start = 0;
 	st_map->map_finish = 0;
 	return (st_map);

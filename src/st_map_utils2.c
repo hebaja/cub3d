@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:30:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/23 04:00:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/23 04:21:49 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	clean_map(char **map)
 	free(map);
 	map = NULL;
 }
-
+/*
 void	clean_st_map(t_map *st_map)
 {
 	if (st_map)
@@ -65,3 +65,4 @@ void	clean_st_map(t_map *st_map)
 		st_map = NULL;
 	}
 }
+*/
