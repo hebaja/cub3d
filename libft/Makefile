@@ -15,18 +15,18 @@ SRCS=$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS=$(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
-	ar rcs $@ $^
+	@ar rcs $@ $^
 
 .c.o: $(HEADER_FILE)
-	$(CC) $(CC_FLAGS) -c $< -I $(INC_DIR) -o $@
+	@$(CC) $(CC_FLAGS) -c $< -I $(INC_DIR) -o $@
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

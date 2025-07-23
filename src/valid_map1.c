@@ -1,0 +1,143 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_map1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
+/*   Updated: 2025/07/22 22:02:53 by dbatista         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/cub3d.h"
+
+static int	space_in_map(int i, int *j, char **map)
+{
+	int	k;
+	int	height;
+
+	k = *j;
+	height = get_height_map(map);
+	while (map[i][k])
+	{
+		if (map[i][k] && map[i][k] == '0' && map[i][k + 1] == ' ')
+			return (0);
+		if (map[i][k] == ' ')
+		{
+			k++;
+			while (map[i][k] == ' ')
+				k++;
+			if (ft_strchr("0NSEW", map[i][k]))
+				return (0);
+			if (i > 0 && ft_strchr("0NSEW", map[i - 1][k - 1]))
+				return (0);
+			if (i < height - 1 && ft_strchr("0NSEW", map[i + 1][k - 1]))
+				return (0);
+		}
+		k++;
+	}
+	return (1);
+}
+
+static int	valid_character(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1')
+			{
+				j++;
+				if (!space_in_map(i, &j, map))
+					return (0);
+			}
+			if (map[i][j] != '\0' && map[i][j] != '\n'
+					&& !ft_strchr("01NSEW ", map[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+static int	valid_border(char **map, t_map *st_map)
+{
+	int		i;
+	int		height;
+
+	height = get_height_map(map);
+	expanded_map(map, st_map);
+	ft_printf("--- Expanded Map ---\n");
+	i = 0;
+	while (i < height + 2)
+	{
+		ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
+		i++;
+	}
+	if (!map_flood_fill(st_map->dup_map, 0, 0))
+	{
+		ft_printf("--- Flood Fill Map ---\n");
+		i = 0;
+		while (i < height + 2)
+		{
+			ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
+			i++;
+		}
+		clean_map(st_map->dup_map);
+		return (0);
+	}
+	ft_printf("--- Flood Fill Map ---\n");
+	i = 0;
+	while (i < height + 2)
+	{
+		ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
+		i++;
+	}
+	clean_map(st_map->dup_map);
+	return (1);
+}
+
+static int	valid_position_player(char **map, t_map *st_map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (ft_strchr("NSWE", map[i][j]))
+			{
+				st_map->player_pos = map[i][j];
+				st_map->player_x = j;
+				st_map->player_y = i;
+				count++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (count == 1);
+}
+
+int	valid_map(t_map	*st_map)
+{
+	if (!valid_character(st_map->map))
+		return (print_error("Invalid character.\n"));
+	if (!valid_border(st_map->map, st_map))
+		return (print_error("Leak in the map, invalid border.\n"));
+	if (!valid_position_player(st_map->map, st_map))
+		return (print_error("Player error.\n"));
+	return (1);
+}
