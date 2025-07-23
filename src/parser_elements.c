@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/23 05:18:51 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:51:59 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	parse_elements(t_map *st_map)
 		{
 			if (st_map->map_finish)
 			{
-				ft_printf("invalid Map ❌\n");
+				ft_printf("Invalid Map ❌\n");
 				ft_printf("the map has empty line\n");
 				exit(1);
 			}
@@ -172,20 +172,12 @@ int	parse_elements(t_map *st_map)
 	}
 	st_map->map[i] = NULL;
 	i = 0;
-	ft_printf("----Map Validation----\n");
-	while (st_map->map[i])
-	{
-		ft_printf("%s", st_map->map[i]);
-		i++;
-	}
-	ft_printf("\n");
 	if (!valid_map(st_map))
 	{
 		ft_printf("Invalid Map ❌ ");
 		clean_st_map(st_map);
 		exit(1);
 	}
-	ft_printf("Valid Map ✅");
 	return (1);
 }
 
