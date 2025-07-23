@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 15:42:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/17 18:34:35 by dbatista         ###   ########.fr       */
+/*   Created: 2025/07/17 20:32:38 by dbatista          #+#    #+#             */
+/*   Updated: 2025/07/17 20:33:54 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/cub3d.h"
 
-char	*ft_strchr(const char *s, int c)
+int	print_error(char *str)
 {
-	int					i;
-	int					len;
-	unsigned char		ch;
-
-	i = 0;
-	len = ft_strlen(s) + 1;
-	ch = c;
-	while (i < len)
-	{
-		if (s[i] == ch)
-			return ((char *)&s[i]);
-		i++;
-	}
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
 	return (0);
 }
