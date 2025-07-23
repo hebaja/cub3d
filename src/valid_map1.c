@@ -6,20 +6,20 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/22 22:02:53 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:27:53 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	space_in_map(int i, int *j, char **map)
+static int	space_in_map(int i, int *j, int last, char **map)
 {
 	int	k;
 	int	height;
 
 	k = *j;
 	height = get_height_map(map);
-	while (map[i][k])
+	while (k < last && map[i][k])
 	{
 		if (map[i][k] && map[i][k] == '0' && map[i][k + 1] == ' ')
 			return (0);
@@ -44,17 +44,19 @@ static int	valid_character(char **map)
 {
 	int	i;
 	int	j;
+	int	last;
 
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
+		last = get_last_valid(map[i]);
 		while (map[i][j])
 		{
 			if (map[i][j] == '1')
 			{
 				j++;
-				if (!space_in_map(i, &j, map))
+				if (!space_in_map(i, &j, last, map))
 					return (0);
 			}
 			if (map[i][j] != '\0' && map[i][j] != '\n'
@@ -72,33 +74,11 @@ static int	valid_border(char **map, t_map *st_map)
 	int		i;
 	int		height;
 
-	height = get_height_map(map);
 	expanded_map(map, st_map);
-	ft_printf("--- Expanded Map ---\n");
-	i = 0;
-	while (i < height + 2)
-	{
-		ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
-		i++;
-	}
 	if (!map_flood_fill(st_map->dup_map, 0, 0))
 	{
-		ft_printf("--- Flood Fill Map ---\n");
-		i = 0;
-		while (i < height + 2)
-		{
-			ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
-			i++;
-		}
 		clean_map(st_map->dup_map);
 		return (0);
-	}
-	ft_printf("--- Flood Fill Map ---\n");
-	i = 0;
-	while (i < height + 2)
-	{
-		ft_printf("dup_map[%d]: %s\n", i, st_map->dup_map[i]);
-		i++;
 	}
 	clean_map(st_map->dup_map);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:11:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/15 20:17:19 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:26:08 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	print_map(char **map)
 	while (map[++i])
 		ft_printf("%s", map[i]);
 	ft_printf("\n");
+}
+
+int	get_last_valid(char *line)
+{
+	int	len;
+
+	len = ft_strlen(line);
+	while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\n'))
+		len--;
+	return (len);
 }
 
 int	is_valid_map_path(int argc, char **argv)

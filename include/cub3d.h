@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/21 22:20:30 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:26:36 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int		get_height_file(char *map_path);
 int		get_height_map(char **map);
 int		get_width_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
-char    **fill_duplicate_map(int height, int width);
+char	**fill_duplicate_map(int height, int width);
 void	expanded_map(char **map, t_map *st_map);
+int		get_last_valid(char *line);
 
 /* DEBUG */
 void	print_map(char **map);
