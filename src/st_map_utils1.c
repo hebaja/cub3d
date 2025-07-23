@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_map_utils.c                                     :+:      :+:    :+:   */
+/*   st_map_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/20 17:27:48 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/23 04:09:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,25 @@ char	**get_file_content(char *map_path, int height)
 	return (file_content);
 }
 
+void	get_coord_height(t_map *st_map)
+{
+	int	start;
+	int	count;
+
+	start = find_line_map(st_map->map);
+	count = 0;
+	while (st_map->map[start + count])
+	{
+		if (is_map(st_map->map[start + count]))
+			count++;
+		else
+			break ;
+	}
+	st_map->map = ft_calloc(count + 1, sizeof(char *));
+	if (!st_map->map)
+		return ;
+}
+
 t_map	*build_st_map(char *map_path)
 {
 	t_map	*st_map;
@@ -108,5 +127,10 @@ t_map	*build_st_map(char *map_path)
 	st_map->c_color[0] = -1;
 	st_map->height = get_file_content_height(map_path, st_map);
 	st_map->file_content = get_file_content(map_path, st_map->height);
+	// st_map->height = get_height_file(map_path);
+	// st_map->map = get_map_content(map_path, st_map->height);
+	get_coord_height(st_map);
+	st_map->map_start = 0;
+	st_map->map_finish = 0;
 	return (st_map);
 }
