@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:11:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/23 15:26:08 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:54:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,11 @@ void	open_map_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	case_error_reading_file(t_map *st_map)
+void	case_error_reading_file(t_file *st_file)
 {
 	put_perror("Problem reading map file");
-	clean_st_map(st_map);
+	clean_st_file(st_file);
 	exit(EXIT_FAILURE);
-}
-
-void	print_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		ft_printf("%s", map[i]);
-	ft_printf("\n");
 }
 
 int	get_last_valid(char *line)
@@ -69,4 +59,15 @@ int	is_valid_map_path(int argc, char **argv)
 			return (1);
 	}
 	return (0);
+}
+
+//Debug
+void	print_map(char **map)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+		ft_printf("%s", map[i]);
+	ft_printf("\n");
 }
