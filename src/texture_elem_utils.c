@@ -37,30 +37,30 @@ char	*clean_path(char *str)
 
 int	validate_texture_element(char *elem, char *str, t_file *st_file)
 {
+	int		fd;
 	char	*path;
 	char	*xpm_ext;
 
 	path = ft_strtrim(str, " \t\n");
-	if (access(path, F_OK) == 0 && access(path, R_OK) == 0)
+	fd = open(path, O_RDONLY);
+	if (fd > 2)
 	{
 		xpm_ext = ft_strrchr(path, '.');
-		if (ft_strcmp(xpm_ext, ".xpm") == 0)
-			update_st_file_texture(elem, path, st_file);
-		else
+		if (xpm_ext && ft_strcmp(xpm_ext, ".xpm") == 0)
 		{
-			put_error("You need to load xpm texture files", path);
+			update_st_file_texture(elem, path, st_file);
 			free(path);
-			return (0);
+			close(fd);
+			return (1);
 		}
+		else
+			put_error("You need to load xpm texture files", path);
 	}
 	else
-	{
 		put_perror(path);
-		free(path);
-		return (0);
-	}
 	free(path);
-	return (1);
+	close(fd);
+	return (0);
 }
 
 int	check_repeated_element(char *elem, t_file *st_file)

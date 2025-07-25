@@ -58,18 +58,31 @@ int	elements_complete(t_file *st_file)
 	return (0);
 }
 
+int	is_blank_line(char *line)
+{
+	while (*line)
+	{
+		if (*line != ' ' && *line != '\n')
+			return (0);
+		line++;
+	}
+	return (1);
+}
+
 int	check_map(char **file_content, t_file *st_file)
 {
 	int	i;
 
 	i = -1;
+	while (is_blank_line(*file_content))
+		file_content++;
 	while (*file_content)
-	{
-		if (is_map(*file_content))
+	{	
+		if (valid_character(file_content))
 		{
 			if (st_file->map_finish)
 			{
-				put_error("Map has an empty line\n", NULL);
+				put_error("Map has an empty line", NULL);
 				return (0);
 			}
 			st_file->map_start = 1;
@@ -77,12 +90,14 @@ int	check_map(char **file_content, t_file *st_file)
 		}
 		else if (st_file->map_start)
 			st_file->map_finish = 1;
+		else
+		{
+			put_error("Map has invalid character", NULL);
+			return (0);
+		}
 		file_content++;
 	}
 	if (!valid_map(st_file))
-	{
-		put_error("Invalid map", NULL);
 		return (0);
-	}
 	return (1);
 }

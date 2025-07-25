@@ -67,6 +67,7 @@ int		get_height_map(char **map);
 int		get_width_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
+int		valid_character(char **map);
 
 /* DEBUG */
 void	print_map(char **map);

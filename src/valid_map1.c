@@ -40,7 +40,7 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	return (1);
 }
 
-static int	valid_character(char **map)
+int	valid_character(char **map)
 {
 	int	i;
 	int	j;
@@ -112,7 +112,7 @@ int	valid_map(t_file *st_file)
 {
 	if (!valid_character(st_file->map))
 	{
-		put_error("Invalid character", NULL);
+		put_error("Map has invalid character", NULL);
 		return (0);
 	}
 	if (!valid_border(st_file->map, st_file))
