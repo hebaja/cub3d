@@ -109,10 +109,12 @@ t_file	*build_st_file(char *map_path)
 
 	st_file = (t_file *)malloc(sizeof(t_file));
 	st_file->path = map_path;
+	st_file->map = NULL;
 	st_file->no_texture = NULL;
 	st_file->so_texture = NULL;
 	st_file->we_texture = NULL;
 	st_file->ea_texture = NULL;
+	st_file->file_content = NULL;
 	st_file->f_color[0] = -1;
 	st_file->c_color[0] = -1;
 	st_file->height = get_file_content_height(map_path, st_file);

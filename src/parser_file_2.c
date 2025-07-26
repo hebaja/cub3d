@@ -78,11 +78,13 @@ int	check_map(char **file_content, t_file *st_file)
 		file_content++;
 	while (*file_content)
 	{	
-		if (valid_character(file_content))
+		// if (valid_character(file_content))
+		if (is_map(*file_content))
 		{
 			if (st_file->map_finish)
 			{
 				put_error("Map has an empty line", NULL);
+				//clean_st_file(st_file);
 				return (0);
 			}
 			st_file->map_start = 1;
