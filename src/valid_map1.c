@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/23 15:27:53 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/24 03:58:59 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	return (1);
 }
 
-static int	valid_character(char **map)
+int	valid_character(char **map)
 {
 	int	i;
 	int	j;
@@ -69,22 +69,19 @@ static int	valid_character(char **map)
 	return (1);
 }
 
-static int	valid_border(char **map, t_map *st_map)
+static int	valid_border(char **map, t_file *st_file)
 {
-	int		i;
-	int		height;
-
-	expanded_map(map, st_map);
-	if (!map_flood_fill(st_map->dup_map, 0, 0))
+	expanded_map(map, st_file);
+	if (!map_flood_fill(st_file->dup_map, 0, 0))
 	{
-		clean_map(st_map->dup_map);
+		clean_map(st_file->dup_map);
 		return (0);
 	}
-	clean_map(st_map->dup_map);
+	clean_map(st_file->dup_map);
 	return (1);
 }
 
-static int	valid_position_player(char **map, t_map *st_map)
+static int	valid_position_player(char **map, t_file *st_file)
 {
 	int	i;
 	int	j;
@@ -99,9 +96,9 @@ static int	valid_position_player(char **map, t_map *st_map)
 		{
 			if (ft_strchr("NSWE", map[i][j]))
 			{
-				st_map->player_pos = map[i][j];
-				st_map->player_x = j;
-				st_map->player_y = i;
+				st_file->player_pos = map[i][j];
+				st_file->player_x = j;
+				st_file->player_y = i;
 				count++;
 			}
 			j++;
@@ -111,13 +108,22 @@ static int	valid_position_player(char **map, t_map *st_map)
 	return (count == 1);
 }
 
-int	valid_map(t_map	*st_map)
+int	valid_map(t_file *st_file)
 {
-	if (!valid_character(st_map->map))
-		return (print_error("Invalid character.\n"));
-	if (!valid_border(st_map->map, st_map))
-		return (print_error("Leak in the map, invalid border.\n"));
-	if (!valid_position_player(st_map->map, st_map))
-		return (print_error("Player error.\n"));
+	if (!valid_character(st_file->map))
+	{
+		put_error("Map has invalid character", NULL);
+		return (0);
+	}
+	if (!valid_border(st_file->map, st_file))
+	{
+		put_error("Leak in the map, invalid border", NULL);
+		return (0);
+	}
+	if (!valid_position_player(st_file->map, st_file))
+	{
+		put_error("Player error", NULL);
+		return (0);
+	}
 	return (1);
 }

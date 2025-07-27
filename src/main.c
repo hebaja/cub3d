@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/21 22:35:39 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:56:10 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*st_map;
+	t_file	*st_file;
 
-	st_map = NULL;
+	st_file = NULL;
 	if (is_valid_map_path(argc, argv))
 	{
-		st_map = build_st_map(argv[1]);
-		parse_elements(st_map);
+		st_file = build_st_file(argv[1]);
+		parse_elements(st_file);
 	}
-	clean_st_map(st_map);
+	clean_st_file(st_file);
 	return (0);
 }

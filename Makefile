@@ -8,9 +8,10 @@ NAME = cub3d
 
 SRC_DIR = src
 
-SRC_FILES = main.c parser_elements.c map_utils.c\
-			st_map_utils1.c st_map_utils2.c\
-			error.c valid_map1.c valid_map2.c
+SRC_FILES = main.c parser_file_1.c parser_file_2.c\
+			file_utils.c st_file_utils.c parser_file_utils.c\
+			st_file_clean.c valid_map1.c valid_map2.c\
+			put_error.c color_elem_utils.c texture_elem_utils.c
 
 LIBFT_DIR = libft
 

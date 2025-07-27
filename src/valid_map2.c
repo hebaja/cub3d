@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:06 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/21 22:45:52 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:59:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**fill_duplicate_map(int height, int width)
 	return (dup_map);
 }
 
-void	expanded_map(char **map, t_map *st_map)
+void	expanded_map(char **map, t_file *st_file)
 {
 	int		i;
 	int		j;
@@ -76,8 +76,8 @@ void	expanded_map(char **map, t_map *st_map)
 
 	height = get_height_map(map);
 	width = get_width_map(map);
-	st_map->dup_map = fill_duplicate_map(height, width);
-	if (!st_map->dup_map)
+	st_file->dup_map = fill_duplicate_map(height, width);
+	if (!st_file->dup_map)
 		return ;
 	i = 0;
 	while (i < height)
@@ -85,12 +85,12 @@ void	expanded_map(char **map, t_map *st_map)
 		j = 0;
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			st_map->dup_map[i + 1][j + 1] = map[i][j];
+			st_file->dup_map[i + 1][j + 1] = map[i][j];
 			j++;
 		}
 		i++;
 	}
-	st_map->dup_map[height + 2] = NULL;
+	st_file->dup_map[height + 2] = NULL;
 }
 
 int	map_flood_fill(char **map, int x, int y)
