@@ -1,5 +1,6 @@
 cub3d
 package.json
+minilibx-linux/test/mlx-test
 *.swp
 *.out
 *.o

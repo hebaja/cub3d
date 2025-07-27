@@ -4,6 +4,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
+MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
+
 NAME = cub3d
 
 SRC_DIR = src
