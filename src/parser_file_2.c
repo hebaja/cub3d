@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 04:01:28 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 04:01:30 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/27 14:02:15 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,15 @@ int	invalid_line(char *line)
 	return (0);
 }
 
-int	elements_complete(t_file *st_file)
+int	try_fill_map(char **file_content, t_file *st_file, int i)
 {
-	if (st_file->no_texture != NULL && st_file->so_texture != NULL
-		&& st_file->we_texture != NULL && st_file->ea_texture
-		&& st_file->c_color[0] != -1 && st_file->f_color[0] != -1)
-		return (1);
-	return (0);
-}
-
-int	is_blank_line(char *line)
-{
-	while (*line)
+	if (st_file->map_finish)
 	{
-		if (*line != ' ' && *line != '\n')
-			return (0);
-		line++;
+		put_error("Map has an empty line", NULL);
+		return (0);
 	}
+	st_file->map_start = 1;
+	st_file->map[i] = ft_strdup(*file_content);
 	return (1);
 }
 
@@ -73,22 +65,14 @@ int	check_map(char **file_content, t_file *st_file)
 {
 	int	i;
 
-	i = -1;
-	while (is_blank_line(*file_content))
-		file_content++;
+	i = 0;
 	while (*file_content)
 	{	
-		// if (valid_character(file_content))
 		if (is_map(*file_content))
 		{
-			if (st_file->map_finish)
-			{
-				put_error("Map has an empty line", NULL);
-				//clean_st_file(st_file);
+			if (!try_fill_map(file_content, st_file, i))
 				return (0);
-			}
-			st_file->map_start = 1;
-			st_file->map[++i] = ft_strdup(*file_content);
+			i++;
 		}
 		else if (st_file->map_start)
 			st_file->map_finish = 1;

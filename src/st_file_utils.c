@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 04:01:17 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/27 13:52:08 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,7 @@ void	alloc_map_mem(t_file *st_file)
 	start = find_line_map(st_file->file_content);
 	count = 0;
 	while (st_file->file_content[start + count])
-	{
-		if (is_map(st_file->file_content[start + count]))
-			count++;
-		else
-			break ;
-	}
+		count++;
 	st_file->map = ft_calloc(count + 1, sizeof(char *));
 	if (!st_file->map)
 		return ;

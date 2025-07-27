@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 04:46:36 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 04:00:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/27 13:07:09 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void	update_st_file_texture(char *elem, char *path, t_file *st_file)
 		st_file->we_texture = ft_strtrim(path, "\n");
 	if (ft_strncmp(elem, "EA", 2) == 0)
 		st_file->ea_texture = ft_strtrim(path, "\n");
-}
-
-char	*clean_path(char *str)
-{
-	char	*path;
-	char	*tmp1;
-
-	tmp1 = ft_strtrim(str, "\t\n");
-	path = ft_strtrim(tmp1, " ");
-	free(tmp1);
-	return (path);
 }
 
 int	validate_texture_element(char *elem, char *str, t_file *st_file)
@@ -80,6 +69,17 @@ int	check_repeated_element(char *elem, t_file *st_file)
 	return (1);
 }
 
+int	try_validate_texture(char *elem, char **args, t_file *st_file)
+{
+	if (!validate_texture_element(elem, args[1], st_file))
+	{
+		clean_args(args);
+		return (0);
+	}
+	clean_args(args);
+	return (1);
+}
+
 int	check_texture_element(char *elem, char *line, t_file *st_file)
 {
 	char	**args;
@@ -96,15 +96,15 @@ int	check_texture_element(char *elem, char *line, t_file *st_file)
 			&& (args[1] != NULL && ft_strcmp(args[1], "\n") != 0
 				&& (args[2] == NULL || ft_strcmp(args[2], "\n") == 0)))
 		{
-			if (!validate_texture_element(elem, args[1], st_file))
-			{
-				clean_args(args);
+			if (!try_validate_texture(elem, args, st_file))
 				return (0);
-			}
 		}
 		else
+		{
 			put_error("Problem reading texture line", elem);
-		clean_args(args);
+			clean_args(args);
+			return (0);
+		}
 	}
 	return (1);
 }
