@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/21 15:04:55 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:56:10 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    put_assets(t_mlx *st_mlx, char c, int w, int h)
 			st_mlx->mlx, st_mlx->win, st_mlx->no_texture, w, h);
 }
 
-void    draw_screen(t_mlx *st_mlx, t_map *st_map, int size)
+void    draw_screen(t_mlx *st_mlx, t_file *st_file, int size)
 {
 	int             x;
 	int             y;
@@ -40,7 +40,7 @@ void    draw_screen(t_mlx *st_mlx, t_map *st_map, int size)
 		w = 0;
 		while (++y < 6)
 		{
-			put_assets(st_mlx, st_map->map[x][y], w, h);
+			put_assets(st_mlx, st_file->map[x][y], w, h);
 			w += size;
 		}
 		h += size;
@@ -63,7 +63,7 @@ void	ray_cast(t_mlx *st_mlx, int width, int dirX, int dirY, float planeX, float 
 
 }
 
-void	load(t_map *st_map)
+void	load(t_file *st_file)
 {
 	t_mlx	*st_mlx;
 	int		size = 128;
@@ -81,10 +81,10 @@ void	load(t_map *st_map)
 	st_mlx->img = mlx_new_image(st_mlx->mlx, width, height);
 	st_mlx->addr = mlx_get_data_addr(st_mlx->img, &st_mlx->bits_per_pixel, &st_mlx->line_length, &st_mlx->endian);
 
-	// st_mlx->no_texture = mlx_xpm_file_to_image(st_mlx->mlx, st_map->no_texture, &size, &size);
-	st_mlx->st_map = st_map;
+	// st_mlx->no_texture = mlx_xpm_file_to_image(st_mlx->mlx, st_file->no_texture, &size, &size);
+	st_mlx->st_file = st_file;
 
-	//draw_screen(st_mlx, st_mlx->st_map, size);
+	//draw_screen(st_mlx, st_mlx->st_file, size);
 
 	int	i;
 	float	p_posx = 3.5;
@@ -113,17 +113,15 @@ void	load(t_map *st_map)
 
 int	main(int argc, char **argv)
 {
-	t_map	*st_map;
+	t_file	*st_file;
 
-	st_map = NULL;
+	st_file = NULL;
 	if (is_valid_map_path(argc, argv))
 	{
-		st_map = build_st_map(argv[1]);
-		parse_elements(st_map);
+		st_file = build_st_file(argv[1]);
+		parse_elements(st_file);
 	}
-
-	load(st_map);
-
-	clean_st_map(st_map);
+	load(st_file);
+	clean_st_file(st_file);
 	return (0);
 }
