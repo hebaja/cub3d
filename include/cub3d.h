@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 03:49:32 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/27 12:38:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	clean_args(char **args);
 void	clean_map(char **map);
 void	expanded_map(char **map, t_file *st_file);
 char	**fill_duplicate_map(int height, int width);
+int		is_blank_line(char *line);
 int		elements_complete(t_file *st_file);
 int		invalid_line(char *line);
 int		check_map(char **file_content, t_file *st_file);

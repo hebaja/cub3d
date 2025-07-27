@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 03:49:36 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/27 12:34:06 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int	parse_elements(t_file *st_file)
 		put_error("An element is missing", NULL);
 		return (0);
 	}
+	while (is_blank_line(*file_content))
+		file_content++;
 	if (!check_map(file_content, st_file))
 		return (0);
 	return (1);
