@@ -6,14 +6,12 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 06:31:48 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/28 00:04:48 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include <math.h>
-
-#define EPSILON 0.000001f
 
 void    put_assets(t_mlx *st_mlx, char c, int w, int h)
 {
@@ -66,7 +64,7 @@ void	look(void)
 void	ray_cast(t_mlx *st_mlx, int width, int height, int dirX, int dirY, float planeX, float planeY, int screen_column)
 {
 	int		white = 16777215;
-	int		yellow = 13626164;
+	int		brown = 10573867;
 	double	p_posx;
 	double	p_posy;
 	int	curr_map_x;
@@ -146,7 +144,7 @@ void	ray_cast(t_mlx *st_mlx, int width, int height, int dirX, int dirY, float pl
 		if (y < draw_ceiling)
 			my_mlx_pixel_put(st_mlx, screen_column, y, white);
 		else if (y >= draw_ceiling && y <= draw_floor)
-			my_mlx_pixel_put(st_mlx, screen_column, y, yellow);
+			my_mlx_pixel_put(st_mlx, screen_column, y, brown);
 		else
 			my_mlx_pixel_put(st_mlx, screen_column, y, white);
 	}
