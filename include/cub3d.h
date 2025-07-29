@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 12:38:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:11:43 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -44,16 +45,18 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*no_texture;
-	t_file	*st_file;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
+	void	*screen_img;
+	char	*screen_img_addr;
+	int		screen_img_bpp;
+	int		screen_img_endian;
+	int		screen_height;
+	int		screen_width;
 	int		line_length;
-	int		endian;	
+	t_file	*st_file;
 }	t_mlx;
 
 t_file	*build_st_file(char *map_path);
+t_mlx	*build_st_mlx(t_file *st_file, int screen_width, int screen_height);
 void	clean_st_file(t_file *st_file);
 void	open_map_error(void);
 void	case_error_reading_file(t_file *st_file);
@@ -82,6 +85,7 @@ int		get_width_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
 int		valid_character(char **map);
+void	ray_cast(t_mlx *st_mlx, int width, int height, int dirX, int dirY, float planeX, float planeY, int screen_column);
 
 /* DEBU */
 void	print_map(char **map);
