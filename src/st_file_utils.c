@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 13:52:08 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/30 03:12:50 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ t_file	*build_st_file(char *map_path)
 	t_file	*st_file;
 
 	st_file = (t_file *)malloc(sizeof(t_file));
+	if (!st_file)
+	{
+		put_error("Could not allocate memory for file struct", NULL);
+		return (NULL);
+	}
 	st_file->path = map_path;
 	st_file->map = NULL;
 	st_file->no_texture = NULL;

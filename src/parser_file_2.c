@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 04:01:28 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 23:40:22 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/30 04:48:33 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_map(char **file_content, t_file *st_file)
 
 	i = 0;
 	while (*file_content)
-	{	
+	{
 		if (is_map(*file_content))
 		{
 			if (!try_fill_map(file_content, st_file, i))
