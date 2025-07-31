@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/30 04:49:05 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:50:00 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char **argv)
 	st_coord = build_st_coord(st_file);
 	st_mlx = build_st_mlx(st_file, st_coord, 896, 640);
 	ray_cast(st_mlx);
-	clean_st_file(st_file);
-	clean_st_mlx(st_mlx);
-	free(st_coord);
+	clean_all(st_mlx);
 	return (0);
 }

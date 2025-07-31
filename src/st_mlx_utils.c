@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 14:21:17 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:46:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	clean_st_mlx(t_mlx *st_mlx)
 	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_display(st_mlx->mlx);
 	free(st_mlx->mlx);
+	free(st_mlx);
 }
 
 int	rgb_to_int(int t, int r, int g, int b)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 14:14:37 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:01:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_coord	*build_st_coord(t_file *st_file);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord, int wid, int hei);
 void	clean_st_file(t_file *st_file);
 void	clean_st_mlx(t_mlx *st_mlx);
+void	clean_all(t_mlx *st_mlx);
 void	open_map_error(void);
 void	case_error_reading_file(t_file *st_file);
 void	put_error(char *msg, char *data);
@@ -127,6 +128,8 @@ int		get_width_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
 int		valid_character(char **map);
+int		handle_input(int keycode, t_mlx *st_mlx);
+int		close_window(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
 
 /* DEBU */

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_file_clean.c                                    :+:      :+:    :+:   */
+/*   clean_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/24 04:00:37 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:49:19 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,11 @@ void	clean_st_file(t_file *st_file)
 		free(st_file);
 		st_file = NULL;
 	}
+}
+
+void	clean_all(t_mlx *st_mlx)
+{
+	free(st_mlx->st_coord);
+	clean_st_file(st_mlx->st_file);
+	clean_st_mlx(st_mlx);
 }

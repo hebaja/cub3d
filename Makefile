@@ -12,10 +12,10 @@ SRC_DIR = src
 
 SRC_FILES = main.c parser_file_1.c parser_file_2.c\
 			file_utils.c st_file_utils.c parser_file_utils.c\
-			st_file_clean.c valid_map1.c valid_map2.c\
+			clean_utils.c valid_map1.c valid_map2.c\
 			put_error.c color_elem_utils.c texture_elem_utils.c\
 			st_mlx_utils.c ray_cast.c st_coord_utils.c\
-			mlx_draw.c
+			mlx_draw.c mlx_hook_utils.c
 
 LIBFT_DIR = libft
 
