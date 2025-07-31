@@ -2,6 +2,7 @@ cub3d
 package.json
 maps/
 minilibx-linux/test/mlx-test
+teste.cub
 *.swp
 *.out
 *.o

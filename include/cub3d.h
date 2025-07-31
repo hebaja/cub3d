@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/30 04:48:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:14:37 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <math.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
-
-# define TEXTURE_SIZE 64
 
 typedef struct s_file
 {
@@ -77,6 +75,14 @@ typedef struct s_mlx
 	void	*we_texture;
 	void	*ea_texture;
 	char	*screen_img_addr;
+	int		no_texture_width;
+	int		no_texture_height;
+	int		so_texture_width;
+	int		so_texture_height;
+	int		we_texture_width;
+	int		we_texture_height;
+	int		ea_texture_width;
+	int		ea_texture_height;
 	int		screen_img_bpp;
 	int		screen_img_endian;
 	int		screen_height;

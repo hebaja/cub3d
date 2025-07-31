@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/30 05:13:55 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:21:17 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,21 @@ int	rgb_to_int(int t, int r, int g, int b)
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file)
 {
-	int		size;
-
-	size = TEXTURE_SIZE;
-	st_mlx->no_texture = mlx_xpm_file_to_image(
-			st_mlx->mlx, st_file->no_texture, &size, &size);
-	st_mlx->so_texture = mlx_xpm_file_to_image(
-			st_mlx->mlx, st_file->so_texture, &size, &size);
-	st_mlx->we_texture = mlx_xpm_file_to_image(
-			st_mlx->mlx, st_file->we_texture, &size, &size);
-	st_mlx->ea_texture = mlx_xpm_file_to_image(
-			st_mlx->mlx, st_file->ea_texture, &size, &size);
-	st_mlx->screen_img_addr = mlx_get_data_addr(st_mlx->screen_img,
-			&st_mlx->screen_img_bpp, &st_mlx->line_length,
-			&st_mlx->screen_img_endian);
+	st_mlx->no_texture = mlx_xpm_file_to_image(st_mlx->mlx, \
+		st_file->no_texture, &st_mlx->no_texture_width, \
+		&st_mlx->no_texture_height);
+	st_mlx->so_texture = mlx_xpm_file_to_image(st_mlx->mlx, \
+		st_file->so_texture, &st_mlx->so_texture_width, \
+		&st_mlx->so_texture_height);
+	st_mlx->we_texture = mlx_xpm_file_to_image(st_mlx->mlx, \
+		st_file->we_texture, &st_mlx->we_texture_width, \
+		&st_mlx->we_texture_height);
+	st_mlx->ea_texture = mlx_xpm_file_to_image(st_mlx->mlx, \
+		st_file->ea_texture, &st_mlx->ea_texture_width, \
+		&st_mlx->ea_texture_height);
+	st_mlx->screen_img_addr = mlx_get_data_addr(st_mlx->screen_img, \
+		&st_mlx->screen_img_bpp, &st_mlx->line_length, \
+		&st_mlx->screen_img_endian);
 }
 
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord,
