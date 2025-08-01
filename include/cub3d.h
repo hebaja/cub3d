@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 19:01:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/01 11:09:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_coord
 	int		curr_map_x;
 	int		curr_map_y;
 	int		side_hit;
+	int		wall_tex_x;
+	int		wall_tex_y;
 	char	player_dir;
 	double	cam_plane_x;
 	double	cam_plane_y;
@@ -63,31 +65,32 @@ typedef struct s_coord
 	double	side_dist_x;
 	double	side_dist_y;
 	double	perp_wall_dist;
+	double	wall_tex_pos;
+	double	wall_tex_step;	
 }	t_coord;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*img_addr;
+	int		width;
+	int		height;
+	int		size_line;
+	int		bpp;
+	int		endian;
+}	t_img;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*screen_img;
-	void	*no_texture;
-	void	*so_texture;
-	void	*we_texture;
-	void	*ea_texture;
-	char	*screen_img_addr;
-	int		no_texture_width;
-	int		no_texture_height;
-	int		so_texture_width;
-	int		so_texture_height;
-	int		we_texture_width;
-	int		we_texture_height;
-	int		ea_texture_width;
-	int		ea_texture_height;
-	int		screen_img_bpp;
-	int		screen_img_endian;
+	t_img	*screen;
+	t_img	*no_texture;
+	t_img	*so_texture;
+	t_img	*we_texture;
+	t_img	*ea_texture;
 	int		screen_height;
 	int		screen_width;
-	int		line_length;
 	int		c_color;
 	int		f_color;
 	t_file	*st_file;

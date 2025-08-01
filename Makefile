@@ -33,7 +33,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(CFLAGS) -o $(NAME) -g $(OBJS) $(LIBFT) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) -g $(OBJS) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling"
 	@$(MAKE) -s loading
 	@clear

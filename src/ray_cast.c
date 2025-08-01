@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 19:01:18 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/01 12:49:58 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void	ray_cast(t_mlx *st_mlx)
 		calculate_ray(st_mlx, screen_column);
 		screen_column++;
 	}
-	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->screen_img, 0, 0);
+	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win,
+		st_mlx->screen->img, 0, 0);
 	mlx_key_hook(st_mlx->win, handle_input, st_mlx);
 	mlx_hook(st_mlx->win, 17, 0, close_window, st_mlx);
 	mlx_loop(st_mlx->mlx);
