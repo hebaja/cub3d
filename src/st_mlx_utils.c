@@ -45,21 +45,21 @@ int	rgb_to_int(int t, int r, int g, int b)
 
 void	set_mlx_images_addr(t_mlx *st_mlx)
 {
-	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img, \
-		&st_mlx->screen->bpp, &st_mlx->screen->size_line, \
-		&st_mlx->screen->endian);
-	st_mlx->no_texture->img_addr = mlx_get_data_addr(st_mlx->no_texture->img, \
-		&st_mlx->no_texture->bpp, &st_mlx->no_texture->size_line, \
-		&st_mlx->no_texture->endian);
-	st_mlx->so_texture->img_addr = mlx_get_data_addr(st_mlx->so_texture->img, \
-		&st_mlx->so_texture->bpp, &st_mlx->so_texture->size_line, \
-		&st_mlx->so_texture->endian);
-	st_mlx->we_texture->img_addr = mlx_get_data_addr(st_mlx->we_texture->img, \
-		&st_mlx->we_texture->bpp, &st_mlx->we_texture->size_line, \
-		&st_mlx->we_texture->endian);
-	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img, \
-		&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line, \
-		&st_mlx->ea_texture->endian);
+	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img,
+			&st_mlx->screen->bpp, &st_mlx->screen->size_line,
+			&st_mlx->screen->endian);
+	st_mlx->no_texture->img_addr = mlx_get_data_addr(st_mlx->no_texture->img,
+			&st_mlx->no_texture->bpp, &st_mlx->no_texture->size_line,
+			&st_mlx->no_texture->endian);
+	st_mlx->so_texture->img_addr = mlx_get_data_addr(st_mlx->so_texture->img,
+			&st_mlx->so_texture->bpp, &st_mlx->so_texture->size_line,
+			&st_mlx->so_texture->endian);
+	st_mlx->we_texture->img_addr = mlx_get_data_addr(st_mlx->we_texture->img,
+			&st_mlx->we_texture->bpp, &st_mlx->we_texture->size_line,
+			&st_mlx->we_texture->endian);
+	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img,
+			&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line,
+			&st_mlx->ea_texture->endian);
 }
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
@@ -72,18 +72,18 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->ea_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->screen->img = mlx_new_image(
 			st_mlx->mlx, screen_width, screen_height);
-	st_mlx->no_texture->img = mlx_xpm_file_to_image(st_mlx->mlx, \
-		st_file->no_texture, &st_mlx->no_texture->width, \
-		&st_mlx->no_texture->height);
-	st_mlx->so_texture->img = mlx_xpm_file_to_image(st_mlx->mlx, \
-		st_file->so_texture, &st_mlx->so_texture->width, \
-		&st_mlx->so_texture->height);
-	st_mlx->we_texture->img = mlx_xpm_file_to_image(st_mlx->mlx, \
-		st_file->we_texture, &st_mlx->we_texture->width, \
-		&st_mlx->we_texture->height);
-	st_mlx->ea_texture->img = mlx_xpm_file_to_image(st_mlx->mlx, \
-		st_file->ea_texture, &st_mlx->ea_texture->width, \
-		&st_mlx->ea_texture->height);
+	st_mlx->no_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			st_file->no_texture, &st_mlx->no_texture->width,
+			&st_mlx->no_texture->height);
+	st_mlx->so_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			st_file->so_texture, &st_mlx->so_texture->width,
+			&st_mlx->so_texture->height);
+	st_mlx->we_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			st_file->we_texture, &st_mlx->we_texture->width,
+			&st_mlx->we_texture->height);
+	st_mlx->ea_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			st_file->ea_texture, &st_mlx->ea_texture->width,
+			&st_mlx->ea_texture->height);
 }
 
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord,

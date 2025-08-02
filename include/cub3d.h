@@ -89,6 +89,7 @@ typedef struct s_mlx
 	t_img	*so_texture;
 	t_img	*we_texture;
 	t_img	*ea_texture;
+	t_img	*curr_texture;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;

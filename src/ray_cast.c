@@ -67,13 +67,15 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
 	if (st_mlx->st_coord->side_hit == 0)
-		st_mlx->st_coord->perp_wall_dist = (\
-			curr_map_x - st_mlx->st_coord->p_posx + (\
-			1 - st_mlx->st_coord->step_x) / 2) / st_mlx->st_coord->ray_dir_x;
+		st_mlx->st_coord->perp_wall_dist = (curr_map_x
+				- st_mlx->st_coord->p_posx
+				+ (1 - st_mlx->st_coord->step_x) / 2)
+			/ st_mlx->st_coord->ray_dir_x;
 	else
-		st_mlx->st_coord->perp_wall_dist = (\
-			curr_map_y - st_mlx->st_coord->p_posy + (\
-			1 - st_mlx->st_coord->step_y) / 2) / st_mlx->st_coord->ray_dir_y;
+		st_mlx->st_coord->perp_wall_dist = (curr_map_y
+				- st_mlx->st_coord->p_posy
+				+ (1 - st_mlx->st_coord->step_y) / 2)
+			/ st_mlx->st_coord->ray_dir_y;
 }
 
 void	calculate_ray(t_mlx *st_mlx, int screen_column)

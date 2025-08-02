@@ -1,12 +1,12 @@
-NO assets/brick.xpm
-SO assets/rusts.xpm
-WE assets/rusts.xpm
-EA assets/rusts.xpm
+NO assets/rusts.xpm
+SO assets/pavingstone.xpm
+WE assets/brick.xpm
+EA assets/tux.xpm
 F 184, 178, 179
 C 167, 242, 240
 
 1111111
 1000101
-1000001     
-110N001
+10E0001     
+1100001
 1111111
