@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 19:01:18 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/02 20:42:14 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	calculate_ray(t_mlx *st_mlx, int screen_column)
 	int		curr_map_y;
 	double	camera_x;
 
-	curr_map_x = st_mlx->st_file->player_x;
-	curr_map_y = st_mlx->st_file->player_y;
+	curr_map_x = (int)st_mlx->st_coord->p_posx;
+	curr_map_y = (int)st_mlx->st_coord->p_posy;
 	camera_x = 2 * screen_column / (double)st_mlx->screen_width - 1;
 	st_mlx->st_coord->ray_dir_x = st_mlx->st_coord->dir_vec_x
 		+ st_mlx->st_coord->cam_plane_x * camera_x;

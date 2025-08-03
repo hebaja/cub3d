@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 19:01:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:59:17 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@
 # include <math.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+# define KEY_PRESS		2
+# define KEY_ESC		65307
+# define KEY_LEFT		65361
+# define KEY_RIGHT		65363
+# define KEY_UP			65362
+# define KEY_DOWN		65364
+# define KEY_A			97
+# define KEY_D			100
+# define KEY_W			119
+# define KEY_S			115
+# define MOVE			0.1
+# define RADIUS			0.1
+# define ROTATE			0.05
+# define FOV			0.66
 
 typedef struct s_file
 {
@@ -43,12 +58,12 @@ typedef struct s_file
 
 typedef struct s_coord
 {
-	int		dir_vec_x;
-	int		dir_vec_y;
 	int		curr_map_x;
 	int		curr_map_y;
 	int		side_hit;
 	char	player_dir;
+	double	dir_vec_x;
+	double	dir_vec_y;
 	double	cam_plane_x;
 	double	cam_plane_y;
 	double	camera_x;
@@ -97,6 +112,8 @@ typedef struct s_mlx
 t_file	*build_st_file(char *map_path);
 t_coord	*build_st_coord(t_file *st_file);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord, int wid, int hei);
+void	init_event(t_mlx *st_mlx);
+void	exit_mlx(t_mlx *st_mlx);
 void	clean_st_file(t_file *st_file);
 void	clean_st_mlx(t_mlx *st_mlx);
 void	clean_all(t_mlx *st_mlx);

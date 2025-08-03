@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st_mlx_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 18:46:27 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/03 18:58:22 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ void	clean_st_mlx(t_mlx *st_mlx)
 	mlx_destroy_display(st_mlx->mlx);
 	free(st_mlx->mlx);
 	free(st_mlx);
+}
+
+void	exit_mlx(t_mlx *st_mlx)
+{
+	mlx_destroy_image(st_mlx->mlx, st_mlx->screen_img);
+	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
+	mlx_destroy_display(st_mlx->mlx);
+	free(st_mlx->mlx);
+	exit(1);
 }
 
 int	rgb_to_int(int t, int r, int g, int b)
@@ -80,6 +89,7 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord,
 	st_mlx->f_color = rgb_to_int(0, st_file->f_color[0], st_file->f_color[1],
 			st_file->f_color[2]);
 	set_mlx_images(st_mlx, st_file);
+	init_event(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);
