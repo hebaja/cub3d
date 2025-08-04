@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/02 20:42:14 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/04 13:37:30 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
 	if (st_mlx->st_coord->side_hit == 0)
-		st_mlx->st_coord->perp_wall_dist = (\
-			curr_map_x - st_mlx->st_coord->p_posx + (\
-			1 - st_mlx->st_coord->step_x) / 2) / st_mlx->st_coord->ray_dir_x;
+		st_mlx->st_coord->perp_wall_dist = (curr_map_x
+				- st_mlx->st_coord->p_posx
+				+ (1 - st_mlx->st_coord->step_x) / 2)
+			/ st_mlx->st_coord->ray_dir_x;
 	else
-		st_mlx->st_coord->perp_wall_dist = (\
-			curr_map_y - st_mlx->st_coord->p_posy + (\
-			1 - st_mlx->st_coord->step_y) / 2) / st_mlx->st_coord->ray_dir_y;
+		st_mlx->st_coord->perp_wall_dist = (curr_map_y
+				- st_mlx->st_coord->p_posy
+				+ (1 - st_mlx->st_coord->step_y) / 2)
+			/ st_mlx->st_coord->ray_dir_y;
 }
 
 void	calculate_ray(t_mlx *st_mlx, int screen_column)
@@ -107,8 +109,6 @@ void	ray_cast(t_mlx *st_mlx)
 		calculate_ray(st_mlx, screen_column);
 		screen_column++;
 	}
-	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->screen_img, 0, 0);
-	mlx_key_hook(st_mlx->win, handle_input, st_mlx);
-	mlx_hook(st_mlx->win, 17, 0, close_window, st_mlx);
-	mlx_loop(st_mlx->mlx);
+	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win,
+		st_mlx->screen->img, 0, 0);
 }
