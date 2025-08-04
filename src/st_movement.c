@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-#include <stdlib.h>
 
 static int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
 {
@@ -80,10 +79,7 @@ static int	key_handle(int key, t_mlx *st_mlx)
 
 	coord = st_mlx->st_coord;
 	if (key == KEY_ESC)
-	{
 		clean_all(st_mlx);
-		exit(EXIT_SUCCESS);
-	}
 	if (key == KEY_UP || key == KEY_W)
         move_player(st_mlx, coord->dir_vec_x * MOVE, coord->dir_vec_y * MOVE);
 	else if (key == KEY_DOWN || key == KEY_S)
@@ -102,7 +98,7 @@ static int	key_handle(int key, t_mlx *st_mlx)
 
 void	init_event(t_mlx *st_mlx)
 {
-	mlx_key_hook(st_mlx->win, key_handle, st_mlx);
+	mlx_hook(st_mlx->win, KEY_PRESS, (1L << 0), key_handle, st_mlx);
 	mlx_hook(st_mlx->win, 17, 0, close_window, st_mlx);
 	mlx_loop(st_mlx->mlx);
 }

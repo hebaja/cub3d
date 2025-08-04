@@ -70,4 +70,5 @@ void	clean_all(t_mlx *st_mlx)
 	free(st_mlx->st_coord);
 	clean_st_file(st_mlx->st_file);
 	clean_st_mlx(st_mlx);
+	exit(EXIT_SUCCESS);
 }
