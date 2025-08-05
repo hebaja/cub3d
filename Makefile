@@ -16,6 +16,7 @@ SRC_FILES = main.c parser_file_1.c parser_file_2.c\
 			put_error.c color_elem_utils.c texture_elem_utils.c\
 			st_mlx_utils.c ray_cast.c st_coord_utils.c\
 			mlx_draw.c mlx_hook_utils.c st_movement.c\
+			minimap.c
 
 LIBFT_DIR = libft
 

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/04 13:37:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/05 01:31:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int		valid_character(char **map);
 int		handle_input(int keycode, t_mlx *st_mlx);
 int		close_window(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
+void	init_minimap(t_mlx *st_mlx);
 
 /* DEBU */
 void	print_map(char **map);
