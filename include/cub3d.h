@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/04 13:37:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/05 22:55:48 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@
 # define KEY_D			100
 # define KEY_W			119
 # define KEY_S			115
-# define MOVE			0.1
 # define RADIUS			0.1
-# define ROTATE			0.05
 # define FOV			0.66
+# define MOVE			0.05
+# define ROTATE			0.02
+# define MOUSE_SENS		0.005
 
 typedef struct s_file
 {
@@ -109,13 +110,22 @@ typedef struct s_mlx
 	int		screen_width;
 	int		c_color;
 	int		f_color;
+	int		mouse_x;
+	int		key_w;
+	int		key_a;
+	int		key_s;
+	int		key_d;
+	int		key_up;
+	int		key_down;
+	int		key_left;
+	int		key_right;
 	t_file	*st_file;
 	t_coord	*st_coord;
 }	t_mlx;
 
 t_file	*build_st_file(char *map_path);
 t_coord	*build_st_coord(t_file *st_file);
-t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord, int wid, int hei);
+t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord);
 void	init_event(t_mlx *st_mlx);
 void	exit_mlx(t_mlx *st_mlx);
 void	clean_st_file(t_file *st_file);
@@ -130,7 +140,12 @@ void	clean_args(char **args);
 void	clean_map(char **map);
 void	expanded_map(char **map, t_file *st_file);
 void	draw_vertical_line(t_mlx *st_mlx, int screen_column);
+void	rotate_angle(t_coord *coord, double angle);
+void    move_player(t_mlx *st_mlx, double move_x, double move_y);
 char	**fill_duplicate_map(int height, int width);
+int		is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx);
+int		key_release(int key, t_mlx *st_mlx);
+int		key_press(int key, t_mlx *st_mlx);
 int		is_blank_line(char *line);
 int		elements_complete(t_file *st_file);
 int		invalid_line(char *line);
