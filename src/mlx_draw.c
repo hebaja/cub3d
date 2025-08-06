@@ -6,18 +6,18 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/04 13:39:39 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:36:41 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_mlx_pixel_put(t_mlx *st_mlx, int x, int y, int color)
+void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = st_mlx->screen->img_addr + (
-			y * st_mlx->screen->size_line + x * (st_mlx->screen->bpp / 8));
+	dst = st_img->img_addr + (
+			y * st_img->size_line + x * (st_img->bpp / 8));
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
@@ -58,7 +58,7 @@ void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 	tex_offset = tex_y * st_mlx->curr_texture->size_line
 		+ st_mlx->st_coord->wall_tex_x * (st_mlx->curr_texture->bpp / 8);
 	color = *(unsigned int *)(st_mlx->curr_texture->img_addr + tex_offset);
-	ft_mlx_pixel_put(st_mlx, screen_column, y, color);
+	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
 }
 
 void	set_current_texture(t_mlx *st_mlx)
@@ -94,10 +94,10 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 	while (++y < st_mlx->screen_height)
 	{
 		if (y < c_line_height)
-			ft_mlx_pixel_put(st_mlx, screen_column, y, st_mlx->c_color);
+			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
 		else if (y >= c_line_height && y <= f_line_height)
 			put_wall_texture_pixel(st_mlx, screen_column, y);
 		else
-			ft_mlx_pixel_put(st_mlx, screen_column, y, st_mlx->f_color);
+			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
 	}
 }

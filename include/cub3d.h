@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/05 01:31:33 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/06 05:01:33 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_file
 	int		f_color[3];
 	int		c_color[3];
 	int		map_start;
+	int		h;
 	int		map_finish;
 	int		player_pos;
 	int		player_x;
@@ -105,6 +106,9 @@ typedef struct s_mlx
 	t_img	*we_texture;
 	t_img	*ea_texture;
 	t_img	*curr_texture;
+	t_img	*minimap;
+	int		minimap_size;
+	int		minimap_block_size;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
@@ -153,6 +157,7 @@ int		handle_input(int keycode, t_mlx *st_mlx);
 int		close_window(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
 void	init_minimap(t_mlx *st_mlx);
+void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 
 /* DEBU */
 void	print_map(char **map);
