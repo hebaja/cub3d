@@ -6,30 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/05 22:59:35 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/07 20:29:09 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	mouse_move(int x, int y, t_mlx *st_mlx)
-{
-	int  		diff_x;
-	int			center_win;
-
-	(void)y;
-	center_win = st_mlx->screen_width / 2;
-	diff_x = x - center_win;
-	if (diff_x < -300 || diff_x > 300)
-	{
-		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
-		return (0);
-	}
-	st_mlx->mouse_x += diff_x;
-	if (x != center_win)
-		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
-	return (0);
-}
 
 void	set_keys_rotate(t_mlx *st_mlx)
 {
@@ -80,7 +61,6 @@ void	init_event(t_mlx *st_mlx)
 	mlx_hook(st_mlx->win, 2, (1L << 0), key_press, st_mlx);
 	mlx_hook(st_mlx->win, 3, (1L << 1), key_release, st_mlx);
 	mlx_hook(st_mlx->win, 17, 0, close_window, st_mlx);
-	mlx_hook(st_mlx->win, 6, (1L << 6), mouse_move, st_mlx);
 	mlx_loop_hook(st_mlx->mlx, game_loop, st_mlx);
 	mlx_loop(st_mlx->mlx);
 }
