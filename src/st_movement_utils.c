@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/05 23:00:12 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:49:36 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
 	|| map[(int)(new_y + RADIUS)][(int)(new_x - RADIUS)] == '1'
 	|| map[(int)(new_y - RADIUS)][(int)(new_x + RADIUS)] == '1')
 		return (1);
-	if (map[map_y][map_x] == '1' || map[map_y][map_x] == ' ')
+	if (map[map_y][map_x] == '1' || map[map_y][map_x] == 'D')
 		return (1);
 	return (0);
 }

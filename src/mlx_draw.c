@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 23:48:44 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:35:33 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	set_current_texture(t_mlx *st_mlx)
 {
 	if (st_mlx->st_coord->hit_cell == 'D')
 		st_mlx->curr_texture = st_mlx->door_texture;
-	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
+	else if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
 		st_mlx->curr_texture = st_mlx->we_texture;
 	else if (st_mlx->st_coord->side_hit == 0)
 		st_mlx->curr_texture = st_mlx->ea_texture;

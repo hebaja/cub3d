@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:06 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/23 22:59:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:52:44 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	map_flood_fill(char **map, int x, int y)
 		return (1);
 	if (map[y][x] == '-' || map[y][x] == ' ')
 		map[y][x] = 'x';
-	else if (map[y][x] == '1')
+	else if (map[y][x] == '1' || map[y][x] == 'D')
 		return (1);
 	else if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
 			|| map[y][x] == 'E' || map[y][x] == 'W')
