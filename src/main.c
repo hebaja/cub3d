@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		st_coord = build_st_coord(st_file);
-		st_mlx = build_st_mlx(st_file, st_coord, 1920, 1080);
+		st_mlx = build_st_mlx(st_file, st_coord, 800, 600);
 		init_minimap(st_mlx);
 		ray_cast(st_mlx);
 		init_event(st_mlx);
