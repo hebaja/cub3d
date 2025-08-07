@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 03:35:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:00:32 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	alloc_map_mem(t_file *st_file)
 	st_file->map = ft_calloc(count + 1, sizeof(char *));
 	if (!st_file->map)
 		return ;
+	st_file->map_height = count;
 }
 
 t_file	*build_st_file(char *map_path)

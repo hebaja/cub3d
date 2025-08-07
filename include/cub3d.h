@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 05:01:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:20:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define RADIUS			0.1
 # define ROTATE			0.05
 # define FOV			0.66
+# define MM_WALL_COLOR	16777215
+# define MM_PLAY_COLOR	10360107
+# define MM_SPACE_COLOR	2568960	
 
 typedef struct s_file
 {
@@ -50,7 +53,7 @@ typedef struct s_file
 	int		f_color[3];
 	int		c_color[3];
 	int		map_start;
-	int		h;
+	int		map_height;
 	int		map_finish;
 	int		player_pos;
 	int		player_x;
@@ -109,10 +112,14 @@ typedef struct s_mlx
 	t_img	*minimap;
 	int		minimap_size;
 	int		minimap_block_size;
+	int		minimap_block_x;
+	int		minimap_block_y;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
 	int		f_color;
+	int		abs_player_x;
+	int		abs_player_y;
 	t_file	*st_file;
 	t_coord	*st_coord;
 }	t_mlx;
@@ -158,6 +165,7 @@ int		close_window(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
 void	init_minimap(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
+void	render_minimap(t_mlx *st_mlx);
 
 /* DEBU */
 void	print_map(char **map);

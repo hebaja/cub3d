@@ -6,12 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 15:08:19 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:12:54 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-#include <stdio.h>
 
 void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
@@ -100,108 +99,6 @@ void	calculate_ray(t_mlx *st_mlx, int screen_column)
 	draw_vertical_line(st_mlx, screen_column);
 }
 
-void	paint_block(t_mlx *st_mlx, int x, int y, int block_size, int color)
-{
-	int	dx;
-	int	dy;
-	int pos_x;
-	int pos_y;
-
-	dx = -1;
-	while (++dx < block_size)
-	{
-		dy = -1;
-		while (++dy < block_size)
-		{
-			if (st_mlx->st_coord->ray_dir_x > 0 && st_mlx->st_coord->ray_dir_y < 0)
-			{
-				pos_x = x * block_size + dx;
-				pos_y = y * block_size + dy;
-				ft_mlx_pixel_put(st_mlx->minimap, pos_x, pos_y, color);
-			}
-			else if (st_mlx->st_coord->ray_dir_x < 0 && st_mlx->st_coord->ray_dir_y < 0)
-			{
-				pos_x = x * block_size + dx;
-				pos_y = (st_mlx->minimap_size - 1 - y) * block_size + dy;
-				ft_mlx_pixel_put(st_mlx->minimap, pos_y, pos_x, color);
-			}
-			else if (st_mlx->st_coord->ray_dir_x > 0 && st_mlx->st_coord->ray_dir_y > 0)
-			{
-				pos_x = (st_mlx->minimap_size - 1 - x) * block_size + dx;
-				pos_y = y * block_size + dy;
-				ft_mlx_pixel_put(st_mlx->minimap, pos_y, pos_x, color);
-			}
-			else
-			{
-				pos_x = (st_mlx->minimap_size - 1 - x) * block_size + dx;
-				pos_y = (st_mlx->minimap_size - 1 - y) * block_size + dy;
-				ft_mlx_pixel_put(st_mlx->minimap, pos_x, pos_y, color);
-			}
-			
-		}
-	// mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img, 12, 12);
-	}
-	// printf("%d\n", st_mlx->minimap_size);
-}
-
-int	get_map_height(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y, int player_x, int player_y)
-{
-	int	y;
-	int map_x;
-	int map_y;
-	int	map_height;
-
-	y = -1;
-	map_x = init_x + x;
-
-	map_height = get_map_height(st_mlx->st_file->map);
-	while (++y < st_mlx->minimap_size)
-	{
-
-		map_y = init_y + y;
-
-		if (map_y >= 0 && map_y < map_height && st_mlx->st_file->map[map_y][map_x] == '1')
-			paint_block(st_mlx, x, y, st_mlx->minimap_block_size, 16777215);
-		else if (map_y >= 0 && map_y < map_height && map_x == player_x && map_y == player_y)
-			paint_block(st_mlx, x, y, st_mlx->minimap_block_size, 10360107);
-		else
-			paint_block(st_mlx, x, y, st_mlx->minimap_block_size, 2568960);
-	}
-}
-
-void	render_minimap(t_mlx *st_mlx)
-{
-	int	x;
-	int player_x;
-    int player_y;
-    int mm_init_x;
-    int mm_init_y;
-	
-	player_x = (int)st_mlx->st_coord->p_posx;
-    player_y = (int)st_mlx->st_coord->p_posy;
-
-	mm_init_x = player_x - 2;
-	mm_init_y = player_y - 2;
-
-
-	x = -1;
-	while (++x < st_mlx->minimap_size)
-		draw_column(st_mlx, x, mm_init_x, mm_init_y, player_x, player_y);
-
-	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img, 12, 12);
-	// printf("%d - %d\n", mm_init_x, mm_init_y);
-}
-
 void	ray_cast(t_mlx *st_mlx)
 {
 	int	screen_column;
@@ -214,10 +111,5 @@ void	ray_cast(t_mlx *st_mlx)
 	}
 	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win,
 		st_mlx->screen->img, 0, 0);
-	
 	render_minimap(st_mlx);
-	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img, 12, 12);
-
-
-
 }
