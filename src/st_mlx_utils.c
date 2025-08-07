@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/05 22:35:49 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/06 23:45:54 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	clean_st_mlx(t_mlx *st_mlx)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->we_texture->img);
 	if (st_mlx->ea_texture)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
+	if (st_mlx->door_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->door_texture->img);
 	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_display(st_mlx->mlx);
 	free(st_mlx->screen);
@@ -31,6 +33,7 @@ void	clean_st_mlx(t_mlx *st_mlx)
 	free(st_mlx->so_texture);
 	free(st_mlx->we_texture);
 	free(st_mlx->ea_texture);
+	free(st_mlx->door_texture);
 	free(st_mlx->mlx);
 	free(st_mlx);
 }
@@ -60,6 +63,9 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img,
 			&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line,
 			&st_mlx->ea_texture->endian);
+	st_mlx->door_texture->img_addr = mlx_get_data_addr(st_mlx->door_texture->img,
+			&st_mlx->door_texture->bpp, &st_mlx->door_texture->size_line,
+			&st_mlx->door_texture->endian);
 }
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
@@ -70,6 +76,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->so_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->we_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->ea_texture = (t_img *)malloc(sizeof(t_img));
+	st_mlx->door_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->screen->img = mlx_new_image(
 			st_mlx->mlx, screen_width, screen_height);
 	st_mlx->no_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
@@ -84,6 +91,9 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->ea_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
 			st_file->ea_texture, &st_mlx->ea_texture->width,
 			&st_mlx->ea_texture->height);
+	st_mlx->door_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			"./assets/door.xpm", &st_mlx->door_texture->width,
+			&st_mlx->door_texture->height);
 }
 
 void	init_keys(t_mlx *st_mlx)

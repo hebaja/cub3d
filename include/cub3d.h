@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/05 22:55:48 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/06 23:47:07 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_coord
 	int		side_hit;
 	int		wall_tex_x;
 	int		wall_tex_y;
+	char	hit_cell;
 	char	player_dir;
 	double	dir_vec_x;
 	double	dir_vec_y;
@@ -106,6 +107,7 @@ typedef struct s_mlx
 	t_img	*we_texture;
 	t_img	*ea_texture;
 	t_img	*curr_texture;
+	t_img	*door_texture;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/24 03:58:59 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/06 23:05:46 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	valid_character(char **map)
 					return (0);
 			}
 			if (map[i][j] != '\0' && map[i][j] != '\n'
-					&& !ft_strchr("01NSEW ", map[i][j]))
+					&& !ft_strchr("01NSEWD ", map[i][j]))
 				return (0);
 			j++;
 		}

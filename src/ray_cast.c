@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/04 13:37:30 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/06 23:21:34 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 			*curr_map_y = *curr_map_y + st_mlx->st_coord->step_y;
 			st_mlx->st_coord->side_hit = 1;
 		}
-		if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1')
+		if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1'
+			|| st_mlx->st_file->map[*curr_map_y][*curr_map_x] == 'D')
+		{
+			st_mlx->st_coord->hit_cell = st_mlx->st_file->map[*curr_map_y][*curr_map_x];
 			hit = 1;
+		}
 	}
 }
 
