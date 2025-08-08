@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:38:05 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 03:41:02 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -34,6 +34,10 @@
 # define RADIUS			0.1
 # define ROTATE			0.05
 # define FOV			0.66
+# define MM_WALL_COLOR	16777215
+# define MM_PLAY_COLOR	16776960
+# define MM_SPACE_COLOR	3685169
+# define MM_OUTER_COLOR	0
 
 typedef struct s_file
 {
@@ -106,6 +110,11 @@ typedef struct s_mlx
 	t_img	*we_texture;
 	t_img	*ea_texture;
 	t_img	*curr_texture;
+	t_img	*minimap;
+	int		minimap_size;
+	int		minimap_block_size;
+	int		minimap_block_x;
+	int		minimap_block_y;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
@@ -155,6 +164,9 @@ int		valid_character(char **map);
 int		handle_input(int keycode, t_mlx *st_mlx);
 int		close_window(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
+void	init_minimap(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
+void	render_minimap(t_mlx *st_mlx);
+void	paint_player(t_mlx *st_mlx, int x, int y);
 
 #endif

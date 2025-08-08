@@ -6,11 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:37:46 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 03:43:07 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
@@ -111,4 +111,5 @@ void	ray_cast(t_mlx *st_mlx)
 	}
 	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win,
 		st_mlx->screen->img, 0, 0);
+	render_minimap(st_mlx);
 }

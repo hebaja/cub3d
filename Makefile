@@ -10,7 +10,16 @@ NAME = cub3d
 
 SRC_DIR = src
 
+SRC_BONUS_DIR = src_bonus
+
 SRC_FILES = main.c parser_file_1.c parser_file_2.c\
+			file_utils.c st_file_utils.c parser_file_utils.c\
+			clean_utils.c valid_map1.c valid_map2.c\
+			put_error.c color_elem_utils.c texture_elem_utils.c\
+			st_mlx_utils.c ray_cast.c st_coord_utils.c\
+			mlx_draw.c mlx_hook_utils.c st_movement.c
+
+SRC_BONUS_FILES = main.c parser_file_1.c parser_file_2.c\
 			file_utils.c st_file_utils.c parser_file_utils.c\
 			clean_utils.c valid_map1.c valid_map2.c\
 			put_error.c color_elem_utils.c texture_elem_utils.c\
@@ -28,7 +37,11 @@ MINILIBX = $(MINILIBX_DIR)/libmlx_Linux.a
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
+BONUS_SRCS = $(addprefix $(SRC_BONUS_DIR)/, $(SRC_BONUS_FILES))
+
 OBJS = $(SRCS:.c=.o)
+
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
@@ -39,6 +52,14 @@ $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	@$(MAKE) -s loading
 	@clear
 	@echo -e "\033[32m ✓ \033[0m Compilation successful!"
+
+bonus: $(BONUS_OBJS) $(LIBFT) $(MINILIBX)
+	@clear
+	@$(CC) $(CFLAGS) -o $(NAME) -g $(BONUS_OBJS) $(LIBFT) $(MLX_FLAGS) -lm
+	@echo -n "  Compiling bonus"
+	@$(MAKE) -s loading
+	@clear
+	@echo -e "\033[32m ✓ \033[0m Bonus compilation successful!"
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -52,7 +73,7 @@ $(MINILIBX):
 clean:
 	make -C $(LIBFT_DIR) clean
 	make -C $(MINILIBX_DIR) clean
-	rm -f $(OBJS) $(MINILIBX)
+	rm -f $(OBJS) $(BONUS_OBJS) $(MINILIBX)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean

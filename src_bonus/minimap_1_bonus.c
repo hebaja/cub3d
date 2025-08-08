@@ -6,11 +6,11 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 02:46:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 03:41:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	set_paint_direction(t_mlx *st_mlx, int x, int y, int color)
 {

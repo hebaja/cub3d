@@ -6,11 +6,11 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 02:45:03 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 02:45:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 03:42:04 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 {
