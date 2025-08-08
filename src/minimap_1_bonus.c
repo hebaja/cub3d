@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_1_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/07 15:28:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 02:46:14 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,16 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			paint_block(st_mlx, x, y, MM_WALL_COLOR);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
-			paint_block(st_mlx, x, y, MM_PLAY_COLOR);
-		else
+			paint_player(st_mlx, x, y);
+		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
+			&& (st_mlx->st_file->map[map_y][map_x] == '0'
+			|| st_mlx->st_file->map[map_y][map_x] == 'N'
+			|| st_mlx->st_file->map[map_y][map_x] == 'W'
+			|| st_mlx->st_file->map[map_y][map_x] == 'S'
+			|| st_mlx->st_file->map[map_y][map_x] == 'E'))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
+		else
+			paint_block(st_mlx, x, y, MM_OUTER_COLOR);
 	}
 }
 
@@ -77,8 +84,8 @@ void	render_minimap(t_mlx *st_mlx)
 
 	st_mlx->abs_player_x = (int)st_mlx->st_coord->p_posx;
 	st_mlx->abs_player_y = (int)st_mlx->st_coord->p_posy;
-	mm_init_x = st_mlx->abs_player_x - 2;
-	mm_init_y = st_mlx->abs_player_y - 2;
+	mm_init_x = st_mlx->abs_player_x - 3;
+	mm_init_y = st_mlx->abs_player_y - 3;
 	x = -1;
 	while (++x < st_mlx->minimap_size)
 		draw_column(st_mlx, x, mm_init_x, mm_init_y);
@@ -99,6 +106,6 @@ void	init_minimap(t_mlx *st_mlx)
 		&st_mlx->minimap->bpp, \
 		&st_mlx->minimap->size_line, \
 		&st_mlx->minimap->endian);
-	st_mlx->minimap_size = 5;
+	st_mlx->minimap_size = 7;
 	st_mlx->minimap_block_size = st_mlx->minimap->width / st_mlx->minimap_size;
 }

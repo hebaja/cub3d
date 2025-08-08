@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/07 15:20:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 02:46:09 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@
 # define ROTATE			0.05
 # define FOV			0.66
 # define MM_WALL_COLOR	16777215
-# define MM_PLAY_COLOR	10360107
-# define MM_SPACE_COLOR	2568960	
+# define MM_PLAY_COLOR	16776960
+# define MM_SPACE_COLOR	3685169
+# define MM_OUTER_COLOR	0
 
 typedef struct s_file
 {
@@ -166,6 +167,7 @@ void	ray_cast(t_mlx *st_mlx);
 void	init_minimap(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	render_minimap(t_mlx *st_mlx);
+void	paint_player(t_mlx *st_mlx, int x, int y);
 
 /* DEBU */
 void	print_map(char **map);
