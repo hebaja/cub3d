@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:41:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 06:44:26 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 	while (++y < st_mlx->minimap_size)
 	{
 		map_y = init_y + y;
-		if (map_y >= 0 && map_y < st_mlx->st_file->map_height
+		if (map_y >= 0 && map_y < st_mlx->st_file->map_height && map_x >= 0
 			&& st_mlx->st_file->map[map_y][map_x] == '1')
 			paint_block(st_mlx, x, y, MM_WALL_COLOR);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
 			paint_player(st_mlx, x, y);
-		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
+		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height && map_x >= 0
 			&& (st_mlx->st_file->map[map_y][map_x] == '0'
 			|| st_mlx->st_file->map[map_y][map_x] == 'N'
 			|| st_mlx->st_file->map[map_y][map_x] == 'W'

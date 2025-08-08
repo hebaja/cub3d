@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:41:22 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 05:30:07 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,4 @@ void	clean_file_content(char **lines)
 		free(lines[i]);
 	free(lines);
 	lines = NULL;
-}
-
-void	clean_st_file(t_file *st_file)
-{
-	if (st_file)
-	{
-		if (st_file->no_texture)
-			free(st_file->no_texture);
-		if (st_file->so_texture)
-			free(st_file->so_texture);
-		if (st_file->we_texture)
-			free(st_file->we_texture);
-		if (st_file->ea_texture)
-			free(st_file->ea_texture);
-		if (st_file->file_content)
-			clean_file_content(st_file->file_content);
-		if (st_file->map)
-			clean_file_content(st_file->map);
-		free(st_file);
-		st_file = NULL;
-	}
-}
-
-void	clean_all(t_mlx *st_mlx)
-{
-	free(st_mlx->st_coord);
-	clean_st_file(st_mlx->st_file);
-	clean_st_mlx(st_mlx);
-	exit(EXIT_SUCCESS);
 }

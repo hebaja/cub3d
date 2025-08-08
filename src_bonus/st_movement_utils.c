@@ -6,11 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/08 05:43:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/08 05:43:03 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
 {
