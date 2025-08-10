@@ -116,6 +116,10 @@ typedef struct s_mlx
 	int		minimap_block_size;
 	int		minimap_block_x;
 	int		minimap_block_y;
+	int		minimap_counter;
+	int		minimap_frame;
+	int		minimap_anim_dir;
+	int		*minimap_colors;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;

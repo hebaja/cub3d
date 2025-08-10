@@ -46,3 +46,25 @@ void	paint_player(t_mlx *st_mlx, int x, int y)
 		}
 	}
 }
+
+void	animate_player(t_mlx *st_mlx, int x, int y)
+{
+	if (st_mlx->minimap_counter == 0)
+		st_mlx->minimap_anim_dir = 0;
+	if (st_mlx->minimap_counter == 10)
+		st_mlx->minimap_anim_dir = 1;
+	if (st_mlx->minimap_frame % 2000 == 0)
+	{
+		paint_player(st_mlx, x, y, st_mlx->minimap_colors[st_mlx->minimap_counter]);
+		mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img, 0, 0);
+		if (st_mlx->minimap_anim_dir == 0)
+			st_mlx->minimap_counter++;
+		else
+			st_mlx->minimap_counter--;
+	}
+	if (st_mlx->minimap_anim_dir == 0)
+		st_mlx->minimap_frame++;
+	if (st_mlx->minimap_anim_dir == 1)
+		st_mlx->minimap_frame--;
+
+}
