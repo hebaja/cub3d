@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_1_bonus.c                                  :+:      :+:    :+:   */
+/*   minimap2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 06:44:26 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:40:20 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,52 +91,4 @@ void	render_minimap(t_mlx *st_mlx)
 		draw_column(st_mlx, x, mm_init_x, mm_init_y);
 	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img,
 		12, 12);
-}
-
-int	*build_colors(void)
-{
-	int *colors;
-
-	colors = malloc(sizeof(int) * 11);
-	if (colors == NULL)
-		return (NULL);
-	colors[0] = 0xffffff;
-	colors[1] = 0xe6ffe6;
-	colors[2] = 0xccffcc;
-	colors[3] = 0xb3ffb3;
-	colors[4] = 0x99ff99;
-	colors[5] = 0x80ff80;
-	colors[6] = 0x66ff66;
-	colors[7] = 0x4dff4d;
-	colors[8] = 0x33ff33;
-	colors[9] = 0x1aff1a;
-	colors[10] = 0x00ff00;
-	return (colors);
-}
-
-/* TODO need to deal with the error cases */
-void	init_minimap(t_mlx *st_mlx)
-{
-	int	mm_size;
-
-	mm_size = (int)(st_mlx->screen_height * 0.28) - 1;
-	st_mlx->minimap = (t_img *)malloc(sizeof(t_img));
-	if (st_mlx->minimap == NULL)
-		return ;
-	st_mlx->minimap_colors = build_colors();
-	if (st_mlx->minimap_colors == NULL)
-		return ;
-	st_mlx->minimap_counter = 0;
-	st_mlx->minimap_anim_dir = 0;
-	st_mlx->minimap_frame = 0;
-	st_mlx->minimap_time = 0;
-	st_mlx->minimap->width = mm_size;
-	st_mlx->minimap->height = mm_size;
-	st_mlx->minimap->img = mlx_new_image(st_mlx->mlx, mm_size, mm_size);
-	st_mlx->minimap->img_addr = mlx_get_data_addr(st_mlx->minimap->img, \
-		&st_mlx->minimap->bpp, \
-		&st_mlx->minimap->size_line, \
-		&st_mlx->minimap->endian);
-	st_mlx->minimap_size = 7;
-	st_mlx->minimap_block_size = st_mlx->minimap->width / st_mlx->minimap_size;
 }

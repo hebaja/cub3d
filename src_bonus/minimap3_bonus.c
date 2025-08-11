@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_2_bonus.c                                  :+:      :+:    :+:   */
+/*   minimap3_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 02:45:03 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:42:04 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:33:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
-#include <stdio.h>
-#include <sys/time.h>
 
 void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 {
@@ -54,7 +52,7 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		perror("gettimeofday() error");
+		put_error("gettimeofday error", NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
@@ -64,14 +62,10 @@ void	animate_player(t_mlx *st_mlx, int x, int y)
 
 	if (st_mlx->minimap_counter == 0)
 		st_mlx->minimap_anim_dir = 0;
-	if (st_mlx->minimap_counter == 10)
+	if (st_mlx->minimap_counter == 18)
 		st_mlx->minimap_anim_dir = 1;
-
 	time = get_current_time();
-
-	// printf("%lu\n", time - st_mlx->minimap_time);
-
-	if (time - st_mlx->minimap_time >= 100)
+	if (time - st_mlx->minimap_time >= 50)
 	{
 		st_mlx->minimap_time = time;
 		paint_player(st_mlx, x, y, st_mlx->minimap_colors[st_mlx->minimap_counter]);
@@ -80,10 +74,6 @@ void	animate_player(t_mlx *st_mlx, int x, int y)
 		else
 			st_mlx->minimap_counter--;
 	}
-
-	// if (st_mlx->minimap_frame == 0)
-	// 	st_mlx->minimap_frame = get_current_time();
-
 	if (st_mlx->minimap_anim_dir == 0)
 		st_mlx->minimap_frame++;
 	if (st_mlx->minimap_anim_dir == 1)

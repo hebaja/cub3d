@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 05:30:30 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:39:43 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <sys/time.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -183,8 +184,8 @@ int		get_last_valid(char *line);
 int		valid_character(char **map);
 int		handle_input(int keycode, t_mlx *st_mlx);
 int		close_window(t_mlx *st_mlx);
+int		init_minimap(t_mlx *st_mlx);
 void	ray_cast(t_mlx *st_mlx);
-void	init_minimap(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	render_minimap(t_mlx *st_mlx);
 void	animate_player(t_mlx *st_mlx, int x, int y);

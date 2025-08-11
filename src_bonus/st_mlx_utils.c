@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 06:52:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:10:58 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 800;
-	st_mlx->screen_height = 600;
+	st_mlx->screen_width = 1920;
+	st_mlx->screen_height = 1080;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
