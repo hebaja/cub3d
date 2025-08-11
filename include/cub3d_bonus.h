@@ -118,6 +118,7 @@ typedef struct s_mlx
 	int		minimap_block_y;
 	int		minimap_counter;
 	int		minimap_frame;
+	size_t	minimap_time;
 	int		minimap_anim_dir;
 	int		*minimap_colors;
 	int		screen_height;
@@ -186,6 +187,6 @@ void	ray_cast(t_mlx *st_mlx);
 void	init_minimap(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	render_minimap(t_mlx *st_mlx);
-void	paint_player(t_mlx *st_mlx, int x, int y);
+void	animate_player(t_mlx *st_mlx, int x, int y);
 
 #endif

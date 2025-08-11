@@ -63,7 +63,7 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			paint_block(st_mlx, x, y, MM_WALL_COLOR);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
-			paint_player(st_mlx, x, y);
+			animate_player(st_mlx, x, y);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height && map_x >= 0
 			&& (st_mlx->st_file->map[map_y][map_x] == '0'
 			|| st_mlx->st_file->map[map_y][map_x] == 'N'
@@ -129,6 +129,7 @@ void	init_minimap(t_mlx *st_mlx)
 	st_mlx->minimap_counter = 0;
 	st_mlx->minimap_anim_dir = 0;
 	st_mlx->minimap_frame = 0;
+	st_mlx->minimap_time = 0;
 	st_mlx->minimap->width = mm_size;
 	st_mlx->minimap->height = mm_size;
 	st_mlx->minimap->img = mlx_new_image(st_mlx->mlx, mm_size, mm_size);

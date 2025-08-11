@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
+#include <stdio.h>
+#include <sys/time.h>
 
 void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 {
@@ -20,7 +22,7 @@ void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 		color);
 }
 
-void	paint_player(t_mlx *st_mlx, int x, int y)
+void	paint_player(t_mlx *st_mlx, int x, int y, int color)
 {
 	int	start_paint_x;
 	int	end_paint_x;
@@ -35,7 +37,7 @@ void	paint_player(t_mlx *st_mlx, int x, int y)
 		{
 			if (st_mlx->minimap_block_x >= start_paint_x
 				&& st_mlx->minimap_block_x <= end_paint_x)
-				paint_player_area(st_mlx, x, y, MM_PLAY_COLOR);
+				paint_player_area(st_mlx, x, y, color);
 			else
 				paint_player_area(st_mlx, x, y, MM_SPACE_COLOR);
 		}
@@ -47,24 +49,43 @@ void	paint_player(t_mlx *st_mlx, int x, int y)
 	}
 }
 
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		perror("gettimeofday() error");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
 void	animate_player(t_mlx *st_mlx, int x, int y)
 {
+	size_t time;
+
 	if (st_mlx->minimap_counter == 0)
 		st_mlx->minimap_anim_dir = 0;
 	if (st_mlx->minimap_counter == 10)
 		st_mlx->minimap_anim_dir = 1;
-	if (st_mlx->minimap_frame % 2000 == 0)
+
+	time = get_current_time();
+
+	// printf("%lu\n", time - st_mlx->minimap_time);
+
+	if (time - st_mlx->minimap_time >= 100)
 	{
+		st_mlx->minimap_time = time;
 		paint_player(st_mlx, x, y, st_mlx->minimap_colors[st_mlx->minimap_counter]);
-		mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->minimap->img, 0, 0);
 		if (st_mlx->minimap_anim_dir == 0)
 			st_mlx->minimap_counter++;
 		else
 			st_mlx->minimap_counter--;
 	}
+
+	// if (st_mlx->minimap_frame == 0)
+	// 	st_mlx->minimap_frame = get_current_time();
+
 	if (st_mlx->minimap_anim_dir == 0)
 		st_mlx->minimap_frame++;
 	if (st_mlx->minimap_anim_dir == 1)
 		st_mlx->minimap_frame--;
-
 }
