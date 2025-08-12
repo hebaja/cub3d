@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_movement.c                                      :+:      :+:    :+:   */
+/*   gameplay.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/08 05:35:34 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:34:20 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	game_loop(t_mlx *st_mlx)
 	return (0);
 }
 
-void	init_event(t_mlx *st_mlx)
+void	init_gameplay(t_mlx *st_mlx)
 {
 	mlx_hook(st_mlx->win, 2, (1L << 0), key_press, st_mlx);
 	mlx_hook(st_mlx->win, 3, (1L << 1), key_release, st_mlx);

@@ -6,11 +6,11 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:59:08 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/12 14:44:41 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:45:02 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d_bonus.h"
+#include "../include/cub3d.h"
 
 t_file	*prepare_st_file(char *file_path)
 {
@@ -46,8 +46,6 @@ t_mlx	*prepare_st_mlx(t_file *st_file, t_coord *st_coord)
 
 	st_mlx = build_st_mlx(st_file, st_coord);
 	if (!st_mlx)
-		return (NULL);
-	if (!init_minimap(st_mlx))
 		return (NULL);
 	return (st_mlx);
 }

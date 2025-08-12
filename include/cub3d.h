@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 05:28:26 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:44:02 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define KEY_D			100
 # define KEY_W			119
 # define KEY_S			115
+# define MOVE			0.1
 # define RADIUS			0.1
+# define ROTATE			0.05
 # define FOV			0.66
-# define MOVE			0.05
-# define ROTATE			0.02
 
 typedef struct s_file
 {
@@ -127,7 +127,8 @@ typedef struct s_mlx
 t_file	*build_st_file(char *map_path);
 t_coord	*build_st_coord(t_file *st_file);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord);
-void	init_event(t_mlx *st_mlx);
+t_mlx	*prepare_game(char *file_path);
+void	init_gameplay(t_mlx *st_mlx);
 void	exit_mlx(t_mlx *st_mlx);
 void	clean_file_content(char **lines);
 void	clean_st_file(t_file *st_file);

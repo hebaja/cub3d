@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 05:28:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:45:23 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,11 @@ void	clean_st_mlx(t_mlx *st_mlx)
 
 void	clean_all(t_mlx *st_mlx)
 {
-	free(st_mlx->st_coord);
-	clean_st_file(st_mlx->st_file);
-	clean_st_mlx(st_mlx);
-	exit(EXIT_SUCCESS);
+	if (st_mlx)
+	{
+		if (st_mlx->st_coord)
+			free(st_mlx->st_coord);
+		clean_st_file(st_mlx->st_file);
+		clean_st_mlx(st_mlx);
+	}
 }

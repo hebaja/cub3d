@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:02:12 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/31 19:02:13 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:39:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	close_window(t_mlx *st_mlx)
 {
 	clean_all(st_mlx);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 int	handle_input(int keycode, t_mlx *st_mlx)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 05:44:39 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:44:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	init_keys(t_mlx *st_mlx)
 	st_mlx->key_right = 0;
 }
 
-// st_mlx->screen_height = 1080;
-// st_mlx->screen_width = 1920;
+// mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
+// 	&st_mlx->screen_height);
 
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
@@ -87,8 +87,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
-		&st_mlx->screen_height);
+	st_mlx->screen_height = 1080;
+	st_mlx->screen_width = 1920;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	st_mlx->c_color = rgb_to_int(0, st_file->c_color[0], st_file->c_color[1],

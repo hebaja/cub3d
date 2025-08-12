@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_movement_utils.c                                :+:      :+:    :+:   */
+/*   gameplay_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/08 05:43:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:39:04 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	move_player(t_mlx *st_mlx, double move_x, double move_y)
 int	key_press(int key, t_mlx *st_mlx)
 {
 	if (key == KEY_ESC)
+	{
 		clean_all(st_mlx);
+		exit(EXIT_SUCCESS);
+	}
 	if (key == KEY_UP || key == KEY_W)
 		st_mlx->key_w = 1;
 	else if (key == KEY_DOWN || key == KEY_S)

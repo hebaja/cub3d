@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_movement.c                                      :+:      :+:    :+:   */
+/*   gameplay.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/08 05:41:09 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 13:16:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ void	set_keys_rotate(t_mlx *st_mlx)
 		rotate_angle(coord, ROTATE);
 }
 
-int	game_loop(void *param)
+int	game_loop(t_mlx *st_mlx)
 {
-	t_mlx	*st_mlx;
 	int		steps;
 	double	angle;
 	double	angle_step;
 
-	st_mlx = (t_mlx *)param;
 	set_keys_rotate(st_mlx);
 	if (st_mlx->mouse_x != 0)
 	{

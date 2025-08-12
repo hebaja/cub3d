@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 04:03:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/12 12:37:36 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,17 @@
 
 int	main(int argc, char **argv)
 {
-	t_file	*st_file;
-	t_coord	*st_coord;
 	t_mlx	*st_mlx;
 
-	st_file = NULL;
 	if (is_valid_map_path(argc, argv))
 	{
-		st_file = build_st_file(argv[1]);
-		if (!st_file)
-			return (1);
-		if (!parse_elements(st_file))
+		st_mlx = prepare_game(argv[1]);
+		if (!st_mlx)
 		{
-			clean_st_file(st_file);
-			return (1);
+			clean_all(st_mlx);
+			exit(EXIT_FAILURE);
 		}
-		st_coord = build_st_coord(st_file);
-		st_mlx = build_st_mlx(st_file, st_coord);
-		ray_cast(st_mlx);
-		init_event(st_mlx);
+		init_gameplay(st_mlx);
 		clean_all(st_mlx);
 	}
 	return (0);
