@@ -111,5 +111,4 @@ void	ray_cast(t_mlx *st_mlx)
 	}
 	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win,
 		st_mlx->screen->img, 0, 0);
-	render_minimap(st_mlx);
 }

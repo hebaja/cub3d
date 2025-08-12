@@ -15,7 +15,7 @@
 int	close_window(t_mlx *st_mlx)
 {
 	clean_all(st_mlx);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 int	handle_input(int keycode, t_mlx *st_mlx)

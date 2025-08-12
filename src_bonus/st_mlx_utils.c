@@ -77,6 +77,7 @@ void	init_keys(t_mlx *st_mlx)
 // mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
 	// &st_mlx->screen_height);
 
+//TODO mlx_mouse_hide is leaaking memory
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;

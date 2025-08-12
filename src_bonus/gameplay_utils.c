@@ -52,7 +52,10 @@ void	move_player(t_mlx *st_mlx, double move_x, double move_y)
 int	key_press(int key, t_mlx *st_mlx)
 {
 	if (key == KEY_ESC)
+	{
 		clean_all(st_mlx);
+		exit(EXIT_SUCCESS);
+	}
 	if (key == KEY_UP || key == KEY_W)
 		st_mlx->key_w = 1;
 	else if (key == KEY_DOWN || key == KEY_S)

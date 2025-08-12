@@ -143,7 +143,7 @@ void	clean_map(char **map);
 void	expanded_map(char **map, t_file *st_file);
 void	draw_vertical_line(t_mlx *st_mlx, int screen_column);
 void	rotate_angle(t_coord *coord, double angle);
-void    move_player(t_mlx *st_mlx, double move_x, double move_y);
+void	move_player(t_mlx *st_mlx, double move_x, double move_y);
 char	**fill_duplicate_map(int height, int width);
 int		is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx);
 int		key_release(int key, t_mlx *st_mlx);

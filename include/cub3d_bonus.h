@@ -144,7 +144,8 @@ typedef struct s_mlx
 t_file	*build_st_file(char *map_path);
 t_coord	*build_st_coord(t_file *st_file);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord);
-void	init_event(t_mlx *st_mlx);
+t_mlx	*prepare_game(char *file_path);
+void	init_gameplay(t_mlx *st_mlx);
 void	exit_mlx(t_mlx *st_mlx);
 void	clean_st_file(t_file *st_file);
 void	clean_file_content(char **lines);
@@ -159,7 +160,7 @@ void	clean_args(char **args);
 void	clean_map(char **map);
 void	expanded_map(char **map, t_file *st_file);
 void	draw_vertical_line(t_mlx *st_mlx, int screen_column);
-void    move_player(t_mlx *st_mlx, double move_x, double move_y);
+void	move_player(t_mlx *st_mlx, double move_x, double move_y);
 void	rotate_angle(t_coord *coord, double angle);
 char	**fill_duplicate_map(int height, int width);
 int		key_press(int key, t_mlx *st_mlx);

@@ -14,21 +14,21 @@
 
 int	*build_colors(void)
 {
-	int *colors;
+	int	*colors;
 
 	colors = malloc(sizeof(int) * 19);
 	if (colors == NULL)
 		return (NULL);
-	colors[0]  = 0xffff00;
-	colors[1]  = 0xf3ff00;
-	colors[2]  = 0xe7ff00;
-	colors[3]  = 0xdbff00;
-	colors[4]  = 0xcfff00;
-	colors[5]  = 0xc3ff00;
-	colors[6]  = 0xb7ff00;
-	colors[7]  = 0xabff00;
-	colors[8]  = 0x9fff00;
-	colors[9]  = 0x93ff00;
+	colors[0] = 0xffff00;
+	colors[1] = 0xf3ff00;
+	colors[2] = 0xe7ff00;
+	colors[3] = 0xdbff00;
+	colors[4] = 0xcfff00;
+	colors[5] = 0xc3ff00;
+	colors[6] = 0xb7ff00;
+	colors[7] = 0xabff00;
+	colors[8] = 0x9fff00;
+	colors[9] = 0x93ff00;
 	colors[10] = 0x87ff00;
 	colors[11] = 0x7bff00;
 	colors[12] = 0x6fff00;

@@ -55,14 +55,18 @@ void	clean_st_mlx(t_mlx *st_mlx)
 	free(st_mlx->we_texture);
 	free(st_mlx->ea_texture);
 	free(st_mlx->minimap);
+	free(st_mlx->minimap_colors);
 	free(st_mlx->mlx);
 	free(st_mlx);
 }
 
 void	clean_all(t_mlx *st_mlx)
 {
-	free(st_mlx->st_coord);
-	clean_st_file(st_mlx->st_file);
-	clean_st_mlx(st_mlx);
-	exit(EXIT_SUCCESS);
+	if (st_mlx)
+	{
+		if (st_mlx->st_coord)
+			free(st_mlx->st_coord);
+		clean_st_file(st_mlx->st_file);
+		clean_st_mlx(st_mlx);
+	}
 }

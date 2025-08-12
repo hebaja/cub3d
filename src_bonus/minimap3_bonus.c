@@ -58,7 +58,7 @@ size_t	get_current_time(void)
 
 void	animate_player(t_mlx *st_mlx, int x, int y)
 {
-	size_t time;
+	size_t	time;
 
 	if (st_mlx->minimap_counter == 0)
 		st_mlx->minimap_anim_dir = 0;
@@ -68,7 +68,8 @@ void	animate_player(t_mlx *st_mlx, int x, int y)
 	if (time - st_mlx->minimap_time >= 50)
 	{
 		st_mlx->minimap_time = time;
-		paint_player(st_mlx, x, y, st_mlx->minimap_colors[st_mlx->minimap_counter]);
+		paint_player(st_mlx, x, y,
+			st_mlx->minimap_colors[st_mlx->minimap_counter]);
 		if (st_mlx->minimap_anim_dir == 0)
 			st_mlx->minimap_counter++;
 		else

@@ -54,10 +54,11 @@ int	game_loop(void *param)
 		st_mlx->mouse_x = 0;
 	}
 	ray_cast(st_mlx);
+	render_minimap(st_mlx);
 	return (0);
 }
 
-void	init_event(t_mlx *st_mlx)
+void	init_gameplay(t_mlx *st_mlx)
 {
 	mlx_hook(st_mlx->win, 2, (1L << 0), key_press, st_mlx);
 	mlx_hook(st_mlx->win, 3, (1L << 1), key_release, st_mlx);
