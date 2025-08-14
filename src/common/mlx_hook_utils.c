@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   mlx_hook_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:39:43 by hebatist         ###   ########.fr       */
+/*   Created: 2025/07/31 19:02:12 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/12 12:39:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#include "../../include/cub3d_common.h"
 
-# include <sys/time.h>
-# include "includes.h"
-# include "bonus_defines.h"
-# include "common_struct.h"
-# include "cub3d_common.h"
-# include "bonus_mlx.h"
+int	close_window(t_mlx *st_mlx)
+{
+	clean_all(st_mlx);
+	exit(EXIT_SUCCESS);
+}
 
-#endif
+int	handle_input(int keycode, t_mlx *st_mlx)
+{
+	if (keycode == 65307)
+		close_window(st_mlx);
+	return (0);
+}

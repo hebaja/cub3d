@@ -10,24 +10,33 @@ NAME = cub3d
 
 SRC_DIR = src
 
-SRC_BONUS_DIR = src_bonus
+OBJ_DIR = obj
 
-SRC_FILES = main.c parser_file_1.c parser_file_2.c\
-			file_utils.c st_file_utils.c parser_file_utils.c\
-			clean_utils.c clean_st_utils.c valid_map1.c valid_map2.c\
-			put_error.c color_elem_utils.c texture_elem_utils.c\
-			st_mlx_utils.c ray_cast.c st_coord_utils.c\
-			mlx_draw.c mlx_hook_utils.c gameplay.c\
-			gameplay_utils.c prepare_game.c
+SRC_MAIN_DIR = $(SRC_DIR)/main
 
-SRC_BONUS_FILES = main.c parser_file_1.c parser_file_2.c\
-			file_utils.c st_file_utils.c parser_file_utils.c\
-			clean_utils.c clean_st_utils.c valid_map1.c valid_map2.c\
+SRC_COMMON_DIR = $(SRC_DIR)/common
+
+SRC_BONUS_DIR = $(SRC_DIR)/bonus
+
+OBJ_MAIN_DIR = $(OBJ_DIR)/main
+
+OBJ_COMMON_DIR = $(OBJ_DIR)/common
+
+OBJ_BONUS_DIR = $(OBJ_DIR)/bonus
+
+SRC_MAIN_FILES = main.c st_mlx_utils.c gameplay.c prepare_game.c 
+
+SRC_COMMON_FILES = parser_file_1.c parser_file_2.c file_utils.c\
+			st_file_utils.c parser_file_utils.c clean_utils.c\
+			clean_st_utils.c valid_map1.c valid_map2.c\
 			put_error.c color_elem_utils.c texture_elem_utils.c\
-			st_mlx_utils.c ray_cast.c st_coord_utils.c\
-			mlx_draw.c mlx_hook_utils.c gameplay.c\
-			gameplay_utils.c minimap1_bonus.c minimap2_bonus.c\
-			minimap3_bonus.c prepare_game.c
+			ray_cast.c st_coord_utils.c\
+			mlx_draw.c mlx_hook_utils.c \
+			gameplay_utils.c 
+
+SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c prepare_game_bonus.c\
+				st_mlx_utils_bonus.c minimap1_bonus.c minimap2_bonus.c\
+				minimap3_bonus.c
 
 LIBFT_DIR = libft
 
@@ -37,27 +46,31 @@ MINILIBX_DIR = minilibx-linux
 
 MINILIBX = $(MINILIBX_DIR)/libmlx_Linux.a
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRCS_MAIN = $(addprefix $(SRC_MAIN_DIR)/, $(SRC_MAIN_FILES))
 
-BONUS_SRCS = $(addprefix $(SRC_BONUS_DIR)/, $(SRC_BONUS_FILES))
+SRCS_COMMON = $(addprefix $(SRC_COMMON_DIR)/, $(SRC_COMMON_FILES))
 
-OBJS = $(SRCS:.c=.o)
+SRCS_BONUS = $(addprefix $(SRC_BONUS_DIR)/, $(SRC_BONUS_FILES))
 
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+OBJS_MAIN = $(addprefix $(OBJ_MAIN_DIR)/, $(notdir $(SRCS_MAIN:.c=.o)))
+
+OBJS_COMMON = $(addprefix $(OBJ_COMMON_DIR)/, $(notdir $(SRCS_COMMON:.c=.o)))
+
+OBJS_BONUS = $(addprefix $(OBJ_BONUS_DIR)/, $(notdir $(SRCS_BONUS:.c=.o)))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+$(NAME): $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(CFLAGS) -o $(NAME) -g $(OBJS) $(LIBFT) $(MLX_FLAGS) -lm
+	@$(CC) $(CFLAGS) -o $(NAME) -g $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling"
 	@$(MAKE) -s loading
 	@clear
 	@echo -e "\033[32m ✓ \033[0m Compilation successful!"
 
-bonus: $(BONUS_OBJS) $(LIBFT) $(MINILIBX)
+bonus: $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(CFLAGS) -o $(NAME) -g $(BONUS_OBJS) $(LIBFT) $(MLX_FLAGS) -lm
+	@$(CC) $(CFLAGS) -o $(NAME) -g -DCUBE3D_BONUS $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling bonus"
 	@$(MAKE) -s loading
 	@clear
@@ -69,13 +82,27 @@ $(LIBFT):
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
 
-.c.o:
+# .c.o:
+# 	@$(CC) $(CFLAGS) -g -c $< -o $@
+
+$(OBJ_MAIN_DIR)/%.o: $(SRC_MAIN_DIR)/%.c
+	@mkdir -p $(OBJ_MAIN_DIR)
+	@$(CC) $(CFLAGS) -g -c $< -o $@
+
+$(OBJ_COMMON_DIR)/%.o: $(SRC_COMMON_DIR)/%.c
+	@mkdir -p $(OBJ_COMMON_DIR)
+	@$(CC) $(CFLAGS) -g -c $< -o $@
+
+$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
+	@mkdir -p $(OBJ_BONUS_DIR)
 	@$(CC) $(CFLAGS) -g -c $< -o $@
 
 clean:
 	make -C $(LIBFT_DIR) clean
 	make -C $(MINILIBX_DIR) clean
-	rm -f $(OBJS) $(BONUS_OBJS) $(MINILIBX)
+	rm -f $(OBJS_MAIN) $(OBJS_COMMON) $(OBJS_BONUS) $(MINILIBX)
+	rm -rf $(OBJ_MAIN_DIR) $(OBJ_COMMON_DIR) $(OBJ_BONUS_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
