@@ -4,6 +4,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
+BONUS_CFLAGS = -Wall -Wextra -Werror -DBONUS
+
 MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
 
 NAME = cub3d
@@ -62,7 +64,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(CFLAGS) -o $(NAME) -g $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
+	@$(CC) $(CFLAGS) -o $(NAME) -g  $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling"
 	@$(MAKE) -s loading
 	@clear
@@ -70,7 +72,7 @@ $(NAME): $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 
 bonus: $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(CFLAGS) -o $(NAME) -g -DCUBE3D_BONUS $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
+	@$(CC) $(BONUS_CFLAGS) -o $(NAME) -g -DIS_BONUS $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling bonus"
 	@$(MAKE) -s loading
 	@clear
@@ -82,9 +84,6 @@ $(LIBFT):
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
 
-# .c.o:
-# 	@$(CC) $(CFLAGS) -g -c $< -o $@
-
 $(OBJ_MAIN_DIR)/%.o: $(SRC_MAIN_DIR)/%.c
 	@mkdir -p $(OBJ_MAIN_DIR)
 	@$(CC) $(CFLAGS) -g -c $< -o $@
@@ -95,18 +94,18 @@ $(OBJ_COMMON_DIR)/%.o: $(SRC_COMMON_DIR)/%.c
 
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
 	@mkdir -p $(OBJ_BONUS_DIR)
-	@$(CC) $(CFLAGS) -g -c $< -o $@
+	@$(CC) $(BONUS_CFLAGS) -g -c $< -o $@
 
 clean:
-	make -C $(LIBFT_DIR) clean
-	make -C $(MINILIBX_DIR) clean
-	rm -f $(OBJS_MAIN) $(OBJS_COMMON) $(OBJS_BONUS) $(MINILIBX)
-	rm -rf $(OBJ_MAIN_DIR) $(OBJ_COMMON_DIR) $(OBJ_BONUS_DIR)
-	rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MINILIBX_DIR) clean
+	@rm -f $(OBJS_MAIN) $(OBJS_COMMON) $(OBJS_BONUS) $(MINILIBX)
+	@rm -rf $(OBJ_MAIN_DIR) $(OBJ_COMMON_DIR) $(OBJ_BONUS_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	make -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
 	@clear
 	@echo -n "  Cleaning"
 	@$(MAKE) -s loading

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_mlx.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 14:42:59 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/14 14:43:01 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_MLX_H
 # define MAIN_MLX_H
 
-# include "common_struct.h"
+# include "structs.h"
 
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord);
 t_mlx	*prepare_game(char *file_path);

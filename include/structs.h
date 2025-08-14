@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 14:42:54 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:42:56 by hebatist         ###   ########.fr       */
+/*   Created: 2025/08/14 14:43:10 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/14 14:53:25 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <math.h>
-# include "../libft/include/libft.h"
-# include "../minilibx-linux/mlx.h"
+# ifdef BONUS
+#  include "bonus_struct.h"
+# else
+#  include "main_struct.h"
+# endif
 
 #endif

@@ -1,5 +1,17 @@
-#ifndef MAIN_DEFINES_H
-# define MAIN_DEFINES_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 14:42:47 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/14 14:44:00 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DEFINES_H
+# define DEFINES_H
 
 # define KEY_PRESS		2
 # define KEY_ESC		65307
