@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_mlx_utils.c                                     :+:      :+:    :+:   */
+/*   st_mlx_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:10:58 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:37:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
 	init_keys(st_mlx);
+
+	st_mlx->is_screen_flip = 0;
+	st_mlx->is_invert = 0;
+
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

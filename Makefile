@@ -26,19 +26,17 @@ OBJ_COMMON_DIR = $(OBJ_DIR)/common
 
 OBJ_BONUS_DIR = $(OBJ_DIR)/bonus
 
-SRC_MAIN_FILES = main.c st_mlx_utils.c gameplay.c prepare_game.c 
+SRC_MAIN_FILES = main.c st_mlx_utils.c mlx_draw.c gameplay.c gameplay_utils.c prepare_game.c 
 
 SRC_COMMON_FILES = parser_file_1.c parser_file_2.c file_utils.c\
 			st_file_utils.c parser_file_utils.c clean_utils.c\
 			clean_st_utils.c valid_map1.c valid_map2.c\
 			put_error.c color_elem_utils.c texture_elem_utils.c\
-			ray_cast.c st_coord_utils.c\
-			mlx_draw.c mlx_hook_utils.c \
-			gameplay_utils.c 
+			ray_cast.c st_coord_utils.c mlx_hook_utils.c
 
-SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c prepare_game_bonus.c\
+SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c gameplay_utils_bonus.c prepare_game_bonus.c\
 				st_mlx_utils_bonus.c minimap1_bonus.c minimap2_bonus.c\
-				minimap3_bonus.c
+				minimap3_bonus.c mlx_draw_bonus.c
 
 LIBFT_DIR = libft
 

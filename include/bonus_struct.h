@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 15:01:41 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:31:18 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_mlx
 	int		minimap_anim_dir;
 	int		*minimap_colors;
 	int		mouse_x;
+	int		is_screen_flip;
+	int		is_invert;
 }	t_mlx;
 
 #endif
