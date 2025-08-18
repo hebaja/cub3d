@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:42:19 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:26:56 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 int		init_minimap(t_mlx *st_mlx);
 void	render_minimap(t_mlx *st_mlx);
 void	animate_player(t_mlx *st_mlx, int x, int y);
+size_t	get_current_time(void);
 
 #endif

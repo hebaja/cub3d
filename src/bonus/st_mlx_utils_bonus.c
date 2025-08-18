@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/17 14:37:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:40:51 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,12 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	set_mlx_images_addr(st_mlx);
 	init_keys(st_mlx);
 
-	st_mlx->is_screen_flip = 0;
+	st_mlx->is_flipping_prep = 0;
+	st_mlx->is_flipping = 0;
+	st_mlx->is_flipping_done = 0;
 	st_mlx->is_invert = 0;
+	st_mlx->bar_color_1 = 0xff6600;
+	st_mlx->bar_color_2 = 0x9933ff;
 
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;

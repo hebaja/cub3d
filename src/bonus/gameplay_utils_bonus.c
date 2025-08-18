@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/17 14:48:29 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:40:33 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ void	move_player(t_mlx *st_mlx, double move_x, double move_y)
 
 int	key_press(int key, t_mlx *st_mlx)
 {
-	if (!st_mlx->is_screen_flip)
+	if (key == 103)
+	{
+		ft_printf("rolling\n");
+		st_mlx->is_flipping = 1;  
+	}
+	if (!st_mlx->is_flipping_prep)
 	{
 		if (key == KEY_ESC)
 		{
@@ -71,7 +76,10 @@ int	key_press(int key, t_mlx *st_mlx)
 		else if (key == KEY_RIGHT)
 			st_mlx->key_right = 1;
 		else if (key == 32)
-			st_mlx->is_screen_flip = 1; // TODO space key just to test screen flipping
+		{
+			// st_mlx->is_rolling = 1;
+			st_mlx->is_flipping_prep = 1; // TODO space key just to test screen flipping
+		}
 	}
 	return (0);
 }
