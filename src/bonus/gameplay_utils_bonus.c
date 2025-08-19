@@ -54,7 +54,7 @@ int	key_press(int key, t_mlx *st_mlx)
 	if (key == 103)
 	{
 		ft_printf("rolling\n");
-		st_mlx->is_flipping = 1;  
+		st_mlx->is_curtain = 1;  
 	}
 	if (!st_mlx->is_flipping_prep)
 	{

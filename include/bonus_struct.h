@@ -60,6 +60,10 @@ typedef struct s_mlx
 	int		is_invert;
 	size_t	anim_time;
 
+	int		is_curtain;
+	int		curtain_y;
+	int		curtain_dir;
+
 	int		bar_color_1;
 	int		bar_color_2;
 	

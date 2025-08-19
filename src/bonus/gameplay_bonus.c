@@ -92,10 +92,6 @@ int     draw_two_bars(t_mlx *st_mlx)
 	return (0);
 }
 
-
-
-
-
 int	game_loop(t_mlx *st_mlx)
 {
 	int		steps;
@@ -112,6 +108,40 @@ int	game_loop(t_mlx *st_mlx)
 			rotate_angle(st_mlx->st_coord, angle_step);
 		st_mlx->mouse_x = 0;
 	}
+
+	// if (!st_mlx->is_curtain)
+	// {
+		ray_cast(st_mlx);
+		if (!st_mlx->is_curtain)
+			render_minimap(st_mlx);
+	// }
+	if (st_mlx->is_curtain)
+	{
+		if (!st_mlx->curtain_dir)
+			st_mlx->curtain_y += 5;
+		else
+			st_mlx->curtain_y -= 5;
+
+		if (!st_mlx->curtain_dir && st_mlx->curtain_y == st_mlx->screen_height)
+		{
+			st_mlx->curtain_dir = 1;
+			t_img *tmp_texture;
+			tmp_texture = st_mlx->ea_texture;
+			st_mlx->ea_texture = st_mlx->we_texture;
+			st_mlx->we_texture = tmp_texture;
+			if (st_mlx->is_invert)
+				st_mlx->is_invert = 0;
+			else
+				st_mlx->is_invert = 1;
+		}
+		if (st_mlx->curtain_dir && st_mlx->curtain_y == 0)
+		{
+			st_mlx->curtain_dir = 0;
+			st_mlx->is_curtain = 0;
+		}
+	}
+
+	/*
 	if (!st_mlx->is_flipping_prep && !st_mlx->is_flipping)
 	{
 		ray_cast(st_mlx);
@@ -136,24 +166,21 @@ int	game_loop(t_mlx *st_mlx)
 		{
 
 
-			t_img *tmp_texture;
-			tmp_texture = st_mlx->ea_texture;
-			st_mlx->ea_texture = st_mlx->we_texture;
-			st_mlx->we_texture = tmp_texture;
-
-			st_mlx->is_flipping_done = 0;
-			st_mlx->is_flipping = 0;
-
-			if (st_mlx->is_invert)
-				st_mlx->is_invert = 0;
-			else
-				st_mlx->is_invert = 1;
-			
-			ft_printf("flip done %d\n", st_mlx->is_invert);
+			// t_img *tmp_texture;
+			// tmp_texture = st_mlx->ea_texture;
+			// st_mlx->ea_texture = st_mlx->we_texture;
+			// st_mlx->we_texture = tmp_texture;
+			// if (st_mlx->is_invert)
+			// 	st_mlx->is_invert = 0;
+			// else
+			// 	st_mlx->is_invert = 1;
+			// 
+			// ft_printf("flip done %d\n", st_mlx->is_invert);
 
 		}
 
 	}
+	*/
 	return (0);
 }
 

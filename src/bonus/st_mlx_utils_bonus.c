@@ -89,8 +89,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 1920;
-	st_mlx->screen_height = 1080;
+	st_mlx->screen_width = 800;
+	st_mlx->screen_height = 600;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
@@ -109,6 +109,10 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	st_mlx->is_invert = 0;
 	st_mlx->bar_color_1 = 0xff6600;
 	st_mlx->bar_color_2 = 0x9933ff;
+
+	st_mlx->curtain_y = 0;
+	st_mlx->is_curtain = 0;
+	st_mlx->curtain_dir = 0;
 
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;

@@ -20,5 +20,6 @@ int		init_minimap(t_mlx *st_mlx);
 void	render_minimap(t_mlx *st_mlx);
 void	animate_player(t_mlx *st_mlx, int x, int y);
 size_t	get_current_time(void);
+int		ft_mlx_pixel_get(t_img *st_img, int x, int y);
 
 #endif

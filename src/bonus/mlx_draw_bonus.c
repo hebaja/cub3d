@@ -21,6 +21,14 @@ void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
+int ft_mlx_pixel_get(t_img *st_img, int x, int y)
+{
+	char    *dst;
+
+	dst = st_img->img_addr + (y * st_img->size_line + x * (st_img->bpp / 8));
+	return (*(unsigned int *)dst);
+}
+
 void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 {
 	double	wall_hit_point;
@@ -95,12 +103,19 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 		y = st_mlx->screen_height;
 		while (--y >= 0)
 		{
-			if (y < c_line_height)
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
-			else if (y >= c_line_height && y <= f_line_height)
-				put_wall_texture_pixel(st_mlx, screen_column, y);
+			if (st_mlx->is_curtain && y < st_mlx->curtain_y)
+			{
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
+			}
 			else
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
+			{
+				if (y < c_line_height)
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
+				else if (y >= c_line_height && y <= f_line_height)
+					put_wall_texture_pixel(st_mlx, screen_column, y);
+				else
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
+			}
 		}
 	}
 	else
@@ -108,12 +123,21 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 		y = -1;
 		while (++y < st_mlx->screen_height)
 		{
-			if (y < c_line_height)
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
-			else if (y >= c_line_height && y <= f_line_height)
-				put_wall_texture_pixel(st_mlx, screen_column, y);
+			if (st_mlx->is_curtain && y < st_mlx->curtain_y)
+			{
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
+			}
 			else
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
+			{
+				if (y < c_line_height)
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
+				else if (y >= c_line_height && y <= f_line_height)
+					put_wall_texture_pixel(st_mlx, screen_column, y);
+				else
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
+
+			}
+
 		}
 	}
 }
