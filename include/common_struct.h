@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:32 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:42:32 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:53:52 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_file
 	char	**file_content;
 	char	**map;
 	char	**dup_map;
+	char	**inv_map;
 	char	*path;
 	int		width;
 	int		height;
@@ -29,8 +30,9 @@ typedef struct s_file
 	char	*ea_texture;
 	int		f_color[3];
 	int		c_color[3];
-	int		map_start;
 	int		map_height;
+	int		map_width;
+	int		map_start;
 	int		map_finish;
 	int		player_pos;
 	int		player_x;

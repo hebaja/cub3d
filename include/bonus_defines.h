@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:09 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:42:11 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 03:36:24 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # define MM_PLAY_COLOR	16776960
 # define MM_SPACE_COLOR	3685169
 # define MM_OUTER_COLOR	0
+# define CURTAIN_SPEED	10
 
 #endif

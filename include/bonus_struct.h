@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/18 14:40:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:11:58 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,11 @@ typedef struct s_mlx
 	int		minimap_anim_dir;
 	int		*minimap_colors;
 	int		mouse_x;
-
-	double	angle;
-	int		is_flipping_prep;
-	int		is_flipping;
-	int		is_flipping_done;
+	int		is_invert_prep;
 	int		is_invert;
-	size_t	anim_time;
-
 	int		is_curtain;
 	int		curtain_y;
 	int		curtain_dir;
-
-	int		bar_color_1;
-	int		bar_color_2;
-	
 }	t_mlx;
 
 #endif

@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_draw_bonus.c                                   :+:      :+:    :+:   */
+/*   mlx_draw1_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/18 14:50:23 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 03:16:23 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
-
-void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = st_img->img_addr + (
-			y * st_img->size_line + x * (st_img->bpp / 8));
-	*(unsigned int *)dst = (unsigned int)color;
-}
-
-int ft_mlx_pixel_get(t_img *st_img, int x, int y)
-{
-	char    *dst;
-
-	dst = st_img->img_addr + (y * st_img->size_line + x * (st_img->bpp / 8));
-	return (*(unsigned int *)dst);
-}
+#include "../../include/cub3d_bonus.h"
 
 void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 {
@@ -55,20 +38,6 @@ void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 		* st_mlx->st_coord->wall_tex_step;
 }
 
-void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
-{
-	int				tex_y;
-	int				tex_offset;
-	unsigned int	color;
-
-	tex_y = (int)st_mlx->st_coord->wall_tex_pos;
-	st_mlx->st_coord->wall_tex_pos += st_mlx->st_coord->wall_tex_step;
-	tex_offset = tex_y * st_mlx->curr_texture->size_line
-		+ st_mlx->st_coord->wall_tex_x * (st_mlx->curr_texture->bpp / 8);
-	color = *(unsigned int *)(st_mlx->curr_texture->img_addr + tex_offset);
-	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
-}
-
 void	set_current_texture(t_mlx *st_mlx)
 {
 	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
@@ -83,7 +52,6 @@ void	set_current_texture(t_mlx *st_mlx)
 
 void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 {
-	int	y;
 	int	wall_line_height;
 	int	c_line_height;
 	int	f_line_height;
@@ -98,46 +66,8 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 		f_line_height = st_mlx->screen_height - 1;
 	set_current_texture(st_mlx);
 	set_wall_texture(st_mlx, wall_line_height, c_line_height);
-	if (st_mlx->is_invert)
-	{
-		y = st_mlx->screen_height;
-		while (--y >= 0)
-		{
-			if (st_mlx->is_curtain && y < st_mlx->curtain_y)
-			{
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
-			}
-			else
-			{
-				if (y < c_line_height)
-					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
-				else if (y >= c_line_height && y <= f_line_height)
-					put_wall_texture_pixel(st_mlx, screen_column, y);
-				else
-					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
-			}
-		}
-	}
+	if (!st_mlx->is_invert)
+		default_drawing(st_mlx, screen_column, c_line_height, f_line_height);
 	else
-	{
-		y = -1;
-		while (++y < st_mlx->screen_height)
-		{
-			if (st_mlx->is_curtain && y < st_mlx->curtain_y)
-			{
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
-			}
-			else
-			{
-				if (y < c_line_height)
-					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
-				else if (y >= c_line_height && y <= f_line_height)
-					put_wall_texture_pixel(st_mlx, screen_column, y);
-				else
-					ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
-
-			}
-
-		}
-	}
+		invert_drawing(st_mlx, screen_column, c_line_height, f_line_height);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_map1.c                                       :+:      :+:    :+:   */
+/*   valid_map1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/24 03:58:59 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 03:41:28 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
+#include "../../include/cub3d_bonus.h"
 
 static int	space_in_map(int i, int *j, int last, char **map)
 {
@@ -60,7 +60,7 @@ int	valid_character(char **map)
 					return (0);
 			}
 			if (map[i][j] != '\0' && map[i][j] != '\n'
-					&& !ft_strchr("01NSEW ", map[i][j]))
+					&& !ft_strchr("01NSEWP ", map[i][j]))
 				return (0);
 			j++;
 		}

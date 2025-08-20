@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/18 14:40:51 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:12:23 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			&st_mlx->ea_texture->height);
 }
 
-void	init_keys(t_mlx *st_mlx)
+void	init_keys_and_anim(t_mlx *st_mlx)
 {
 	st_mlx->key_w = 0;
 	st_mlx->key_a = 0;
@@ -72,12 +72,12 @@ void	init_keys(t_mlx *st_mlx)
 	st_mlx->key_left = 0;
 	st_mlx->key_right = 0;
 	st_mlx->mouse_x = 0;
+	st_mlx->is_invert = 0;
+	st_mlx->curtain_y = 0;
+	st_mlx->is_curtain = 0;
+	st_mlx->curtain_dir = 0;
 }
 
-// mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
-	// &st_mlx->screen_height);
-
-//TODO mlx_mouse_hide is leaaking memory
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;
@@ -89,8 +89,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 800;
-	st_mlx->screen_height = 600;
+	st_mlx->screen_width = 1920;
+	st_mlx->screen_height = 1080;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
@@ -101,19 +101,7 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
 		st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
-	init_keys(st_mlx);
-
-	st_mlx->is_flipping_prep = 0;
-	st_mlx->is_flipping = 0;
-	st_mlx->is_flipping_done = 0;
-	st_mlx->is_invert = 0;
-	st_mlx->bar_color_1 = 0xff6600;
-	st_mlx->bar_color_2 = 0x9933ff;
-
-	st_mlx->curtain_y = 0;
-	st_mlx->is_curtain = 0;
-	st_mlx->curtain_dir = 0;
-
+	init_keys_and_anim(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

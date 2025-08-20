@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/18 14:47:50 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:57:42 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,63 +35,6 @@ void	set_keys_rotate(t_mlx *st_mlx)
 		rotate_angle(coord, ROTATE);
 }
 
-
-void draw_screen(t_mlx *st_mlx, double cx, double cy, double dx, double dy)
-{
-	int y;
-	int x;
-
-	y = -1;
-	while (++y < st_mlx->screen_height)
-	{
-		x = -1;
-		while (++x < st_mlx->screen_width)
-		{
-			double  vx = x - cx;
-			double  vy = y - cy;
-			double  side = vx * dy - vy * dx;
-			if (side >= 0)
-				ft_mlx_pixel_put(st_mlx->screen, x, y, st_mlx->bar_color_1);
-			else
-				ft_mlx_pixel_put(st_mlx->screen, x, y, st_mlx->bar_color_2);
-		}
-	}
-	mlx_put_image_to_window(st_mlx->mlx, st_mlx->win, st_mlx->screen->img, 0, 0);
-}
-
-int     draw_two_bars(t_mlx *st_mlx)
-{
-	double  cx = st_mlx->screen_width / 2.0;
-	double  cy = st_mlx->screen_height / 2.0;
-	double  theta = st_mlx->angle * M_PI / 180.0;
-	double  dx = cos(theta);
-	double  dy = sin(theta);
-	size_t  time;
-
-	
-	
-		if (st_mlx->is_flipping)
-		{
-			time = get_current_time();
-			if (time - st_mlx->anim_time >= 30)
-				draw_screen(st_mlx, cx, cy, dx, dy);
-			st_mlx->angle++;
-			printf("%f\n", st_mlx->angle);
-			if (st_mlx->angle == 180.0)
-			{
-				st_mlx->angle = 0;
-				st_mlx->is_flipping_done = 1;
-				int tmp_color = st_mlx->bar_color_1;
-				st_mlx->bar_color_1 = st_mlx->bar_color_2;
-				st_mlx->bar_color_2 = tmp_color;
-			}
-		}
-		else
-			draw_screen(st_mlx, cx, cy, dx, dy);
-	
-	return (0);
-}
-
 int	game_loop(t_mlx *st_mlx)
 {
 	int		steps;
@@ -108,79 +51,13 @@ int	game_loop(t_mlx *st_mlx)
 			rotate_angle(st_mlx->st_coord, angle_step);
 		st_mlx->mouse_x = 0;
 	}
-
-	// if (!st_mlx->is_curtain)
-	// {
-		ray_cast(st_mlx);
-		if (!st_mlx->is_curtain)
-			render_minimap(st_mlx);
-	// }
-	if (st_mlx->is_curtain)
-	{
-		if (!st_mlx->curtain_dir)
-			st_mlx->curtain_y += 5;
-		else
-			st_mlx->curtain_y -= 5;
-
-		if (!st_mlx->curtain_dir && st_mlx->curtain_y == st_mlx->screen_height)
-		{
-			st_mlx->curtain_dir = 1;
-			t_img *tmp_texture;
-			tmp_texture = st_mlx->ea_texture;
-			st_mlx->ea_texture = st_mlx->we_texture;
-			st_mlx->we_texture = tmp_texture;
-			if (st_mlx->is_invert)
-				st_mlx->is_invert = 0;
-			else
-				st_mlx->is_invert = 1;
-		}
-		if (st_mlx->curtain_dir && st_mlx->curtain_y == 0)
-		{
-			st_mlx->curtain_dir = 0;
-			st_mlx->is_curtain = 0;
-		}
-	}
-
-	/*
-	if (!st_mlx->is_flipping_prep && !st_mlx->is_flipping)
-	{
-		ray_cast(st_mlx);
+	ray_cast(st_mlx);
+	if (!st_mlx->is_curtain)
 		render_minimap(st_mlx);
-	}
-	else if (st_mlx->is_flipping_prep && !st_mlx->is_flipping)
-	{
-		if (!(st_mlx->st_coord->dir_vec_x >= -0.05 && st_mlx->st_coord->dir_vec_x <= 0.05))
-		{
-			rotate_angle(st_mlx->st_coord, -ROTATE);
-			ray_cast(st_mlx);
-			render_minimap(st_mlx);
-		}
-		else
-			st_mlx->is_flipping_prep = 0;
-	}
-	else if (!st_mlx->is_flipping_prep && st_mlx->is_flipping)
-	{
-		if (!st_mlx->is_flipping_done)
-			draw_two_bars(st_mlx);
-		else
-		{
-
-
-			// t_img *tmp_texture;
-			// tmp_texture = st_mlx->ea_texture;
-			// st_mlx->ea_texture = st_mlx->we_texture;
-			// st_mlx->we_texture = tmp_texture;
-			// if (st_mlx->is_invert)
-			// 	st_mlx->is_invert = 0;
-			// else
-			// 	st_mlx->is_invert = 1;
-			// 
-			// ft_printf("flip done %d\n", st_mlx->is_invert);
-
-		}
-
-	}
-	*/
+	if (st_mlx->is_invert_prep)
+		prepare_for_invert(st_mlx);
+	if (st_mlx->is_curtain)
+		start_curtain_effect(st_mlx);
 	return (0);
 }
 
