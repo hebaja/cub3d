@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/20 15:11:58 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 15:16:25 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 # define BONUS_STRUCT_H
 
 # include "common_struct.h"
+
+typedef struct s_spr
+{
+	t_img	*texture;
+	double	x;
+	double	y;
+	double	spr_x;
+	double	spr_y;
+
+	double	cam_spac;
+
+	double	transform_x;
+	double	transform_y;
+
+	int	spr_screen_x;
+
+	int	spr_width;
+	int	spr_height;
+	int	draw_start_x;
+	int	draw_end_x;
+	int	draw_start_y;
+	int	draw_end_y;
+
+
+}	t_spr;
 
 typedef struct s_mlx
 {
@@ -57,6 +82,9 @@ typedef struct s_mlx
 	int		is_curtain;
 	int		curtain_y;
 	int		curtain_dir;
+
+	t_spr	*st_spr;	
+
 }	t_mlx;
 
 #endif

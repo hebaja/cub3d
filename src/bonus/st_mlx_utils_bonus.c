@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/20 15:12:23 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:31:39 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,41 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img,
 			&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line,
 			&st_mlx->ea_texture->endian);
+}
+
+void	build_sprite(t_mlx *st_mlx)
+{
+	st_mlx->st_spr = (t_spr *)malloc(sizeof(t_spr));
+	
+	st_mlx->st_spr->texture = (t_img *)malloc(sizeof(t_img));
+	st_mlx->st_spr->texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			"assets/painting.xpm", &st_mlx->st_spr->texture->width,
+			&st_mlx->st_spr->texture->height);
+
+	st_mlx->st_spr->texture->img_addr = mlx_get_data_addr(st_mlx->st_spr->texture->img,
+			&st_mlx->st_spr->texture->bpp, &st_mlx->st_spr->texture->size_line,
+			&st_mlx->st_spr->texture->endian);
+
+	st_mlx->st_spr->x = 0.0;
+	st_mlx->st_spr->y = 0.0;
+
+	st_mlx->st_spr->spr_x = 0.0;
+	st_mlx->st_spr->spr_y = 0.0;
+
+	st_mlx->st_spr->cam_spac = 0.0;
+
+	st_mlx->st_spr->transform_x = 0.0;
+	st_mlx->st_spr->transform_y = 0.0;
+
+	st_mlx->st_spr->spr_screen_x = 0;
+
+	st_mlx->st_spr->spr_width = 0;
+	st_mlx->st_spr->draw_start_x = 0;
+	st_mlx->st_spr->draw_end_x = 0;
+
+	st_mlx->st_spr->spr_height = 0;
+	st_mlx->st_spr->draw_start_y = 0;
+	st_mlx->st_spr->draw_end_y = 0;
 }
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
@@ -104,5 +139,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	init_keys_and_anim(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
+	
+	build_sprite(st_mlx);
+
 	return (st_mlx);
 }
