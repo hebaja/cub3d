@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:39:43 by hebatist         ###   ########.fr       */
+/*   Created: 2025/08/14 14:43:10 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/14 14:53:25 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-# include <sys/time.h>
-# include "includes.h"
-# include "bonus_defines.h"
-# include "common_struct.h"
-# include "cub3d_common.h"
-# include "bonus_mlx.h"
+# ifdef BONUS
+#  include "bonus_struct.h"
+# else
+#  include "main_struct.h"
+# endif
 
 #endif

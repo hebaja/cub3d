@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   bonus_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:39:43 by hebatist         ###   ########.fr       */
+/*   Created: 2025/08/14 14:42:09 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/20 03:36:24 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef BONUS_DEFINES_H
+# define BONUS_DEFINES_H
 
-# include <sys/time.h>
-# include "includes.h"
-# include "bonus_defines.h"
-# include "common_struct.h"
-# include "cub3d_common.h"
-# include "bonus_mlx.h"
+# include "defines.h"
+
+# define MOUSE_SENS		0.005
+# define MM_WALL_COLOR	16777215
+# define MM_PLAY_COLOR	16776960
+# define MM_SPACE_COLOR	3685169
+# define MM_OUTER_COLOR	0
+# define CURTAIN_SPEED	10
 
 #endif

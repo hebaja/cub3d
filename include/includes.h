@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:39:43 by hebatist         ###   ########.fr       */
+/*   Created: 2025/08/14 14:42:54 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/14 14:42:56 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
-# include <sys/time.h>
-# include "includes.h"
-# include "bonus_defines.h"
-# include "common_struct.h"
-# include "cub3d_common.h"
-# include "bonus_mlx.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <math.h>
+# include "../libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 #endif
