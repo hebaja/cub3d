@@ -60,7 +60,7 @@ int	valid_character(char **map)
 					return (0);
 			}
 			if (map[i][j] != '\0' && map[i][j] != '\n'
-					&& !ft_strchr("01NSEWP ", map[i][j]))
+					&& !ft_strchr("01NSEWGg ", map[i][j]))
 				return (0);
 			j++;
 		}

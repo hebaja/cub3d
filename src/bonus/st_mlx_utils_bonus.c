@@ -20,6 +20,7 @@ int	rgb_to_int(int t, int r, int g, int b)
 	return (dec);
 }
 
+
 void	set_mlx_images_addr(t_mlx *st_mlx)
 {
 	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img,
@@ -39,39 +40,61 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 			&st_mlx->ea_texture->endian);
 }
 
-void	build_sprite(t_mlx *st_mlx)
+void	find_sprite_pos(t_spr *st_spr, char **map, char c)
 {
-	st_mlx->st_spr = (t_spr *)malloc(sizeof(t_spr));
+	int		x;
+	int		y;
+
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == c)
+			{
+				st_spr->x = x;
+				st_spr->y = y;
+			}
+		}
+	}
+}
+
+t_spr	*build_orb(t_mlx *st_mlx, char *orb_path, char c)
+{
+	t_spr	*st_spr;
+
+	st_spr = (t_spr *)malloc(sizeof(t_spr));
 	
-	st_mlx->st_spr->texture = (t_img *)malloc(sizeof(t_img));
-	st_mlx->st_spr->texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
-			"assets/painting.xpm", &st_mlx->st_spr->texture->width,
-			&st_mlx->st_spr->texture->height);
+	st_spr->sprite = (t_img *)malloc(sizeof(t_img));
+	st_spr->sprite->img = mlx_xpm_file_to_image(st_mlx->mlx, orb_path, &st_spr->sprite->width, &st_spr->sprite->height);
 
-	st_mlx->st_spr->texture->img_addr = mlx_get_data_addr(st_mlx->st_spr->texture->img,
-			&st_mlx->st_spr->texture->bpp, &st_mlx->st_spr->texture->size_line,
-			&st_mlx->st_spr->texture->endian);
+	st_spr->sprite->img_addr = mlx_get_data_addr(st_spr->sprite->img, 
+		&st_spr->sprite->bpp, &st_spr->sprite->size_line, &st_spr->sprite->endian);
+	
+	find_sprite_pos(st_spr, st_mlx->st_file->map, c);
 
-	st_mlx->st_spr->x = 0.0;
-	st_mlx->st_spr->y = 0.0;
+	st_spr->pos_x = st_spr->x + 0.5;
+	st_spr->pos_y = st_spr->y + 0.5;
 
-	st_mlx->st_spr->spr_x = 0.0;
-	st_mlx->st_spr->spr_y = 0.0;
+	st_spr->spr_x = 0.0;
+	st_spr->spr_y = 0.0;
 
-	st_mlx->st_spr->cam_spac = 0.0;
+	st_spr->cam_spac = 0.0;
 
-	st_mlx->st_spr->transform_x = 0.0;
-	st_mlx->st_spr->transform_y = 0.0;
+	st_spr->transform_x = 0.0;
+	st_spr->transform_y = 0.0;
 
-	st_mlx->st_spr->spr_screen_x = 0;
+	st_spr->spr_screen_x = 0;
 
-	st_mlx->st_spr->spr_width = 0;
-	st_mlx->st_spr->draw_start_x = 0;
-	st_mlx->st_spr->draw_end_x = 0;
+	st_spr->spr_width = 0;
+	st_spr->draw_start_x = 0;
+	st_spr->draw_end_x = 0;
 
-	st_mlx->st_spr->spr_height = 0;
-	st_mlx->st_spr->draw_start_y = 0;
-	st_mlx->st_spr->draw_end_y = 0;
+	st_spr->spr_height = 0;
+	st_spr->draw_start_y = 0;
+	st_spr->draw_end_y = 0;
+	return (st_spr);
 }
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
@@ -124,8 +147,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 1920;
-	st_mlx->screen_height = 1080;
+	st_mlx->screen_width = 1368;
+	st_mlx->screen_height = 720;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
@@ -139,8 +162,9 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	init_keys_and_anim(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
-	
-	build_sprite(st_mlx);
+
+	st_mlx->st_spr1 = build_orb(st_mlx, "assets/painting.xpm", 'G');
+	st_mlx->st_spr2 = build_orb(st_mlx, "assets/orb.xpm", 'g');
 
 	return (st_mlx);
 }

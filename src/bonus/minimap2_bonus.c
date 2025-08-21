@@ -69,7 +69,9 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			|| st_mlx->st_file->map[map_y][map_x] == 'N'
 			|| st_mlx->st_file->map[map_y][map_x] == 'W'
 			|| st_mlx->st_file->map[map_y][map_x] == 'S'
-			|| st_mlx->st_file->map[map_y][map_x] == 'E'))
+			|| st_mlx->st_file->map[map_y][map_x] == 'E'
+			|| st_mlx->st_file->map[map_y][map_x] == 'G'
+			|| st_mlx->st_file->map[map_y][map_x] == 'g'))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
 		else
 			paint_block(st_mlx, x, y, MM_OUTER_COLOR);

@@ -56,6 +56,7 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 	int	c_line_height;
 	int	f_line_height;
 
+	st_mlx->z_buffer[screen_column] = st_mlx->st_coord->perp_wall_dist;
 	wall_line_height = (int)(st_mlx->screen_height
 			/ st_mlx->st_coord->perp_wall_dist);
 	c_line_height = -wall_line_height / 2 + st_mlx->screen_height / 2;

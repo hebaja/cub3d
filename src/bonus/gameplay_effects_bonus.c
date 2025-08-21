@@ -43,6 +43,8 @@ void	start_curtain_effect(t_mlx *st_mlx)
 			st_mlx->is_invert = 1;
 		swap_maps(st_mlx);
 		st_mlx->st_coord->p_posx = (st_mlx->st_file->map_width) - st_mlx->st_coord->p_posx - 1;
+		st_mlx->st_spr2->pos_x = (st_mlx->st_file->map_width) - st_mlx->st_spr2->pos_x - 1;
+
 	}
 	if (st_mlx->curtain_dir && st_mlx->curtain_y == 0)
 	{

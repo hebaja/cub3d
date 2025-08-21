@@ -17,27 +17,23 @@
 
 typedef struct s_spr
 {
-	t_img	*texture;
-	double	x;
-	double	y;
+	t_img	*sprite;
+	int		x;
+	int		y;
+	int		spr_screen_x;
+	int		spr_width;
+	int		spr_height;
+	int		draw_start_x;
+	int		draw_end_x;
+	int		draw_start_y;
+	int		draw_end_y;
+	double	pos_x;
+	double	pos_y;
 	double	spr_x;
 	double	spr_y;
-
 	double	cam_spac;
-
 	double	transform_x;
 	double	transform_y;
-
-	int	spr_screen_x;
-
-	int	spr_width;
-	int	spr_height;
-	int	draw_start_x;
-	int	draw_end_x;
-	int	draw_start_y;
-	int	draw_end_y;
-
-
 }	t_spr;
 
 typedef struct s_mlx
@@ -83,7 +79,9 @@ typedef struct s_mlx
 	int		curtain_y;
 	int		curtain_dir;
 
-	t_spr	*st_spr;	
+	t_spr	*st_spr1;
+	t_spr	*st_spr2;
+	double	z_buffer[1920];
 
 }	t_mlx;
 
