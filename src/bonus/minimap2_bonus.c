@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:40:20 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/22 04:16:01 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,9 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
 			animate_player(st_mlx, x, y);
-		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height && map_x >= 0
-			&& (st_mlx->st_file->map[map_y][map_x] == '0'
-			|| st_mlx->st_file->map[map_y][map_x] == 'N'
-			|| st_mlx->st_file->map[map_y][map_x] == 'W'
-			|| st_mlx->st_file->map[map_y][map_x] == 'S'
-			|| st_mlx->st_file->map[map_y][map_x] == 'E'
-			|| st_mlx->st_file->map[map_y][map_x] == 'G'
-			|| st_mlx->st_file->map[map_y][map_x] == 'g'))
+		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
+			&& map_x >= 0 && ft_strchr("0NWSEGg",
+				st_mlx->st_file->map[map_y][map_x]))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
 		else
 			paint_block(st_mlx, x, y, MM_OUTER_COLOR);

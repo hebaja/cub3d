@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   invert_map_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/22 03:50:29 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/22 03:52:27 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d_bonus.h"
 
 char	*build_inv_line(char *line, int width)
@@ -14,7 +26,7 @@ char	*build_inv_line(char *line, int width)
 		if (width >= line_len)
 			inv_line[++count] = ' ';
 		else
-			inv_line[++count] = line[width - 1]; 
+			inv_line[++count] = line[width - 1];
 	}
 	inv_line[++count] = '\n';
 	return (inv_line);

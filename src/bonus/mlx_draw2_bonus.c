@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_draw2_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
+/*   Updated: 2025/08/22 03:54:40 by hebatist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d_bonus.h"
 
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
@@ -23,7 +35,8 @@ void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
 }
 
-void	default_drawing(t_mlx *st_mlx, int screen_column, int c_line_height, int f_line_height)
+void	default_drawing(t_mlx *st_mlx, int screen_column,
+		int c_line_height, int f_line_height)
 {
 	int	y;
 
@@ -35,16 +48,19 @@ void	default_drawing(t_mlx *st_mlx, int screen_column, int c_line_height, int f_
 		else
 		{
 			if (y < c_line_height)
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+					st_mlx->c_color);
 			else if (y >= c_line_height && y <= f_line_height)
 				put_wall_texture_pixel(st_mlx, screen_column, y);
 			else
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+					st_mlx->f_color);
 		}
 	}
 }
 
-void	invert_drawing(t_mlx *st_mlx, int screen_column, int c_line_height, int f_line_height)
+void	invert_drawing(t_mlx *st_mlx, int screen_column,
+		int c_line_height, int f_line_height)
 {
 	int	y;
 
@@ -56,11 +72,13 @@ void	invert_drawing(t_mlx *st_mlx, int screen_column, int c_line_height, int f_l
 		else
 		{
 			if (y < c_line_height)
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+					st_mlx->f_color);
 			else if (y >= c_line_height && y <= f_line_height)
 				put_wall_texture_pixel(st_mlx, screen_column, y);
 			else
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
+				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+					st_mlx->c_color);
 		}
 	}
 }

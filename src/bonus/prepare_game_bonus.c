@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:59:08 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/20 01:30:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/22 04:37:08 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ int	get_highest_len(char **map)
 	return (len);
 }
 
-void	print_map_(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		ft_printf("%s", map[i]);
-	ft_printf("\n");
-}
-
 t_file	*prepare_st_file(char *file_path)
 {
 	t_file	*st_file;
@@ -52,7 +42,6 @@ t_file	*prepare_st_file(char *file_path)
 	}
 	st_file->map_width = get_highest_len(st_file->map);
 	st_file->inv_map = build_inv_map(st_file);
-	print_map_(st_file->inv_map);
 	return (st_file);
 }
 
@@ -72,12 +61,20 @@ t_coord	*prepare_st_coord(t_file *st_file)
 t_mlx	*prepare_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;
+	t_spr	*st_spr1;
+	t_spr	*st_spr2;
 
 	st_mlx = build_st_mlx(st_file, st_coord);
 	if (!st_mlx)
 		return (NULL);
 	if (!init_minimap(st_mlx))
 		return (NULL);
+	st_spr1 = build_orb(st_mlx, 'G');
+	st_spr2 = build_orb(st_mlx, 'g');
+	if (!st_spr1 || !st_spr2)
+		return (NULL);
+	st_mlx->st_spr1 = st_spr1;
+	st_mlx->st_spr2 = st_spr2;
 	return (st_mlx);
 }
 

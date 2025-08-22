@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/20 15:16:25 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/22 03:06:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 
 typedef struct s_spr
 {
-	t_img	*sprite;
+	t_img	**sprites;
+	t_img	*curr_sprite;
+	size_t	anim_time;
 	int		x;
 	int		y;
+	int		frame_pos;
 	int		spr_screen_x;
 	int		spr_width;
 	int		spr_height;
@@ -27,6 +30,8 @@ typedef struct s_spr
 	int		draw_end_x;
 	int		draw_start_y;
 	int		draw_end_y;
+	int		tex_x;
+	int		tex_y;
 	double	pos_x;
 	double	pos_y;
 	double	spr_x;

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mlx.h                                         :+:      :+:    :+:   */
+/*   main_func.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:59 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:43:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/22 03:35:07 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_MLX_H
-# define MAIN_MLX_H
+#ifndef MAIN_FUNC_H
+# define MAIN_FUNC_H
 
 # include "structs.h"
 
