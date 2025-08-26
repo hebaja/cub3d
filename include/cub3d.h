@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:38:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 23:47:07 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:21:56 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define KEY_RIGHT		65363
 # define KEY_UP			65362
 # define KEY_DOWN		65364
+# define KEY_SPACE		32
 # define KEY_A			97
 # define KEY_D			100
 # define KEY_W			119
@@ -36,6 +37,18 @@
 # define ROTATE			0.02
 # define MOUSE_SENS		0.005
 
+typedef struct s_door
+{
+	int		x;
+	int		y;
+	int		direction;
+	double	offset;
+	double	speed;
+	int		is_opening;
+	int		is_closing;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_file
 {
 	char	**file_content;
@@ -44,6 +57,8 @@ typedef struct s_file
 	char	*path;
 	int		width;
 	int		height;
+	int		map_height;
+	int		map_width;
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
@@ -55,6 +70,8 @@ typedef struct s_file
 	int		player_pos;
 	int		player_x;
 	int		player_y;
+	int		door_count;
+	t_door	*door;
 }	t_file;
 
 typedef struct s_coord
@@ -121,6 +138,7 @@ typedef struct s_mlx
 	int		key_down;
 	int		key_left;
 	int		key_right;
+	int		key_space;
 	t_file	*st_file;
 	t_coord	*st_coord;
 }	t_mlx;
@@ -128,6 +146,8 @@ typedef struct s_mlx
 t_file	*build_st_file(char *map_path);
 t_coord	*build_st_coord(t_file *st_file);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord);
+t_door	*find_door(t_file *st_file, int x, int y);
+void	try_open_door(t_mlx *st_mlx);
 void	init_event(t_mlx *st_mlx);
 void	exit_mlx(t_mlx *st_mlx);
 void	clean_st_file(t_file *st_file);
@@ -144,6 +164,9 @@ void	expanded_map(char **map, t_file *st_file);
 void	draw_vertical_line(t_mlx *st_mlx, int screen_column);
 void	rotate_angle(t_coord *coord, double angle);
 void    move_player(t_mlx *st_mlx, double move_x, double move_y);
+void	get_door(t_file *st_file);
+void    update_door(t_file *st_file);
+void	try_open_door(t_mlx *st_mlx);
 char	**fill_duplicate_map(int height, int width);
 int		is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx);
 int		key_release(int key, t_mlx *st_mlx);

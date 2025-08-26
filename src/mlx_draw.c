@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/07 17:35:33 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:12:23 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_mlx_pixel_put(t_mlx *st_mlx, int x, int y, int color)
 
 void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 {
+	t_door	*door;
 	double	wall_hit_point;
 
 	if (st_mlx->st_coord->side_hit == 0)
@@ -32,8 +33,17 @@ void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 		wall_hit_point = st_mlx->st_coord->p_posx
 			+ (st_mlx->st_coord->perp_wall_dist * st_mlx->st_coord->ray_dir_x);
 	wall_hit_point -= floor(wall_hit_point);
-	st_mlx->st_coord->wall_tex_x = (int)(wall_hit_point
-			* (double)st_mlx->curr_texture->width);
+	if (st_mlx->st_coord->hit_cell == 'D')
+	{
+		door = find_door(st_mlx->st_file, st_mlx->st_coord->curr_map_x, st_mlx->st_coord->curr_map_y);
+		if (door)
+		{
+			wall_hit_point += door->offset;
+			if (wall_hit_point > 1.0)
+				wall_hit_point -= 1.0;
+		}
+	}
+	st_mlx->st_coord->wall_tex_x = (int)(wall_hit_point * (double)st_mlx->curr_texture->width);
 	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x > 0)
 		st_mlx->st_coord->wall_tex_x = st_mlx->curr_texture->width
 			- st_mlx->st_coord->wall_tex_x - 1;

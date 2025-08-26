@@ -6,11 +6,52 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/05 22:59:35 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/18 17:56:57 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+t_door	*find_door(t_file *st_file, int x, int y)
+{
+	t_door	*door;
+
+	door = st_file->door;
+	while (door)
+	{
+		if (door->x == x && door->y == y)
+			return (door);
+		door = door->next;
+	}
+	return (NULL);
+}
+
+void	try_open_door(t_mlx *st_mlx)
+{
+	int	check_x;
+	int	check_y;
+	t_door	*door;
+
+	check_x = (int)(st_mlx->st_coord->p_posx + st_mlx->st_coord->dir_vec_x);
+	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
+	if (st_mlx->st_file->map[check_y][check_x] == 'D')
+	{
+		door = find_door(st_mlx->st_file, check_x, check_y);
+		if (door)
+		{
+			if (door->offset <= 0.0 && !door->is_opening)
+			{
+				door->is_opening = 1;
+				door->is_closing = 0;
+			}
+			else if (door->offset >= 1.0 && !door->is_closing)
+			{
+				door->is_closing = 1;
+				door->is_opening = 0;
+			}
+		}
+	}
+}
 
 int	mouse_move(int x, int y, t_mlx *st_mlx)
 {
@@ -70,6 +111,7 @@ int	game_loop(void *param)
 		}
 		st_mlx->mouse_x = 0;
 	}
+	update_door(st_mlx->st_file);
 	ray_cast(st_mlx);
 	return (0);
 }

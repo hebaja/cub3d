@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/07 17:49:36 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:24:44 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ int key_press(int key, t_mlx *st_mlx)
 		st_mlx->key_left = 1;
 	else if (key == KEY_RIGHT)
 		st_mlx->key_right = 1;
+	else if (key == KEY_SPACE)
+	{
+		printf("teclas apertada: %d\n", key);
+		try_open_door(st_mlx);
+	}
 	return (0);
 }
 

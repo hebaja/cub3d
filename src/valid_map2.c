@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:06 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/07 17:52:44 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:35:03 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,14 @@ void	expanded_map(char **map, t_file *st_file)
 {
 	int		i;
 	int		j;
-	int		height;
-	int		width;
 
-	height = get_height_map(map);
-	width = get_width_map(map);
-	st_file->dup_map = fill_duplicate_map(height, width);
+	st_file->map_height = get_height_map(map);
+	st_file->map_width = get_width_map(map);
+	st_file->dup_map = fill_duplicate_map(st_file->map_height, st_file->map_width);
 	if (!st_file->dup_map)
 		return ;
 	i = 0;
-	while (i < height)
+	while (i < st_file->map_height)
 	{
 		j = 0;
 		while (map[i][j] && map[i][j] != '\n')
@@ -90,7 +88,7 @@ void	expanded_map(char **map, t_file *st_file)
 		}
 		i++;
 	}
-	st_file->dup_map[height + 2] = NULL;
+	st_file->dup_map[st_file->map_height + 2] = NULL;
 }
 
 int	map_flood_fill(char **map, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 23:45:54 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:21:34 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			st_file->ea_texture, &st_mlx->ea_texture->width,
 			&st_mlx->ea_texture->height);
 	st_mlx->door_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
-			"./assets/door.xpm", &st_mlx->door_texture->width,
+			"./assets/door_pixel.xpm", &st_mlx->door_texture->width,
 			&st_mlx->door_texture->height);
 }
 

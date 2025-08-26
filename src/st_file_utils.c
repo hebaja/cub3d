@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/07 17:40:29 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/17 21:09:57 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,25 @@ void	alloc_map_mem(t_file *st_file)
 		return ;
 }
 
+void	set_init_file(t_file *st_file,char *map_path)
+{
+	st_file->path = map_path;
+	st_file->map = NULL;
+	st_file->no_texture = NULL;
+	st_file->so_texture = NULL;
+	st_file->we_texture = NULL;
+	st_file->ea_texture = NULL;
+	st_file->file_content = NULL;
+	st_file->f_color[0] = -1;
+	st_file->c_color[0] = -1;
+	st_file->map_height = 0;
+	st_file->map_width = 0;
+	st_file->map_start = 0;
+	st_file->map_finish = 0;
+	st_file->door = NULL;
+	st_file->door_count = 0;
+}
+
 t_file	*build_st_file(char *map_path)
 {
 	t_file	*st_file;
@@ -108,19 +127,9 @@ t_file	*build_st_file(char *map_path)
 		put_error("Could not allocate memory for file struct", NULL);
 		return (NULL);
 	}
-	st_file->path = map_path;
-	st_file->map = NULL;
-	st_file->no_texture = NULL;
-	st_file->so_texture = NULL;
-	st_file->we_texture = NULL;
-	st_file->ea_texture = NULL;
-	st_file->file_content = NULL;
-	st_file->f_color[0] = -1;
-	st_file->c_color[0] = -1;
+	set_init_file(st_file, map_path);
 	st_file->height = get_file_content_height(map_path, st_file);
 	st_file->file_content = get_file_content(map_path, st_file->height);
 	alloc_map_mem(st_file);
-	st_file->map_start = 0;
-	st_file->map_finish = 0;
 	return (st_file);
 }

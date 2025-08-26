@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 23:21:34 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:41:16 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 
 void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 {
-	int	hit;
+	int		hit;
+	char	cell;
+	double	door_dist;
 
 	hit = 0;
-	while (hit == 0)
+	while (!hit)
 	{
 		if (st_mlx->st_coord->side_dist_x < st_mlx->st_coord->side_dist_y)
 		{
@@ -59,27 +61,64 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 			*curr_map_y = *curr_map_y + st_mlx->st_coord->step_y;
 			st_mlx->st_coord->side_hit = 1;
 		}
-		if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1'
-			|| st_mlx->st_file->map[*curr_map_y][*curr_map_x] == 'D')
+		if (*curr_map_x < 0 || *curr_map_y < 0 || *curr_map_y >= st_mlx->st_file->map_height || *curr_map_x >= st_mlx->st_file->map_width)
 		{
-			st_mlx->st_coord->hit_cell = st_mlx->st_file->map[*curr_map_y][*curr_map_x];
 			hit = 1;
+			st_mlx->st_coord->hit_cell = '1';
+			break ;
+		}
+		cell = st_mlx->st_file->map[*curr_map_y][*curr_map_x];
+		if (cell == '1')
+		{
+			st_mlx->st_coord->hit_cell = '1';
+			hit = 1;
+		}
+		else if (cell == 'D')
+		{
+			if (st_mlx->st_coord->side_hit == 0)
+				door_dist = (*curr_map_x + 0.5 - st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
+			else
+				door_dist = (*curr_map_y + 0.5 - st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
+			if (door_dist < st_mlx->st_coord->side_dist_x && door_dist < st_mlx->st_coord->side_dist_y)
+			{
+				st_mlx->st_coord->hit_cell = 'D';
+				st_mlx->st_coord->perp_wall_dist = door_dist;
+				hit = 1;
+			}
 		}
 	}
 }
 
 void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
-	if (st_mlx->st_coord->side_hit == 0)
-		st_mlx->st_coord->perp_wall_dist = (curr_map_x
-				- st_mlx->st_coord->p_posx
-				+ (1 - st_mlx->st_coord->step_x) / 2)
-			/ st_mlx->st_coord->ray_dir_x;
+	double	wall_offset;
+	double	shift_x;
+	double	shift_y;
+	t_door	*door;
+
+	wall_offset = 0;
+	if (st_mlx->st_coord->hit_cell == 'D')
+	{
+		door = find_door(st_mlx->st_file, curr_map_x, curr_map_y);
+		if (door)
+		{
+			if (door->direction == 0)
+			{
+				shift_x = curr_map_x + wall_offset + (0.5 - door->offset);
+				st_mlx->st_coord->perp_wall_dist = (shift_x - st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
+			}
+			else
+			{
+				shift_y = curr_map_y + wall_offset + (0.5 - door->offset);
+				st_mlx->st_coord->perp_wall_dist = (shift_y - st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
+			}
+		}
+	}
 	else
-		st_mlx->st_coord->perp_wall_dist = (curr_map_y
-				- st_mlx->st_coord->p_posy
-				+ (1 - st_mlx->st_coord->step_y) / 2)
-			/ st_mlx->st_coord->ray_dir_y;
+		if (st_mlx->st_coord->side_hit == 0)
+			st_mlx->st_coord->perp_wall_dist = (curr_map_x - st_mlx->st_coord->p_posx + (1 - st_mlx->st_coord->step_x) / 2) / st_mlx->st_coord->ray_dir_x;
+		else
+			st_mlx->st_coord->perp_wall_dist = (curr_map_y - st_mlx->st_coord->p_posy + (1 - st_mlx->st_coord->step_y) / 2) / st_mlx->st_coord->ray_dir_y;
 }
 
 void	calculate_ray(t_mlx *st_mlx, int screen_column)
