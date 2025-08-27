@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:51:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 04:16:44 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/24 22:56:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	render_orb(t_mlx *st_mlx, t_spr *st_spr)
 	line = st_spr->draw_start_x -1;
 	while (++line < st_spr->draw_end_x)
 	{
-		st_spr->tex_x = (int)(256 * (line - (-st_spr->spr_width / 2
-						+ st_spr->spr_screen_x))
-				* st_spr->curr_sprite->width / st_spr->spr_width) / 256;
+		st_spr->tex_x = (int)(line - (-st_spr->spr_width / 2
+						+ st_spr->spr_screen_x)
+				* st_spr->curr_sprite->width / st_spr->spr_width);
 		if (st_spr->transform_y > 0 && line > 0 && line < st_mlx->screen_width
 			&& st_spr->transform_y < st_mlx->z_buffer[line])
 		{
@@ -48,11 +48,11 @@ void	set_orb_main_coord(t_mlx *st_mlx, t_spr *st_spr)
 	st_spr->spr_screen_x = (int)((st_mlx->screen_width / 2)
 			* (1 + st_spr->transform_x / st_spr->transform_y));
 	st_spr->spr_width = abs((int)(st_mlx->screen_height
-				/ st_spr->transform_y * 0.7));
+				/ st_spr->transform_y * SPR_SCALE));
 	st_spr->draw_start_x = -st_spr->spr_width / 2 + st_spr->spr_screen_x;
 	st_spr->draw_end_x = st_spr->spr_width / 2 + st_spr->spr_screen_x;
 	st_spr->spr_height = abs((int)(st_mlx->screen_height
-				/ st_spr->transform_y * 0.7));
+				/ st_spr->transform_y * SPR_SCALE));
 	st_spr->draw_start_y = -st_spr->spr_height / 2 + st_mlx->screen_height / 2;
 	st_spr->draw_end_y = st_spr->spr_height / 2 + st_mlx->screen_height / 2;
 }

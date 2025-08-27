@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:44:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/30 05:15:14 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:34:58 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ void	set_cam_plane(char dir, t_coord *st_coord)
 {
 	if (dir == 'N')
 	{
-		st_coord->cam_plane_x = 0.66;
+		st_coord->cam_plane_x = FOV;
 		st_coord->cam_plane_y = 0;
 	}
 	if (dir == 'S')
 	{
-		st_coord->cam_plane_x = -0.66;
+		st_coord->cam_plane_x = -FOV;
 		st_coord->cam_plane_y = 0;
 	}
 	if (dir == 'W')
 	{
 		st_coord->cam_plane_x = 0;
-		st_coord->cam_plane_y = -0.66;
+		st_coord->cam_plane_y = -FOV;
 	}
 	if (dir == 'E')
 	{
 		st_coord->cam_plane_x = 0;
-		st_coord->cam_plane_y = 0.66;
+		st_coord->cam_plane_y = FOV;
 	}
 }
 
