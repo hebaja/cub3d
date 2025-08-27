@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/18 17:56:57 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:18:45 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	try_open_door(t_mlx *st_mlx)
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
 	{
 		door = find_door(st_mlx->st_file, check_x, check_y);
+		printf("check_x=%d check_y=%d cell=%c\n", check_x, check_y, st_mlx->st_file->map[check_y][check_x]);
 		if (door)
 		{
+			printf("porta encontrada em (%d,%d) offset=%.2f\n", door->x, door->y, door->offset);
 			if (door->offset <= 0.0 && !door->is_opening)
 			{
 				door->is_opening = 1;
@@ -50,6 +52,8 @@ void	try_open_door(t_mlx *st_mlx)
 				door->is_opening = 0;
 			}
 		}
+		else
+    		printf("nenhuma porta encontrada!\n");
 	}
 }
 

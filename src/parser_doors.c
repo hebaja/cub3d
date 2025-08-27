@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:46:23 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/19 18:52:23 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:30:58 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	add_door(t_file *st_file, int x, int y, double offset)
 	new_door->y = y;
 	new_door->direction = 0;
 	new_door->offset = offset;
-	new_door->speed = 0.5;
+	new_door->speed = 0.005;
 	new_door->is_opening = 0;
 	new_door->is_closing = 0;
 	new_door->next = NULL;

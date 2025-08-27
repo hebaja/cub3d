@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/26 12:41:16 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:13:43 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 	int		hit;
 	char	cell;
 	double	door_dist;
+	double	door_face;
+	t_door	*door;
 
 	hit = 0;
 	while (!hit)
@@ -75,16 +77,34 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 		}
 		else if (cell == 'D')
 		{
-			if (st_mlx->st_coord->side_hit == 0)
-				door_dist = (*curr_map_x + 0.5 - st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
-			else
-				door_dist = (*curr_map_y + 0.5 - st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
-			if (door_dist < st_mlx->st_coord->side_dist_x && door_dist < st_mlx->st_coord->side_dist_y)
+			door = find_door(st_mlx->st_file, *curr_map_x, *curr_map_y);
+			if (door)
 			{
-				st_mlx->st_coord->hit_cell = 'D';
-				st_mlx->st_coord->perp_wall_dist = door_dist;
-				hit = 1;
+				if (st_mlx->st_coord->side_hit == 0)
+				{
+					if (st_mlx->st_coord->ray_dir_x > 0)
+						door_face = *curr_map_x + door->offset;
+					else
+						door_face = (*curr_map_x + 1) - door->offset;
+					door_dist = (*curr_map_x + 0.5 - st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
+				}
+				else
+				{
+					if (st_mlx->st_coord->ray_dir_y > 0)
+						door_face = *curr_map_y + door->offset;
+					else
+						door_face = (*curr_map_y + 1) - door->offset;
+					door_dist = (*curr_map_y + 0.5 - st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
+				}
+				if (door->offset < 1.0 && door_dist >=0 && door_dist < st_mlx->st_coord->side_dist_x && door_dist < st_mlx->st_coord->side_dist_y)
+				{
+					st_mlx->st_coord->hit_cell = 'D';
+					st_mlx->st_coord->perp_wall_dist = door_dist;
+					hit = 1;
+				}
 			}
+			st_mlx->st_coord->curr_map_x = *curr_map_x;
+			st_mlx->st_coord->curr_map_y = *curr_map_y;
 		}
 	}
 }
@@ -92,33 +112,28 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
 	double	wall_offset;
-	double	shift_x;
-	double	shift_y;
-	t_door	*door;
 
-	wall_offset = 0;
+	wall_offset = 0.5;
 	if (st_mlx->st_coord->hit_cell == 'D')
 	{
-		door = find_door(st_mlx->st_file, curr_map_x, curr_map_y);
-		if (door)
-		{
-			if (door->direction == 0)
-			{
-				shift_x = curr_map_x + wall_offset + (0.5 - door->offset);
-				st_mlx->st_coord->perp_wall_dist = (shift_x - st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
-			}
-			else
-			{
-				shift_y = curr_map_y + wall_offset + (0.5 - door->offset);
-				st_mlx->st_coord->perp_wall_dist = (shift_y - st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
-			}
-		}
+		if (st_mlx->st_coord->side_hit == 0)
+			st_mlx->st_coord->perp_wall_dist = (curr_map_x + wall_offset
+					- st_mlx->st_coord->p_posx) / st_mlx->st_coord->ray_dir_x;
+		else
+			st_mlx->st_coord->perp_wall_dist = (curr_map_y + wall_offset
+					- st_mlx->st_coord->p_posy) / st_mlx->st_coord->ray_dir_y;
 	}
 	else
+	{
 		if (st_mlx->st_coord->side_hit == 0)
-			st_mlx->st_coord->perp_wall_dist = (curr_map_x - st_mlx->st_coord->p_posx + (1 - st_mlx->st_coord->step_x) / 2) / st_mlx->st_coord->ray_dir_x;
+			st_mlx->st_coord->perp_wall_dist = (curr_map_x
+					- st_mlx->st_coord->p_posx + (1 - st_mlx->st_coord->step_x)
+					/ 2) / st_mlx->st_coord->ray_dir_x;
 		else
-			st_mlx->st_coord->perp_wall_dist = (curr_map_y - st_mlx->st_coord->p_posy + (1 - st_mlx->st_coord->step_y) / 2) / st_mlx->st_coord->ray_dir_y;
+			st_mlx->st_coord->perp_wall_dist = (curr_map_y
+					- st_mlx->st_coord->p_posy + (1 - st_mlx->st_coord->step_y)
+					/ 2) / st_mlx->st_coord->ray_dir_y;
+	}
 }
 
 void	calculate_ray(t_mlx *st_mlx, int screen_column)

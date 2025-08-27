@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/19 16:12:23 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/08/26 21:15:13 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,28 @@ void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 	if (st_mlx->st_coord->hit_cell == 'D')
 	{
 		door = find_door(st_mlx->st_file, st_mlx->st_coord->curr_map_x, st_mlx->st_coord->curr_map_y);
-		if (door)
+		if (!door)
+			return ;
+		if (st_mlx->st_coord->side_hit == 0)
 		{
-			wall_hit_point += door->offset;
-			if (wall_hit_point > 1.0)
-				wall_hit_point -= 1.0;
+			if (st_mlx->st_coord->ray_dir_x > 0)
+				wall_hit_point -= door->offset;
+			else
+				wall_hit_point += door->offset;
 		}
+		else
+		{
+			if (st_mlx->st_coord->ray_dir_y > 0)
+				wall_hit_point -= door->offset;
+			else
+				wall_hit_point += door->offset;
+		}
+		if (wall_hit_point < 0)
+			wall_hit_point += 1.0;
+		if (wall_hit_point > 1.0)
+			wall_hit_point -= 1.0;
+		if (door->offset >= 1.0)
+			return ;
 	}
 	st_mlx->st_coord->wall_tex_x = (int)(wall_hit_point * (double)st_mlx->curr_texture->width);
 	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x > 0)
