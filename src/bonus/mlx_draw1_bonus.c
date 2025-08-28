@@ -40,7 +40,9 @@ void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 
 void	set_current_texture(t_mlx *st_mlx)
 {
-	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
+	if (st_mlx->is_door_col)
+		st_mlx->curr_texture = st_mlx->door_texture;
+	else if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
 		st_mlx->curr_texture = st_mlx->we_texture;
 	else if (st_mlx->st_coord->side_hit == 0)
 		st_mlx->curr_texture = st_mlx->ea_texture;
@@ -67,6 +69,12 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 		f_line_height = st_mlx->screen_height - 1;
 	set_current_texture(st_mlx);
 	set_wall_texture(st_mlx, wall_line_height, c_line_height);
+	
+	if (st_mlx->is_door_col) {
+		int door_movement = (int)(wall_line_height * st_mlx->door_offset);
+		c_line_height += door_movement;
+	}
+
 	if (!st_mlx->is_invert)
 		default_drawing(st_mlx, screen_column, c_line_height, f_line_height);
 	else

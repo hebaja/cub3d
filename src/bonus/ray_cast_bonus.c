@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
+#include "../../include/cub3d_bonus.h"
 
 void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
@@ -60,7 +60,15 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 			st_mlx->st_coord->side_hit = 1;
 		}
 		if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1')
+		{
 			hit = 1;
+			st_mlx->is_door_col = 0;
+		}
+		else if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == 'D' && !st_mlx->is_door_open)
+		{
+			hit = 1;
+			st_mlx->is_door_col = 1;
+		}
 	}
 }
 

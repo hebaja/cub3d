@@ -22,5 +22,6 @@
 # define MM_OUTER_COLOR	0
 # define CURTAIN_SPEED	10
 # define SPR_SCALE		0.7
+# define KEY_SPACE		32
 
 #endif

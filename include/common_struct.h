@@ -45,7 +45,7 @@ typedef struct s_coord
 	int		curr_map_y;
 	int		side_hit;
 	int		wall_tex_x;
-	int		wall_tex_y;
+	// int		wall_tex_y;
 	char	player_dir;
 	double	dir_vec_x;
 	double	dir_vec_y;

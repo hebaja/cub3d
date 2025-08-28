@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
+#include "../../include/cub3d_bonus.h"
 
 int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
 {
@@ -49,10 +49,39 @@ void	move_player(t_mlx *st_mlx, double move_x, double move_y)
 		st_mlx->st_coord->p_posy += move_y;
 }
 
+void	try_open_door(t_mlx *st_mlx)
+{
+	int	check_x;
+	int	check_y;
+
+	check_x = (int)(st_mlx->st_coord->p_posx + st_mlx->st_coord->dir_vec_x);
+	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
+	if (st_mlx->st_file->map[check_y][check_x] == 'D')
+	{
+		// st_mlx->is_door_open = !st_mlx->is_door_open;
+		st_mlx->is_door_anim = 1;
+		printf("check_x=%d check_y=%d cell=%c open=%d\n", check_x, check_y, st_mlx->st_file->map[check_y][check_x], st_mlx->is_door_open);
+		// if (door)
+		// {
+		// 	printf("porta encontrada em (%d,%d) offset=%.2f\n", door->x, door->y, door->offset);
+		// 	if (door->offset <= 0.0 && !door->is_opening)
+		// 	{
+		// 		door->is_opening = 1;
+		// 		door->is_closing = 0;
+		// 	}
+		// 	else if (door->offset >= 1.0 && !door->is_closing)
+		// 	{
+		// 		door->is_closing = 1;
+		// 		door->is_opening = 0;
+		// 	}
+		// }
+		// else
+  //   		printf("nenhuma porta encontrada!\n");
+	}
+}
+
 int	key_press(int key, t_mlx *st_mlx)
 {
-	if (key == 103)
-		st_mlx->is_invert_prep = 1;
 	if (!st_mlx->is_invert_prep && !st_mlx->is_curtain)
 	{
 		if (key == KEY_ESC)
@@ -72,6 +101,11 @@ int	key_press(int key, t_mlx *st_mlx)
 			st_mlx->key_left = 1;
 		else if (key == KEY_RIGHT)
 			st_mlx->key_right = 1;
+		else if (key == KEY_SPACE)
+		{
+			printf("teclas apertada: %d\n", key);
+			try_open_door(st_mlx);
+		}
 	}
 	return (0);
 }

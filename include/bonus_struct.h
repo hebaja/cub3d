@@ -51,6 +51,7 @@ typedef struct s_mlx
 	t_img	*we_texture;
 	t_img	*ea_texture;
 	t_img	*curr_texture;
+	t_img	*door_texture;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
@@ -83,6 +84,13 @@ typedef struct s_mlx
 	int		is_curtain;
 	int		curtain_y;
 	int		curtain_dir;
+
+	int		is_door_col;
+	int		is_door_open;
+
+	int		is_door_anim;
+	int		door_dir;
+	double	door_offset;
 
 	t_spr	*st_spr1;
 	t_spr	*st_spr2;

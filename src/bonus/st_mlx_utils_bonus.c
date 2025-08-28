@@ -37,6 +37,9 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img,
 			&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line,
 			&st_mlx->ea_texture->endian);
+	st_mlx->door_texture->img_addr = mlx_get_data_addr(st_mlx->door_texture->img,
+			&st_mlx->door_texture->bpp, &st_mlx->door_texture->size_line,
+			&st_mlx->door_texture->endian);
 }
 
 void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
@@ -47,6 +50,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->so_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->we_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->ea_texture = (t_img *)malloc(sizeof(t_img));
+	st_mlx->door_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->screen->img = mlx_new_image(
 			st_mlx->mlx, screen_width, screen_height);
 	st_mlx->no_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
@@ -61,6 +65,9 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->ea_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
 			st_file->ea_texture, &st_mlx->ea_texture->width,
 			&st_mlx->ea_texture->height);
+	st_mlx->door_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
+			"assets/door_pixel.xpm", &st_mlx->door_texture->width,
+			&st_mlx->door_texture->height);
 }
 
 void	init_keys_and_anim(t_mlx *st_mlx)
@@ -77,6 +84,12 @@ void	init_keys_and_anim(t_mlx *st_mlx)
 	st_mlx->is_curtain = 0;
 	st_mlx->curtain_dir = 0;
 	st_mlx->is_invert_prep = 0;
+
+	st_mlx->is_door_col = 0;
+	st_mlx->is_door_open = 0;
+	st_mlx->is_door_anim = 0;
+	st_mlx->door_dir = 0;
+	st_mlx->door_offset = 0.0;
 }
 
 // mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
@@ -91,8 +104,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 1920;
-	st_mlx->screen_height = 1080;
+	st_mlx->screen_width = 1366;
+	st_mlx->screen_height = 768;
 	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
 			st_mlx->screen_height, "cub3d");
 	st_mlx->c_color = rgb_to_int(0, st_file->c_color[0], st_file->c_color[1],

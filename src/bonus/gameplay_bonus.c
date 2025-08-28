@@ -79,6 +79,40 @@ int	game_loop(t_mlx *st_mlx)
 		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
+
+	if (st_mlx->is_door_anim)
+	{
+		if (st_mlx->door_dir == 0)
+		{
+			if (st_mlx->door_offset < 1.0)
+			{
+				st_mlx->door_offset += 0.01;
+				// printf("%f\n", st_mlx->door_offset);
+			}
+			else
+			{
+				st_mlx->is_door_anim = 0;
+				st_mlx->door_dir = 1;
+				// st_mlx->door_offset = 1.0;
+				st_mlx->is_door_open = 1;
+			}
+		}
+		else
+		{
+			if (st_mlx->door_offset >= 0.01)
+			{
+				st_mlx->door_offset -= 0.01;
+				// printf("%f\n", st_mlx->door_offset);
+			}
+			else
+			{
+				st_mlx->is_door_anim = 0;
+				st_mlx->door_dir = 0;
+				st_mlx->is_door_open = 0;
+			}
+		}
+	}
+
 	return (0);
 }
 
