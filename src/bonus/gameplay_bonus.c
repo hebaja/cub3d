@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/29 02:13:03 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/30 22:02:35 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,32 @@ void	check_inversion(t_mlx *st_mlx)
 		st_mlx->is_invert_prep = 1;
 }
 
+void	start_door_anim(t_mlx *st_mlx)
+{
+	if (st_mlx->door_dir == 0)
+	{
+		if (st_mlx->door_offset < 100)
+			st_mlx->door_offset += 1;
+		else
+		{
+			st_mlx->is_door_anim = 0;
+			st_mlx->door_dir = 1;
+			st_mlx->is_door_open = 1;
+		}
+	}
+	else
+	{
+		if (st_mlx->door_offset > 0)
+			st_mlx->door_offset -= 1;
+		else
+		{
+			st_mlx->is_door_anim = 0;
+			st_mlx->door_dir = 0;
+			st_mlx->is_door_open = 0;
+		}
+	}
+}
+
 int	game_loop(t_mlx *st_mlx)
 {
 	set_keys_rotate(st_mlx);
@@ -79,39 +105,8 @@ int	game_loop(t_mlx *st_mlx)
 		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
-
 	if (st_mlx->is_door_anim)
-	{
-		if (st_mlx->door_dir == 0)
-		{
-			if (st_mlx->door_offset < 100)
-			{
-				st_mlx->door_offset += 1;
-				// printf("%d\n", st_mlx->door_offset);
-			}
-			else
-			{
-				st_mlx->is_door_anim = 0;
-				st_mlx->door_dir = 1;
-				st_mlx->is_door_open = 1;
-			}
-		}
-		else
-		{
-			if (st_mlx->door_offset > 0)
-			{
-				st_mlx->door_offset -= 1;
-				// printf("%d\n", st_mlx->door_offset);
-			}
-			else
-			{
-				st_mlx->is_door_anim = 0;
-				st_mlx->door_dir = 0;
-				st_mlx->is_door_open = 0;
-			}
-		}
-	}
-
+		start_door_anim(st_mlx);
 	return (0);
 }
 

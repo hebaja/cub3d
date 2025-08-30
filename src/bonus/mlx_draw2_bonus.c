@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/30 04:55:59 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/30 22:00:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,6 @@ void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
 }
 
-void	put_wall_texture_pixel_(t_mlx *st_mlx, int screen_column, int y)
-{
-	int				tex_y;
-	int				tex_offset;
-	unsigned int	color;
-
-	tex_y = (int)st_mlx->st_coord->wall_tex_pos;
-	// st_mlx->st_coord->wall_tex_pos += st_mlx->st_coord->wall_tex_step;
-	tex_offset = tex_y * st_mlx->curr_texture->size_line
-		+ st_mlx->st_coord->wall_tex_x * (st_mlx->curr_texture->bpp / 8);
-	color = *(unsigned int *)(st_mlx->curr_texture->img_addr + tex_offset);
-	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
-}
-
-void	tell()
-{
-	printf("tell");
-}
-
 void	default_drawing(t_mlx *st_mlx, int screen_column,
 		int w_c_line_height, int w_f_line_height, int d_c_line_height, int d_f_line_height)
 {
@@ -101,16 +82,29 @@ void	default_drawing(t_mlx *st_mlx, int screen_column,
 						ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 							st_mlx->c_color);
 					else if (y >= d_c_line_height && y <= d_f_line_height)
-						put_door_texture_pixel(st_mlx, screen_column, y);
+					{
+
+					
+						if (!st_mlx->is_door_open)
+							put_door_texture_pixel(st_mlx, screen_column, y);
+						else
+						{
+							if (y < w_c_line_height)
+								ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+									st_mlx->c_color);
+							else if (y >= w_c_line_height && y <= w_f_line_height)
+								put_wall_texture_pixel(st_mlx, screen_column, y);
+							else
+								ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+									st_mlx->f_color);
+						}
+					}
 					else
 						ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 							st_mlx->f_color);
 				}
 				else
 				{
-					// Check door_dir to change direction of movement
-					// if (st_mlx->door_dir)
-
 					float door_open_ratio = (float)st_mlx->door_offset / 100.0f;
 					int door_height = (int)((d_f_line_height - d_c_line_height) * door_open_ratio);
 					int vertical_position = y - d_c_line_height;
@@ -136,7 +130,6 @@ void	default_drawing(t_mlx *st_mlx, int screen_column,
 						else
 							ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 								st_mlx->f_color);
-
 					}
 				}
 			}
