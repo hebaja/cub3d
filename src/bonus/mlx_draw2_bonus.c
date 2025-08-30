@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/29 23:09:06 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/30 04:55:59 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	tell()
 }
 
 void	default_drawing(t_mlx *st_mlx, int screen_column,
-		int c_line_height, int f_line_height)
+		int w_c_line_height, int w_f_line_height, int d_c_line_height, int d_f_line_height)
 {
 	int	y;
 
@@ -80,52 +80,66 @@ void	default_drawing(t_mlx *st_mlx, int screen_column,
 			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
 		else
 		{
-			if (y < c_line_height)
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
-					st_mlx->c_color);
-			else if (y >= c_line_height && y <= f_line_height)
-			{
-				if (st_mlx->is_door_col)
-				{
-					if (st_mlx->is_door_anim)
-					{
-						float door_open_ratio = (float)st_mlx->door_offset / 100.0f;
-						int door_height = (int)((f_line_height - c_line_height) * door_open_ratio);
-						int vertical_position = y - c_line_height;
-						if (vertical_position < (door_height))
-						{
 
-							int wall_line_height = (int)(st_mlx->screen_height
-									/ st_mlx->st_coord->perp_wall_dist);
-							
-							int _c_line_height = -wall_line_height / 2 + st_mlx->screen_height / 2;
-							if (_c_line_height < 0)
-								_c_line_height = 0;
-							int _f_line_height = wall_line_height / 2 + st_mlx->screen_height / 2;
-							if (_f_line_height >= st_mlx->screen_height)
-								_f_line_height = st_mlx->screen_height - 1;
-							
-							if (y < _c_line_height)
-								ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
-									st_mlx->c_color);
-							else if (y >= _c_line_height && y <= _f_line_height)
-								put_wall_texture_pixel(st_mlx, screen_column, y);
-							else
-								ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
-									st_mlx->f_color);
-						}
-						else
-							put_door_texture_pixel(st_mlx, screen_column, y);
-					}
-					else
-						put_door_texture_pixel(st_mlx, screen_column, y);
-				}
-				else	
+			if (!st_mlx->is_door_col)
+			{
+				if (y < w_c_line_height)
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+						st_mlx->c_color);
+				else if (y >= w_c_line_height && y <= w_f_line_height)
 					put_wall_texture_pixel(st_mlx, screen_column, y);
+				else
+					ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+						st_mlx->f_color);
 			}
 			else
-				ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
-					st_mlx->f_color);
+			{
+				if (!st_mlx->is_door_anim)
+				{
+					//2x
+					if (y < d_c_line_height)
+						ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+							st_mlx->c_color);
+					else if (y >= d_c_line_height && y <= d_f_line_height)
+						put_door_texture_pixel(st_mlx, screen_column, y);
+					else
+						ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+							st_mlx->f_color);
+				}
+				else
+				{
+					// Check door_dir to change direction of movement
+					// if (st_mlx->door_dir)
+
+					float door_open_ratio = (float)st_mlx->door_offset / 100.0f;
+					int door_height = (int)((d_f_line_height - d_c_line_height) * door_open_ratio);
+					int vertical_position = y - d_c_line_height;
+					if (vertical_position < (door_height))
+					{
+						if (y < w_c_line_height)
+							ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+								st_mlx->c_color);
+						else if (y >= w_c_line_height && y <= w_f_line_height)
+							put_wall_texture_pixel(st_mlx, screen_column, y);
+						else
+							ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+								st_mlx->f_color);
+					}
+					else
+					{
+						//2x
+						if (y < d_c_line_height)
+							ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+								st_mlx->c_color);
+						else if (y >= d_c_line_height && y <= d_f_line_height)
+							put_door_texture_pixel(st_mlx, screen_column, y);
+						else
+							ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
+								st_mlx->f_color);
+
+					}
+				}
+			}
 		}
 	}
 }
