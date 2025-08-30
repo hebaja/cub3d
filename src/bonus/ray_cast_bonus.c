@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*   ray_cast_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:37:46 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/29 22:56:10 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,68 @@ void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 	}
 }
 
-void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
+void	calculate_perp_door_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
-	int	hit;
+	if (st_mlx->st_coord->side_hit == 0)
+		st_mlx->perp_door_dist = (curr_map_x
+				- st_mlx->st_coord->p_posx
+				+ (1 - st_mlx->st_coord->step_x) / 2)
+			/ st_mlx->st_coord->ray_dir_x;
+	else
+		st_mlx->perp_door_dist = (curr_map_y
+				- st_mlx->st_coord->p_posy
+				+ (1 - st_mlx->st_coord->step_y) / 2)
+			/ st_mlx->st_coord->ray_dir_y;
+}
 
-	hit = 0;
-	while (hit == 0)
-	{
-		if (st_mlx->st_coord->side_dist_x < st_mlx->st_coord->side_dist_y)
-		{
-			st_mlx->st_coord->side_dist_x += st_mlx->st_coord->delta_dist_x;
-			*curr_map_x = *curr_map_x + st_mlx->st_coord->step_x;
-			st_mlx->st_coord->side_hit = 0;
-		}
-		else
-		{
-			st_mlx->st_coord->side_dist_y += st_mlx->st_coord->delta_dist_y;
-			*curr_map_y = *curr_map_y + st_mlx->st_coord->step_y;
-			st_mlx->st_coord->side_hit = 1;
-		}
-		if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1')
-		{
-			hit = 1;
-			st_mlx->is_door_col = 0;
-		}
-		else if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == 'D' && !st_mlx->is_door_open)
-		{
-			hit = 1;
-			st_mlx->is_door_col = 1;
-		}
-	}
+void    hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
+{
+        int     hit;
+        int     is_door_col;
+        int     door_map_x;
+        int     door_map_y;
+        int     door_side;
+
+        hit = 0;
+        is_door_col = 0;
+        while (hit == 0)
+        {
+                if (st_mlx->st_coord->side_dist_x < st_mlx->st_coord->side_dist_y)
+                {
+                        st_mlx->st_coord->side_dist_x += st_mlx->st_coord->delta_dist_x;
+                        *curr_map_x = *curr_map_x + st_mlx->st_coord->step_x;
+                        st_mlx->st_coord->side_hit = 0;
+                }
+                else
+                {
+                        st_mlx->st_coord->side_dist_y += st_mlx->st_coord->delta_dist_y;
+                        *curr_map_y = *curr_map_y + st_mlx->st_coord->step_y;
+                        st_mlx->st_coord->side_hit = 1;
+                }
+
+                // Store door information when we hit it
+                if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == 'D' && !st_mlx->is_door_open)
+                {
+                        is_door_col = 1;
+                        door_map_x = *curr_map_x;
+                        door_map_y = *curr_map_y;
+                        door_side = st_mlx->st_coord->side_hit;
+                        calculate_perp_door_dist(st_mlx, door_map_x, door_map_y);
+                }
+
+                if (st_mlx->st_file->map[*curr_map_y][*curr_map_x] == '1')
+                {
+                        hit = 1;
+                }
+        }
+        st_mlx->is_door_col = is_door_col;
+        // Store door info for texture calculation
+        if (is_door_col)
+        {
+                st_mlx->door_map_x = door_map_x;
+                st_mlx->door_map_y = door_map_y;
+                st_mlx->door_side = door_side;
+        }
 }
 
 void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)

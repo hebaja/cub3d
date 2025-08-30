@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 03:06:27 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/29 02:54:35 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,26 @@ typedef struct s_mlx
 	int		curtain_y;
 	int		curtain_dir;
 
-	int		is_door_col;
-	int		is_door_open;
-
-	int		is_door_anim;
-	int		door_dir;
-	double	door_offset;
 
 	t_spr	*st_spr1;
 	t_spr	*st_spr2;
 	double	z_buffer[1920];
+
+
+	int	door_map_x;
+	int	door_map_y;
+	int	door_side;
+	
+	int		is_door_col;
+	int		is_door_open;
+	int		is_door_anim;
+	int		door_dir;
+	int		door_offset;
+	double	perp_door_dist;
+
+	int		door_tex_x;
+	double	door_tex_step;
+	double	door_tex_pos;
 
 }	t_mlx;
 

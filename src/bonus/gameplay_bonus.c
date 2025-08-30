@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/22 02:42:03 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/29 02:13:03 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,24 @@ int	game_loop(t_mlx *st_mlx)
 	{
 		if (st_mlx->door_dir == 0)
 		{
-			if (st_mlx->door_offset < 1.0)
+			if (st_mlx->door_offset < 100)
 			{
-				st_mlx->door_offset += 0.01;
-				// printf("%f\n", st_mlx->door_offset);
+				st_mlx->door_offset += 1;
+				// printf("%d\n", st_mlx->door_offset);
 			}
 			else
 			{
 				st_mlx->is_door_anim = 0;
 				st_mlx->door_dir = 1;
-				// st_mlx->door_offset = 1.0;
 				st_mlx->is_door_open = 1;
 			}
 		}
 		else
 		{
-			if (st_mlx->door_offset >= 0.01)
+			if (st_mlx->door_offset > 0)
 			{
-				st_mlx->door_offset -= 0.01;
-				// printf("%f\n", st_mlx->door_offset);
+				st_mlx->door_offset -= 1;
+				// printf("%d\n", st_mlx->door_offset);
 			}
 			else
 			{
