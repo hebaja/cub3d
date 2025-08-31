@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/30 22:02:35 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 20:49:19 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,6 @@ void	check_inversion(t_mlx *st_mlx)
 		&& (int)st_mlx->st_coord->p_posx == (int)st_mlx->st_spr2->pos_x
 		&& (int)st_mlx->st_coord->p_posy == (int)st_mlx->st_spr2->pos_y)
 		st_mlx->is_invert_prep = 1;
-}
-
-void	start_door_anim(t_mlx *st_mlx)
-{
-	if (st_mlx->door_dir == 0)
-	{
-		if (st_mlx->door_offset < 100)
-			st_mlx->door_offset += 1;
-		else
-		{
-			st_mlx->is_door_anim = 0;
-			st_mlx->door_dir = 1;
-			st_mlx->is_door_open = 1;
-		}
-	}
-	else
-	{
-		if (st_mlx->door_offset > 0)
-			st_mlx->door_offset -= 1;
-		else
-		{
-			st_mlx->is_door_anim = 0;
-			st_mlx->door_dir = 0;
-			st_mlx->is_door_open = 0;
-		}
-	}
 }
 
 int	game_loop(t_mlx *st_mlx)

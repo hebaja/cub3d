@@ -1,16 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st_mlx_utils_bonus.c                               :+:      :+:    :+:   */
+/*   st_mlx_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:17:23 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 20:41:35 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_bonus.h"
+#include "../include/cub3d.h"
+
+void	clean_st_mlx(t_mlx *st_mlx)
+{
+	if (st_mlx->screen)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->screen->img);
+	if (st_mlx->no_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->no_texture->img);
+	if (st_mlx->so_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->so_texture->img);
+	if (st_mlx->we_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->we_texture->img);
+	if (st_mlx->ea_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
+	if (st_mlx->door_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->door_texture->img);
+	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
+	mlx_destroy_display(st_mlx->mlx);
+	free(st_mlx->screen);
+	free(st_mlx->no_texture);
+	free(st_mlx->so_texture);
+	free(st_mlx->we_texture);
+	free(st_mlx->ea_texture);
+	free(st_mlx->door_texture);
+	free(st_mlx->mlx);
+	free(st_mlx);
+}
 
 int	rgb_to_int(int t, int r, int g, int b)
 {
@@ -37,8 +63,7 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 	st_mlx->ea_texture->img_addr = mlx_get_data_addr(st_mlx->ea_texture->img,
 			&st_mlx->ea_texture->bpp, &st_mlx->ea_texture->size_line,
 			&st_mlx->ea_texture->endian);
-	st_mlx->door_texture->img_addr = mlx_get_data_addr(
-			st_mlx->door_texture->img,
+	st_mlx->door_texture->img_addr = mlx_get_data_addr(st_mlx->door_texture->img,
 			&st_mlx->door_texture->bpp, &st_mlx->door_texture->size_line,
 			&st_mlx->door_texture->endian);
 }
@@ -67,11 +92,11 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			st_file->ea_texture, &st_mlx->ea_texture->width,
 			&st_mlx->ea_texture->height);
 	st_mlx->door_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
-			"assets/door_pixel.xpm", &st_mlx->door_texture->width,
+			"./assets/door_pixel.xpm", &st_mlx->door_texture->width,
 			&st_mlx->door_texture->height);
 }
 
-void	init_keys_and_anim(t_mlx *st_mlx)
+void	init_keys(t_mlx *st_mlx)
 {
 	st_mlx->key_w = 0;
 	st_mlx->key_a = 0;
@@ -80,23 +105,8 @@ void	init_keys_and_anim(t_mlx *st_mlx)
 	st_mlx->key_left = 0;
 	st_mlx->key_right = 0;
 	st_mlx->mouse_x = 0;
-	st_mlx->is_invert = 0;
-	st_mlx->curtain_y = 0;
-	st_mlx->is_curtain = 0;
-	st_mlx->curtain_dir = 0;
-	st_mlx->is_invert_prep = 0;
-	st_mlx->is_door_col = 0;
-	st_mlx->is_door_open = 0;
-	st_mlx->is_door_anim = 0;
-	st_mlx->door_dir = 0;
-	st_mlx->door_offset = 0;
-	st_mlx->perp_door_dist = 0.0;
-	st_mlx->door_tex_x = 0.0;
-	st_mlx->door_tex_step = 0.0;
-	st_mlx->door_tex_pos = 0.0;
 }
 
-// mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;
@@ -108,18 +118,19 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	}
 	st_mlx->mlx = mlx_init();
+	// mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width, &st_mlx->screen_height);
 	st_mlx->screen_width = 1366;
 	st_mlx->screen_height = 768;
-	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width,
-			st_mlx->screen_height, "cub3d");
+
+	st_mlx->win = mlx_new_window(st_mlx->mlx, st_mlx->screen_width, st_mlx->screen_height, "cub3d");
+	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
 	st_mlx->c_color = rgb_to_int(0, st_file->c_color[0], st_file->c_color[1],
 			st_file->c_color[2]);
 	st_mlx->f_color = rgb_to_int(0, st_file->f_color[0], st_file->f_color[1],
 			st_file->f_color[2]);
-	set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
-		st_mlx->screen_height);
+	set_mlx_images(st_mlx, st_file, st_mlx->screen_width, st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
-	init_keys_and_anim(st_mlx);
+	init_keys(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

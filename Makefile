@@ -36,12 +36,13 @@ SRC_COMMON_FILES = parser_file_1.c parser_file_2.c parser_file_utils.c\
 			texture_elem_utils.c st_coord_utils.c\
 			mlx_hook_utils.c
 
-SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c gameplay_utils_bonus.c\
-				gameplay_effects_bonus.c mlx_draw1_bonus.c mlx_draw2_bonus.c\
-				invert_map_bonus.c valid_map1_bonus.c st_sprite_bonus.c\
-				minimap1_bonus.c minimap2_bonus.c minimap3_bonus.c\
-				prepare_game_bonus.c orb1_bonus.c orb2_bonus.c\
-				st_mlx_utils_bonus.c clean_st_utils_bonus.c ray_cast_bonus.c
+SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c gameplay_utils1_bonus.c\
+				gameplay_utils2_bonus.c gameplay_effects_bonus.c mlx_draw1_bonus.c\
+				mlx_draw2_bonus.c mlx_draw3_bonus.c invert_map_bonus.c\
+				valid_map1_bonus.c st_sprite_bonus.c minimap1_bonus.c minimap2_bonus.c\
+				minimap3_bonus.c prepare_game_bonus.c orb1_bonus.c orb2_bonus.c\
+				st_mlx_utils_bonus.c clean_st_utils_bonus.c ray_cast_bonus.c\
+				ray_cast_door_bonus.c
 
 LIBFT_DIR = libft
 

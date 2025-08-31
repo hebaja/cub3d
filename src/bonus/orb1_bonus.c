@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:51:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 18:24:38 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:16:03 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_orb(t_mlx *st_mlx, t_spr *st_spr)
 	while (++line < st_spr->draw_end_x)
 	{
 		st_spr->tex_x = (int)(256 * (line - (-st_spr->spr_width / 2
-					+ st_spr->spr_screen_x))
+						+ st_spr->spr_screen_x))
 				* st_spr->curr_sprite->width / st_spr->spr_width) / 256;
 		if (st_spr->transform_y > 0 && line > 0 && line < st_mlx->screen_width
 			&& st_spr->transform_y < st_mlx->z_buffer[line])
