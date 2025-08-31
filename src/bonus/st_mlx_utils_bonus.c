@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:17:23 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:26:50 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
 	init_keys_and_anim(st_mlx);
+	mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

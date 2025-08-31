@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 04:39:25 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:34:13 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	clean_st_mlx(t_mlx *st_mlx)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
 	if (st_mlx->minimap)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->minimap->img);
+	mlx_mouse_show(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_display(st_mlx->mlx);
 	free(st_mlx->minimap_colors);

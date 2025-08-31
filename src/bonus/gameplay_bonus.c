@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/31 20:49:19 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:32:54 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,25 @@ void	set_keys_rotate(t_mlx *st_mlx)
 		rotate_angle(coord, ROTATE);
 }
 
+int	mouse_move(int x, int y, t_mlx *st_mlx)
+{
+	int  		diff_x;
+	int			center_win;
+
+	(void)y;
+	center_win = st_mlx->screen_width / 2;
+	diff_x = x - center_win;
+	if (diff_x < -300 || diff_x > 300)
+	{
+		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
+		return (0);
+	}
+	st_mlx->mouse_x += diff_x;
+	if (x != center_win)
+		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
+	return (0);
+}
+
 void	catch_mouse_move(t_mlx *st_mlx)
 {
 	int		steps;
@@ -50,18 +69,6 @@ void	catch_mouse_move(t_mlx *st_mlx)
 			rotate_angle(st_mlx->st_coord, angle_step);
 		st_mlx->mouse_x = 0;
 	}
-}
-
-void	check_inversion(t_mlx *st_mlx)
-{
-	if (!st_mlx->is_invert
-		&& (int)st_mlx->st_coord->p_posx == (int)st_mlx->st_spr1->pos_x
-		&& (int)st_mlx->st_coord->p_posy == (int)st_mlx->st_spr1->pos_y)
-		st_mlx->is_invert_prep = 1;
-	else if (st_mlx->is_invert
-		&& (int)st_mlx->st_coord->p_posx == (int)st_mlx->st_spr2->pos_x
-		&& (int)st_mlx->st_coord->p_posy == (int)st_mlx->st_spr2->pos_y)
-		st_mlx->is_invert_prep = 1;
 }
 
 int	game_loop(t_mlx *st_mlx)
@@ -89,6 +96,7 @@ void	init_gameplay(t_mlx *st_mlx)
 	mlx_hook(st_mlx->win, 2, (1L << 0), key_press, st_mlx);
 	mlx_hook(st_mlx->win, 3, (1L << 1), key_release, st_mlx);
 	mlx_hook(st_mlx->win, 17, 0, close_window, st_mlx);
+	mlx_hook(st_mlx->win, 6, (1L << 6), mouse_move, st_mlx);
 	mlx_loop_hook(st_mlx->mlx, game_loop, st_mlx);
 	mlx_loop(st_mlx->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 21:03:11 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:32:46 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int		set_floor_color(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	put_door_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
 void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
+void	check_inversion(t_mlx *st_mlx);
 
 #endif
