@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:44 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 04:00:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 15:59:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ void	start_curtain_effect(t_mlx *st_mlx)
 		st_mlx->curtain_y += CURTAIN_SPEED;
 	else
 		st_mlx->curtain_y -= CURTAIN_SPEED;
-	if (!st_mlx->curtain_dir && st_mlx->curtain_y == st_mlx->screen_height)
+	if (!st_mlx->curtain_dir && st_mlx->curtain_y >= st_mlx->screen_height)
 	{
 		st_mlx->curtain_dir = 1;
 		if (st_mlx->is_invert)
 			st_mlx->is_invert = 0;
 		else
+		{
 			st_mlx->is_invert = 1;
+		}
 		swap_maps(st_mlx);
 		swap_side_texures(st_mlx);
 		st_mlx->st_coord->p_posx = (st_mlx->st_file->map_width)

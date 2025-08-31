@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/29 02:54:35 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 17:58:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ typedef struct s_mlx
 	t_spr	*st_spr1;
 	t_spr	*st_spr2;
 	double	z_buffer[1920];
+	double	d_buffer[1920];
+
+	int		wall_ceiling_height;
+	int		wall_floor_height;
+	int		door_ceiling_height;
+	int		door_floor_height;
 
 
 	int	door_map_x;
@@ -105,6 +111,7 @@ typedef struct s_mlx
 	int		door_tex_x;
 	double	door_tex_step;
 	double	door_tex_pos;
+
 
 }	t_mlx;
 

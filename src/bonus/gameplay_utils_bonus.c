@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/19 23:39:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/30 22:55:12 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,8 @@ void	try_open_door(t_mlx *st_mlx)
 	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
 	{
-		// st_mlx->is_door_open = !st_mlx->is_door_open;
 		st_mlx->is_door_anim = 1;
 		printf("check_x=%d check_y=%d cell=%c open=%d\n", check_x, check_y, st_mlx->st_file->map[check_y][check_x], st_mlx->is_door_open);
-		// if (door)
-		// {
-		// 	printf("porta encontrada em (%d,%d) offset=%.2f\n", door->x, door->y, door->offset);
-		// 	if (door->offset <= 0.0 && !door->is_opening)
-		// 	{
-		// 		door->is_opening = 1;
-		// 		door->is_closing = 0;
-		// 	}
-		// 	else if (door->offset >= 1.0 && !door->is_closing)
-		// 	{
-		// 		door->is_closing = 1;
-		// 		door->is_opening = 0;
-		// 	}
-		// }
-		// else
-  //   		printf("nenhuma porta encontrada!\n");
 	}
 }
 
