@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 12:34:06 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 20:58:15 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ int	parse_elements(t_file *st_file)
 		file_content++;
 	if (!check_map(file_content, st_file))
 		return (0);
+	get_door(st_file);
 	return (1);
 }

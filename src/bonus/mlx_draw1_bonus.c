@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:06:09 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/08/31 21:21:06 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ void	set_door_texture(t_mlx *st_mlx, int door_line_height)
 {
 	double	door_hit_point;
 
-	if (st_mlx->is_door_col)
+	if (st_mlx->doors->is_door_col)
 	{
-		if (st_mlx->door_side == 0)
+		if (st_mlx->doors->door_side == 0)
 			door_hit_point = st_mlx->st_coord->p_posy
-				+ (st_mlx->perp_door_dist * st_mlx->st_coord->ray_dir_y);
+				+ (st_mlx->doors->perp_door_dist * st_mlx->st_coord->ray_dir_y);
 		else
 			door_hit_point = st_mlx->st_coord->p_posx
-				+ (st_mlx->perp_door_dist * st_mlx->st_coord->ray_dir_x);
+				+ (st_mlx->doors->perp_door_dist * st_mlx->st_coord->ray_dir_x);
 		door_hit_point -= floor(door_hit_point);
-		st_mlx->door_tex_x = (int)(door_hit_point
+		st_mlx->doors->door_tex_x = (int)(door_hit_point
 				* (double)st_mlx->door_texture->width);
-		if (st_mlx->door_side == 0 && st_mlx->st_coord->ray_dir_x > 0)
-			st_mlx->door_tex_x = st_mlx->door_texture->width
-				- st_mlx->door_tex_x - 1;
-		if (st_mlx->door_side == 1 && st_mlx->st_coord->ray_dir_y < 0)
-			st_mlx->door_tex_x = st_mlx->door_texture->width
-				- st_mlx->door_tex_x - 1;
-		st_mlx->door_tex_step = 1.0
+		if (st_mlx->doors->door_side == 0 && st_mlx->st_coord->ray_dir_x > 0)
+			st_mlx->doors->door_tex_x = st_mlx->door_texture->width
+				- st_mlx->doors->door_tex_x - 1;
+		if (st_mlx->doors->door_side == 1 && st_mlx->st_coord->ray_dir_y < 0)
+			st_mlx->doors->door_tex_x = st_mlx->door_texture->width
+				- st_mlx->doors->door_tex_x - 1;
+		st_mlx->doors->door_tex_step = 1.0
 			* st_mlx->door_texture->height / door_line_height;
-		st_mlx->door_tex_pos = (st_mlx->door_ceiling_height
+		st_mlx->doors->door_tex_pos = (st_mlx->doors->door_ceiling_height
 				- (double)st_mlx->screen_height
-				/ 2 + (double)door_line_height / 2) * st_mlx->door_tex_step;
+				/ 2 + (double)door_line_height / 2) * st_mlx->doors->door_tex_step;
 	}
 }
 
