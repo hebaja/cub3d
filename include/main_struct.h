@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:03:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 15:03:19 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:04:56 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAIN_STRUCT_H
 
 # include "common_struct.h"
+# include "bonus_struct.h"
 
 typedef struct s_mlx
 {
@@ -25,6 +26,7 @@ typedef struct s_mlx
 	t_img	*we_texture;
 	t_img	*ea_texture;
 	t_img	*curr_texture;
+	t_img	*door_texture;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
@@ -41,6 +43,29 @@ typedef struct s_mlx
 	int		key_right;
 	t_file	*st_file;
 	t_coord	*st_coord;
+	t_img	*minimap;
+	int		minimap_size;
+	int		minimap_block_size;
+	int		minimap_block_x;
+	int		minimap_block_y;
+	int		minimap_counter;
+	int		minimap_frame;
+	size_t	minimap_time;
+	int		minimap_anim_dir;
+	int		*minimap_colors;
+	int		mouse_x;
+	int		is_invert_prep;
+	int		is_invert;
+	int		is_curtain;
+	int		curtain_y;
+	int		curtain_dir;
+	t_spr	*st_spr1;
+	t_spr	*st_spr2;
+	double	z_buffer[1920];
+	double	d_buffer[1920];
+	int		wall_ceiling_height;
+	int		wall_floor_height;
 }	t_mlx;
 
 #endif
+

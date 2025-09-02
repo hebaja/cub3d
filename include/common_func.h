@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common_func.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:27 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:42:28 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:51:50 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
 int		valid_character(char **map);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
+void	get_door(t_file *st_file);
 
 #endif

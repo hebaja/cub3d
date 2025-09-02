@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:32 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 21:16:56 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/01 14:03:59 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,26 @@
 # define COMMON_STRUCT_H
 
 # include "includes.h"
+
+typedef struct s_door
+{
+	int			door_map_x;
+	int			door_map_y;
+	int			door_side;
+	int			is_door_col;
+	int			is_door_open;
+	int			is_door_anim;
+	int			door_dir;
+	int			door_offset;
+	double		perp_door_dist;
+	int			door_tex_x;
+	double		door_tex_step;
+	double		door_tex_pos;
+	int			door_ceiling_height;
+	int			door_floor_height;
+	struct s_door	*next;
+}	t_door;
+
 
 typedef struct s_file
 {
@@ -37,6 +57,7 @@ typedef struct s_file
 	int		player_pos;
 	int		player_x;
 	int		player_y;
+	t_door	*doors;
 }	t_file;
 
 typedef struct s_coord

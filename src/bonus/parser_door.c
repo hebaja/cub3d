@@ -6,17 +6,31 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 20:57:07 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/31 21:13:43 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:45:31 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
+t_door	*find_door(int x, int y, t_file *st_file)
+{
+	t_door	*current;
+
+	current = st_file->doors;
+	while (current)
+	{
+		if (current->door_map_x == x && current->door_map_y == y)
+			return (current);
+		current = current->next;
+	}
+	return (NULL);
+}
+
 void	add_door(int x, int y, t_file *st_file)
 {
-	t_door *new_door;
-	t_door *temp;
-	
+	t_door	*new_door;
+	t_door	*temp;
+ 
 	new_door = (t_door *)malloc(sizeof(t_door));
 	if (!new_door)
 	{
@@ -47,9 +61,9 @@ void	add_door(int x, int y, t_file *st_file)
 	}
 }
 
-void    get_door(t_file *st_file)
+void	get_door(t_file *st_file)
 {
-    int	x;
+	int	x;
 	int	y;
 
 	y = 0;
@@ -63,5 +77,32 @@ void    get_door(t_file *st_file)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	free_doors(t_file *st_file)
+{
+	t_door	*current;
+	t_door	*next;
+
+	current = st_file->doors;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	st_file->doors = NULL;
+}
+
+void print_doors(t_file *st_file)
+{
+	t_door	*current;
+
+	current = st_file->doors;
+	while (current)
+	{
+		printf("Porta encontrada nas posições: (%d, %d)\n", current->door_map_x, current->door_map_y);
+		current = current->next;
 	}
 }

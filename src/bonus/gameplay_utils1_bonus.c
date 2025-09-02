@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/31 21:57:24 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:41:34 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	try_open_door(t_mlx *st_mlx)
 	check_x = (int)(st_mlx->st_coord->p_posx + st_mlx->st_coord->dir_vec_x);
 	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
-		st_mlx->is_door_anim = 1;
+		st_mlx->st_file->doors->is_door_anim = 1;
 }
 
 int	key_press(int key, t_mlx *st_mlx)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/31 22:32:54 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:40:08 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	game_loop(t_mlx *st_mlx)
 		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
-	if (st_mlx->is_door_anim)
+	if (st_mlx->st_file->doors->is_door_anim)
 		start_door_anim(st_mlx);
 	return (0);
 }
