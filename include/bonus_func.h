@@ -37,5 +37,6 @@ void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	put_door_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
 void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
 void	check_inversion(t_mlx *st_mlx);
+void	clean_sprites(t_mlx *st_mlx);
 
 #endif

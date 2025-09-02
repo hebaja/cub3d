@@ -10,37 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
-
-void	clean_st_spr(t_mlx *st_mlx, t_spr *st_spr)
-{
-	int	i;
-
-	i = -1;
-	while (++i <= 2)
-	{
-		mlx_destroy_image(st_mlx->mlx, st_spr->sprites[i]->img);
-		free(st_spr->sprites[i]);
-	}
-	free(st_spr->sprites);
-	st_spr->sprites = NULL;
-}
-
-void	clean_sprites(t_mlx *st_mlx)
-{
-	if (st_mlx->st_spr1)
-	{
-		clean_st_spr(st_mlx, st_mlx->st_spr1);
-		free(st_mlx->st_spr1);
-		st_mlx->st_spr1 = NULL;
-	}
-	if (st_mlx->st_spr2)
-	{
-		clean_st_spr(st_mlx, st_mlx->st_spr2);
-		free(st_mlx->st_spr2);
-		st_mlx->st_spr2 = NULL;
-	}
-}
+#include "../../include/cub3d_bonus.h"
 
 void	clean_st_file(t_file *st_file)
 {
@@ -65,7 +35,20 @@ void	clean_st_file(t_file *st_file)
 	}
 }
 
-// mlx_mouse_show(st_mlx->mlx, st_mlx->win);
+void	free_all(t_mlx *st_mlx)
+{
+	free(st_mlx->minimap_colors);
+	free(st_mlx->minimap);
+	free(st_mlx->screen);
+	free(st_mlx->no_texture);
+	free(st_mlx->so_texture);
+	free(st_mlx->we_texture);
+	free(st_mlx->ea_texture);
+	free(st_mlx->door_texture);
+	free(st_mlx->mlx);
+	free(st_mlx);
+}
+
 void	clean_st_mlx(t_mlx *st_mlx)
 {
 	if (st_mlx->screen)
@@ -80,18 +63,12 @@ void	clean_st_mlx(t_mlx *st_mlx)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
 	if (st_mlx->minimap)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->minimap->img);
+	if (st_mlx->minimap)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->door_texture->img);
 	mlx_mouse_show(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_display(st_mlx->mlx);
-	free(st_mlx->minimap_colors);
-	free(st_mlx->minimap);
-	free(st_mlx->screen);
-	free(st_mlx->no_texture);
-	free(st_mlx->so_texture);
-	free(st_mlx->we_texture);
-	free(st_mlx->ea_texture);
-	free(st_mlx->mlx);
-	free(st_mlx);
+	free_all(st_mlx);
 }
 
 void	clean_all(t_mlx *st_mlx)
