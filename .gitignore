@@ -3,6 +3,7 @@ package.json
 maps/
 minilibx-linux/test/mlx-test
 .clangd
+.vscode
 *.swp
 *.out
 *.o
