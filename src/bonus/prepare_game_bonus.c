@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:59:08 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 21:05:10 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:08:13 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_mlx	*prepare_st_mlx(t_file *st_file, t_coord *st_coord)
 		return (NULL);
 	st_mlx->st_spr1 = st_spr1;
 	st_mlx->st_spr2 = st_spr2;
+	get_door(st_mlx);
 	return (st_mlx);
 }
 

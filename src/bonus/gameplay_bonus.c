@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/03 22:25:59 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:28:07 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	catch_mouse_move(t_mlx *st_mlx)
 
 int	game_loop(t_mlx *st_mlx)
 {
-	t_door	*door;
-
 	set_keys_rotate(st_mlx);
 	catch_mouse_move(st_mlx);
 	ray_cast(st_mlx);
@@ -88,13 +86,8 @@ int	game_loop(t_mlx *st_mlx)
 		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
-	door = st_mlx->st_file->doors;
-	while (door)
-	{
-		if (door->is_door_anim)
-			start_door_anim(door);
-		door = door->next;
-	}
+	if (st_mlx->current_door && st_mlx->current_door->is_door_anim)
+		start_door_anim(st_mlx);
 	return (0);
 }
 

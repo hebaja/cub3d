@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/03 23:11:48 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:50:07 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	with_door_drawing(t_mlx *st_mlx, int screen_column, int y, int is_anim)
 
 	ceiling_color = set_ceiling_color(st_mlx);
 	floor_color = set_floor_color(st_mlx);
-	if (y < st_mlx->st_file->doors->door_ceiling_height)
+	if (y < st_mlx->current_door->door_ceiling_height)
 		ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 			ceiling_color);
-	else if (y >= st_mlx->st_file->doors->door_ceiling_height && y <= st_mlx->st_file->doors->door_floor_height)
+	else if (y >= st_mlx->current_door->door_ceiling_height && y <= st_mlx->current_door->door_floor_height)
 	{
 		if (is_anim)
 		{
-			if (!st_mlx->st_file->doors->is_door_open)
+			if (!st_mlx->current_door->is_door_open)
 				put_door_texture_pixel(st_mlx, screen_column, y);
 			else
 				basic_drawing(st_mlx, screen_column, y);
@@ -62,10 +62,10 @@ void	animate_door(t_mlx *st_mlx, int screen_column, int y)
 	int		door_height;
 	int		vertical_position;
 
-	door_open_ratio = (float)st_mlx->st_file->doors->door_offset / 100.0f;
-	door_height = (int)((st_mlx->st_file->doors->door_floor_height
-				- st_mlx->st_file->doors->door_ceiling_height) * door_open_ratio);
-	vertical_position = y - st_mlx->st_file->doors->door_ceiling_height;
+	door_open_ratio = (float)st_mlx->current_door->door_offset / 100.0f;
+	door_height = (int)((st_mlx->current_door->door_floor_height
+				- st_mlx->current_door->door_ceiling_height) * door_open_ratio);
+	vertical_position = y - st_mlx->current_door->door_ceiling_height;
 	if (vertical_position < (door_height))
 		basic_drawing(st_mlx, screen_column, y);
 	else
@@ -83,11 +83,11 @@ void	default_drawing(t_mlx *st_mlx, int screen_column)
 			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, 0x000000);
 		else
 		{
-			if (!st_mlx->st_file->doors->is_door_col)
+			if (!st_mlx->is_door_col)
 				basic_drawing(st_mlx, screen_column, y);
 			else
 			{
-				if (!st_mlx->st_file->doors->is_door_anim)
+				if (!st_mlx->current_door->is_door_anim)
 					with_door_drawing(st_mlx, screen_column, y, 1);
 				else
 					animate_door(st_mlx, screen_column, y);

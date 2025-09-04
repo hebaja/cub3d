@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:44 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/03 15:23:16 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:28:53 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,28 +75,28 @@ void	start_curtain_effect(t_mlx *st_mlx)
 	}
 }
 
-void	start_door_anim(t_door *door)
+void	start_door_anim(t_mlx *st_mlx)
 {
-	if (door->door_dir == 0)
+	if (st_mlx->current_door->door_dir == 0)
 	{
-		if (door->door_offset < 100)
-			door->door_offset += 1;
+		if (st_mlx->current_door->door_offset < 100)
+			st_mlx->current_door->door_offset += 1;
 		else
 		{
-			door->is_door_anim = 0;
-			door->door_dir = 0;
-			door->is_door_open = 1;
+			st_mlx->current_door->is_door_anim = 0;
+			st_mlx->current_door->door_dir = 1;
+			st_mlx->current_door->is_door_open = 1;
 		}
 	}
-	else if (door->door_dir == -1)
+	else
 	{
-		if (door->door_offset > 0)
-			door->door_offset -= 1;
+		if (st_mlx->current_door->door_offset > 0)
+			st_mlx->current_door->door_offset -= 1;
 		else
 		{
-			door->is_door_anim = 0;
-			door->door_dir = 0;
-			door->is_door_open = 0;
+			st_mlx->current_door->is_door_anim = 0;
+			st_mlx->current_door->door_dir = 0;
+			st_mlx->current_door->is_door_open = 0;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/03 23:12:13 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 17:05:53 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	try_open_door(t_mlx *st_mlx)
 {
-	t_door	*door;
 	int	check_x;
 	int	check_y;
 
@@ -23,11 +22,8 @@ void	try_open_door(t_mlx *st_mlx)
 	printf("Porta na frente: (%d, %d)\n", check_x, check_y);
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
 	{
-		door = find_door(check_x, check_y, st_mlx->st_file);
-		if (!door)
-			return ;
-		door->is_door_anim = 1;	
-		print_doors(st_mlx->st_file);
+		st_mlx->current_door->is_door_anim = 1;	
+		print_doors(st_mlx);
 	}
 	else
 	{

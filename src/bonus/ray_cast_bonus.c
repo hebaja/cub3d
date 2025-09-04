@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/03 23:04:58 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:49:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 	int	hit;
 
 	hit = 0;
-	st_mlx->st_file->doors->is_door_col = 0;
+	st_mlx->is_door_col = 0;
 	while (hit == 0)
 	{
 		if (st_mlx->st_coord->side_dist_x < st_mlx->st_coord->side_dist_y)

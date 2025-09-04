@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 20:53:42 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 20:39:06 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:46:20 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ void	put_door_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 
 	if (st_mlx->is_invert)
 	{
-		tex_y = st_mlx->door_texture->height - 1 - (int)st_mlx->st_file->doors->door_tex_pos;
+		tex_y = st_mlx->door_texture->height - 1 - (int)st_mlx->current_door->door_tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
 		else if (tex_y >= st_mlx->door_texture->height)
 			tex_y = st_mlx->door_texture->height - 1;
 	}
 	else
-		tex_y = (int)st_mlx->st_file->doors->door_tex_pos;
-	st_mlx->st_file->doors->door_tex_pos += st_mlx->st_file->doors->door_tex_step;
+		tex_y = (int)st_mlx->current_door->door_tex_pos;
+	st_mlx->current_door->door_tex_pos += st_mlx->current_door->door_tex_step;
 	tex_offset = tex_y * st_mlx->door_texture->size_line
-		+ st_mlx->st_file->doors->door_tex_x * (st_mlx->door_texture->bpp / 8);
+		+ st_mlx->current_door->door_tex_x * (st_mlx->door_texture->bpp / 8);
 	color = *(unsigned int *)(st_mlx->door_texture->img_addr + tex_offset);
 	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
 }
