@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 14:49:00 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:18:17 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_door
 	int			door_tex_x;
 	double		door_tex_step;
 	double		door_tex_pos;
+	int			door_line_height;
 	int			door_ceiling_height;
 	int			door_floor_height;
 	struct s_door	*next;
@@ -108,6 +109,7 @@ typedef struct s_mlx
 	double	d_buffer[1920];
 	
 	int			is_door_col;
+	int			is_first_door;
 	
 	t_door	*doors;
 	t_door	*current_door;

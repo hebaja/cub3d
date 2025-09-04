@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 20:42:30 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 15:42:48 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:41:04 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ void	set_door_coord(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 	t_door	*door;
 
 	st_mlx->is_door_col = 1;
-
-	
 	door = find_door(*curr_map_x, *curr_map_y, st_mlx);
-
-	st_mlx->current_door = door;
-
-	st_mlx->current_door->door_map_x = *curr_map_x;
-	st_mlx->current_door->door_map_y = *curr_map_y;
-	st_mlx->current_door->door_side = st_mlx->st_coord->side_hit;
+	door->door_map_x = *curr_map_x;
+	door->door_map_y = *curr_map_y;
+	door->door_side = st_mlx->st_coord->side_hit;
+	door->door_line_height = (int)(st_mlx->screen_height
+		/ door->perp_door_dist);
+	if (!st_mlx->is_first_door)
+	{
+		st_mlx->current_door = door;
+		st_mlx->is_first_door = 1;
+	}
 	calculate_perp_door_dist(st_mlx);
 }
