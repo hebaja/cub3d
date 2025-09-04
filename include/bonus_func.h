@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 14:28:01 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:09:01 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	check_inversion(t_mlx *st_mlx);
 void	get_door(t_mlx *st_mlx);
 void    print_doors(t_mlx *st_mlx);
 t_door  *find_door(int x, int y, t_mlx *st_mlx);
+void	clean_sprites(t_mlx *st_mlx);
 
 #endif

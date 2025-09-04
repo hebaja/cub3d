@@ -65,8 +65,9 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
 			animate_player(st_mlx, x, y);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
-			&& map_x >= 0 && ft_strchr("0NWSEGg",
-				st_mlx->st_file->map[map_y][map_x]))
+			&& st_mlx->st_file->map[map_y][map_x] != '\0'
+			&& map_x >= 0 && ft_strchr("0NWSEDGg",
+			st_mlx->st_file->map[map_y][map_x]))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
 		else
 			paint_block(st_mlx, x, y, MM_OUTER_COLOR);

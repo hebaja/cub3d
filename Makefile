@@ -42,7 +42,7 @@ SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c gameplay_utils1_bonus.c\
 				valid_map1_bonus.c st_sprite_bonus.c minimap1_bonus.c minimap2_bonus.c\
 				minimap3_bonus.c prepare_game_bonus.c orb1_bonus.c orb2_bonus.c\
 				st_mlx_utils_bonus.c clean_st_utils_bonus.c ray_cast_bonus.c\
-				ray_cast_door_bonus.c parser_file1_bonus.c parser_door.c
+				ray_cast_door_bonus.c st_sprite_clean_bonus.c parser_file1_bonus.c parser_door.c
 
 LIBFT_DIR = libft
 
