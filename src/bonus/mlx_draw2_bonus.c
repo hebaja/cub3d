@@ -6,12 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 20:39:03 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/03 23:11:48 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
-#include "bonus_struct.h"
 
 void	basic_drawing(t_mlx *st_mlx, int screen_column, int y)
 {

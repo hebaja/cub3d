@@ -3,29 +3,18 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/include",
-                "${workspaceFolder}/libft/include",
-                "${workspaceFolder}/minilibx-linux"
+                "/home/dbatista/Desktop/42-CommonCore/cub3d/**",
+                "/home/dbatista/Desktop/42-CommonCore/cub3d/include",
+                "/home/dbatista/Desktop/42-CommonCore/cub3d/libft/include",
+                "/home/dbatista/Desktop/42-CommonCore/cub3d/minilibx-linux"
             ],
-            "defines": [],
+            "defines": [
+                "BONUS",
+                "IS_BONUS"
+            ],
             "compilerPath": "/usr/bin/cc",
             "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "linux-gcc-x64"
-        },
-        {
-            "name": "Linux-Bonus",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/includes",
-                "${workspaceFolder}/libft/include",
-                "${workspaceFolder}/minilibx-linux"
-            ],
-            "defines": ["BONUS"],
-            "compilerPath": "/usr/bin/cc",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
+            "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],

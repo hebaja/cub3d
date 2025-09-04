@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_file_1.c                                    :+:      :+:    :+:   */
+/*   parser_file1_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 20:58:15 by dbatista         ###   ########.fr       */
+/*   Created: 2025/09/01 23:50:13 by dbatista          #+#    #+#             */
+/*   Updated: 2025/09/03 22:43:18 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
+#include "../../include/cub3d_bonus.h"
 
 int	check_color_elements_size(int rgb_values[3], char *elem)
 {

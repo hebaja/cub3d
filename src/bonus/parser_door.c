@@ -6,11 +6,11 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 20:57:07 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/01 20:45:31 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:33:55 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d_common.h"
+#include "../../include/cub3d_bonus.h"
 
 t_door	*find_door(int x, int y, t_file *st_file)
 {
@@ -102,7 +102,7 @@ void print_doors(t_file *st_file)
 	current = st_file->doors;
 	while (current)
 	{
-		printf("Porta encontrada nas posições: (%d, %d)\n", current->door_map_x, current->door_map_y);
+		printf("Porta encontrada nas posições: (%d, %d) - door_anim: '%d'\n", current->door_map_x, current->door_map_y, current->is_door_anim);
 		current = current->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/01 20:41:34 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/03 23:12:13 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 void	try_open_door(t_mlx *st_mlx)
 {
+	t_door	*door;
 	int	check_x;
 	int	check_y;
 
 	check_x = (int)(st_mlx->st_coord->p_posx + st_mlx->st_coord->dir_vec_x);
 	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
+	printf("Porta na frente: (%d, %d)\n", check_x, check_y);
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
-		st_mlx->st_file->doors->is_door_anim = 1;
+	{
+		door = find_door(check_x, check_y, st_mlx->st_file);
+		if (!door)
+			return ;
+		door->is_door_anim = 1;	
+		print_doors(st_mlx->st_file);
+	}
+	else
+	{
+		printf("A proxima celula não é uma porta\n");
+	}
 }
 
 int	key_press(int key, t_mlx *st_mlx)

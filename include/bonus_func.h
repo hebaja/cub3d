@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 20:52:07 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:46:15 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ t_spr	*build_orb(t_mlx *st_mlx, char c);
 void	set_orb(t_mlx *st_mlx);
 void	put_orb_pixel(t_mlx *st_mlx, t_spr *st_spr, int y, int line);
 void	set_door_coord(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y);
-void	start_door_anim(t_mlx *st_mlx);
+void	start_door_anim(t_door *door);
 int		set_ceiling_color(t_mlx *st_mlx);
 int		set_floor_color(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 void	put_door_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
 void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y);
 void	check_inversion(t_mlx *st_mlx);
+void	get_door(t_file *st_file);
+void    print_doors(t_file *st_file);
+t_door  *find_door(int x, int y, t_file *st_file);
 
 #endif
