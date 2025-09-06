@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:26:50 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:49:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,11 @@ void	init_keys_and_anim(t_mlx *st_mlx)
 	st_mlx->is_curtain = 0;
 	st_mlx->curtain_dir = 0;
 	st_mlx->is_invert_prep = 0;
+
 	st_mlx->is_door_col = 0;
-	st_mlx->is_door_open = 0;
-	st_mlx->is_door_anim = 0;
-	st_mlx->door_dir = 0;
-	st_mlx->door_offset = 0;
-	st_mlx->perp_door_dist = 0.0;
-	st_mlx->door_tex_x = 0.0;
-	st_mlx->door_tex_step = 0.0;
-	st_mlx->door_tex_pos = 0.0;
+	st_mlx->is_first_door = 0;
+
+	st_mlx->current_door = NULL;
 }
 
 // mlx_mouse_hide(st_mlx->mlx, st_mlx->win);

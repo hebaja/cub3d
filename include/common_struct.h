@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:32 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/19 14:53:52 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:56:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_coord
 {
 	int		curr_map_x;
 	int		curr_map_y;
+	int		ray_center_x;
+	int		ray_center_y;
 	int		side_hit;
 	int		wall_tex_x;
 	// int		wall_tex_y;

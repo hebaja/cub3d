@@ -28,9 +28,9 @@ OBJ_BONUS_DIR = $(OBJ_DIR)/bonus
 
 SRC_MAIN_FILES = main.c st_mlx_utils.c mlx_draw.c valid_map1.c\
 				 gameplay.c gameplay_utils.c prepare_game.c\
-				 clean_st_utils.c ray_cast.c 
+				 clean_st_utils.c ray_cast.c parser_file_1.c
 
-SRC_COMMON_FILES = parser_file_1.c parser_file_2.c parser_file_utils.c\
+SRC_COMMON_FILES = parser_file_2.c parser_file_utils.c\
 			file_utils.c st_file_utils.c  clean_utils.c\
 			valid_map2.c put_error.c color_elem_utils.c\
 			texture_elem_utils.c st_coord_utils.c\
@@ -42,7 +42,7 @@ SRC_BONUS_FILES = main_bonus.c gameplay_bonus.c gameplay_utils1_bonus.c\
 				valid_map1_bonus.c st_sprite_bonus.c minimap1_bonus.c minimap2_bonus.c\
 				minimap3_bonus.c prepare_game_bonus.c orb1_bonus.c orb2_bonus.c\
 				st_mlx_utils_bonus.c clean_st_utils_bonus.c ray_cast_bonus.c\
-				ray_cast_door_bonus.c st_sprite_clean_bonus.c
+				ray_cast_door_bonus.c st_sprite_clean_bonus.c parser_file1_bonus.c parser_door.c
 
 LIBFT_DIR = libft
 

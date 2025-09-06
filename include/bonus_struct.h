@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 17:58:55 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:18:17 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ typedef struct s_spr
 	double	transform_x;
 	double	transform_y;
 }	t_spr;
+
+typedef struct s_door
+{
+	int			door_map_x;
+	int			door_map_y;
+	int			door_side;
+	int			is_door_open;
+	int			is_door_anim;
+	int			door_dir;
+	int			door_offset;
+	double		perp_door_dist;
+	int			door_tex_x;
+	double		door_tex_step;
+	double		door_tex_pos;
+	int			door_line_height;
+	int			door_ceiling_height;
+	int			door_floor_height;
+	struct s_door	*next;
+}	t_door;
 
 typedef struct s_mlx
 {
@@ -84,33 +103,19 @@ typedef struct s_mlx
 	int		is_curtain;
 	int		curtain_y;
 	int		curtain_dir;
-
-
 	t_spr	*st_spr1;
 	t_spr	*st_spr2;
 	double	z_buffer[1920];
 	double	d_buffer[1920];
+	
+	int			is_door_col;
+	int			is_first_door;
+	
+	t_door	*doors;
+	t_door	*current_door;
 
 	int		wall_ceiling_height;
 	int		wall_floor_height;
-	int		door_ceiling_height;
-	int		door_floor_height;
-
-
-	int	door_map_x;
-	int	door_map_y;
-	int	door_side;
-	
-	int		is_door_col;
-	int		is_door_open;
-	int		is_door_anim;
-	int		door_dir;
-	int		door_offset;
-	double	perp_door_dist;
-
-	int		door_tex_x;
-	double	door_tex_step;
-	double	door_tex_pos;
 
 
 }	t_mlx;
