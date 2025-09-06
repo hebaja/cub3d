@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gameplay_utils2_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:21:01 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:33:07 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/05 21:04:39 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
 		return (1);
 	if (map[map_y][map_x] == '1' || map[map_y][map_x] == ' ')
 		return (1);
+	if (map[map_y][map_x] == 'D')
+	{
+		if (find_door(map_x, map_y, st_mlx)->is_door_open == 0)
+			return (1);
+	}
 	return (0);
 }
 
