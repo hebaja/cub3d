@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 23:18:39 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:49:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	init_keys_and_anim(t_mlx *st_mlx)
 
 	st_mlx->is_door_col = 0;
 	st_mlx->is_first_door = 0;
+
+	st_mlx->current_door = NULL;
 }
 
 // mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
