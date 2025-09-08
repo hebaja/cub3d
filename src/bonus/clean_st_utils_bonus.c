@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:34:13 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:07:11 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	clean_st_file(t_file *st_file)
 	}
 }
 
-void	free_all(t_mlx *st_mlx)
+static void	free_all(t_mlx *st_mlx)
 {
 	free(st_mlx->minimap_colors);
 	free(st_mlx->minimap);
@@ -49,7 +49,7 @@ void	free_all(t_mlx *st_mlx)
 	free(st_mlx);
 }
 
-void	clean_st_mlx(t_mlx *st_mlx)
+static void	clean_st_mlx(t_mlx *st_mlx)
 {
 	if (st_mlx->screen)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->screen->img);

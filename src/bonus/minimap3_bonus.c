@@ -6,13 +6,22 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 02:45:03 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:33:27 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:42:22 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		put_error("gettimeofday error", NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+static void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 {
 	ft_mlx_pixel_put(st_mlx->minimap,
 		x * st_mlx->minimap_block_size + st_mlx->minimap_block_x,
@@ -20,7 +29,7 @@ void	paint_player_area(t_mlx *st_mlx, int x, int y, int color)
 		color);
 }
 
-void	paint_player(t_mlx *st_mlx, int x, int y, int color)
+static void	paint_player(t_mlx *st_mlx, int x, int y, int color)
 {
 	int	start_paint_x;
 	int	end_paint_x;
@@ -45,15 +54,6 @@ void	paint_player(t_mlx *st_mlx, int x, int y, int color)
 			end_paint_x++;
 		}
 	}
-}
-
-size_t	get_current_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		put_error("gettimeofday error", NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 void	animate_player(t_mlx *st_mlx, int x, int y)

@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:59:52 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/08 03:37:46 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:45:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_main.h"
 
-void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
+static void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 {
 	if (st_mlx->st_coord->ray_dir_x < 0)
 	{
@@ -40,7 +40,7 @@ void	define_dists(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 	}
 }
 
-void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
+static void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 {
 	int	hit;
 
@@ -64,7 +64,8 @@ void	hit_wall(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y)
 	}
 }
 
-void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
+static void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x,
+	int curr_map_y)
 {
 	if (st_mlx->st_coord->side_hit == 0)
 		st_mlx->st_coord->perp_wall_dist = (curr_map_x
@@ -78,7 +79,7 @@ void	calculate_perp_wall_dist(t_mlx *st_mlx, int curr_map_x, int curr_map_y)
 			/ st_mlx->st_coord->ray_dir_y;
 }
 
-void	calculate_ray(t_mlx *st_mlx, int screen_column)
+static void	calculate_ray(t_mlx *st_mlx, int screen_column)
 {
 	int		curr_map_x;
 	int		curr_map_y;

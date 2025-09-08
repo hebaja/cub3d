@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:29 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 03:52:27 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:38:45 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-char	*build_inv_line(char *line, int width)
+static char	*build_inv_line(char *line, int width)
 {
 	int		line_len;
 	int		count;

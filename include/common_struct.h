@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:32 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 13:56:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:22:51 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ typedef struct s_file
 	char	**dup_map;
 	char	**inv_map;
 	char	*path;
-	int		width;
-	int		height;
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
+	int		width;
+	int		height;
 	int		f_color[3];
 	int		c_color[3];
 	int		map_height;

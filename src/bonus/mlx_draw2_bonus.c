@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/06 19:38:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:03:59 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	basic_drawing(t_mlx *st_mlx, int screen_column, int y)
+static void	basic_drawing(t_mlx *st_mlx, int screen_column, int y)
 {
 	int	ceiling_color;
 	int	floor_color;
@@ -29,21 +29,23 @@ void	basic_drawing(t_mlx *st_mlx, int screen_column, int y)
 			floor_color);
 }
 
-void	with_door_drawing(t_mlx *st_mlx, int screen_column, int y, int is_anim)
+static void	with_door_drawing(t_mlx *st_mlx, int screen_column, int y,
+	int is_anim)
 {
 	int	ceiling_color;
 	int	floor_color;
 
 	ceiling_color = set_ceiling_color(st_mlx);
 	floor_color = set_floor_color(st_mlx);
-	if (y < st_mlx->current_door->door_ceiling_height)
+	if (y < st_mlx->current_door->ceiling_height)
 		ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 			ceiling_color);
-	else if (y >= st_mlx->current_door->door_ceiling_height && y <= st_mlx->current_door->door_floor_height)
+	else if (y >= st_mlx->current_door->ceiling_height
+		&& y <= st_mlx->current_door->floor_height)
 	{
 		if (is_anim)
 		{
-			if (!st_mlx->current_door->is_door_open)
+			if (!st_mlx->current_door->is_open)
 				put_door_texture_pixel(st_mlx, screen_column, y);
 			else
 				basic_drawing(st_mlx, screen_column, y);
@@ -56,16 +58,16 @@ void	with_door_drawing(t_mlx *st_mlx, int screen_column, int y, int is_anim)
 			floor_color);
 }
 
-void	animate_door(t_mlx *st_mlx, int screen_column, int y)
+static void	animate_door(t_mlx *st_mlx, int screen_column, int y)
 {
 	float	door_open_ratio;
 	int		door_height;
 	int		vertical_position;
 
-	door_open_ratio = (float)st_mlx->current_door->door_offset / 100.0f;
-	door_height = (int)((st_mlx->current_door->door_floor_height
-				- st_mlx->current_door->door_ceiling_height) * door_open_ratio);
-	vertical_position = y - st_mlx->current_door->door_ceiling_height;
+	door_open_ratio = (float)st_mlx->current_door->offset / 100.0f;
+	door_height = (int)((st_mlx->current_door->floor_height
+				- st_mlx->current_door->ceiling_height) * door_open_ratio);
+	vertical_position = y - st_mlx->current_door->ceiling_height;
 	if (vertical_position < (door_height))
 		basic_drawing(st_mlx, screen_column, y);
 	else
@@ -87,7 +89,7 @@ void	default_drawing(t_mlx *st_mlx, int screen_column)
 				basic_drawing(st_mlx, screen_column, y);
 			else
 			{
-				if (!st_mlx->current_door->is_door_anim)
+				if (!st_mlx->current_door->is_anim)
 					with_door_drawing(st_mlx, screen_column, y, 1);
 				else
 					animate_door(st_mlx, screen_column, y);

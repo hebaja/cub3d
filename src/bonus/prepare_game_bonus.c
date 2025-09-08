@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:59:08 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 15:08:13 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:56:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	get_highest_len(char **map)
+static int	get_highest_len(char **map)
 {
 	int	len;
 	int	tmp_len;
@@ -28,7 +28,7 @@ int	get_highest_len(char **map)
 	return (len);
 }
 
-t_file	*prepare_st_file(char *file_path)
+static t_file	*prepare_st_file(char *file_path)
 {
 	t_file	*st_file;
 
@@ -45,7 +45,7 @@ t_file	*prepare_st_file(char *file_path)
 	return (st_file);
 }
 
-t_coord	*prepare_st_coord(t_file *st_file)
+static t_coord	*prepare_st_coord(t_file *st_file)
 {
 	t_coord	*st_coord;
 
@@ -58,7 +58,7 @@ t_coord	*prepare_st_coord(t_file *st_file)
 	return (st_coord);
 }
 
-t_mlx	*prepare_st_mlx(t_file *st_file, t_coord *st_coord)
+static t_mlx	*prepare_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;
 	t_spr	*st_spr1;

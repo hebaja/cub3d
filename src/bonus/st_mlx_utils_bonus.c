@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/06 19:49:57 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:13:32 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	rgb_to_int(int t, int r, int g, int b)
+static int	rgb_to_int(int t, int r, int g, int b)
 {
 	int	dec;
 
@@ -20,7 +20,7 @@ int	rgb_to_int(int t, int r, int g, int b)
 	return (dec);
 }
 
-void	set_mlx_images_addr(t_mlx *st_mlx)
+static void	set_mlx_images_addr(t_mlx *st_mlx)
 {
 	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img,
 			&st_mlx->screen->bpp, &st_mlx->screen->size_line,
@@ -43,7 +43,7 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 			&st_mlx->door_texture->endian);
 }
 
-void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
+static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 		int screen_width, int screen_height)
 {
 	st_mlx->screen = (t_img *)malloc(sizeof(t_img));
@@ -71,7 +71,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			&st_mlx->door_texture->height);
 }
 
-void	init_keys_and_anim(t_mlx *st_mlx)
+static void	init_keys_and_anim(t_mlx *st_mlx)
 {
 	st_mlx->key_w = 0;
 	st_mlx->key_a = 0;
@@ -85,14 +85,12 @@ void	init_keys_and_anim(t_mlx *st_mlx)
 	st_mlx->is_curtain = 0;
 	st_mlx->curtain_dir = 0;
 	st_mlx->is_invert_prep = 0;
-
 	st_mlx->is_door_col = 0;
 	st_mlx->is_first_door = 0;
-
+	st_mlx->wall_line_height = 0;
 	st_mlx->current_door = NULL;
 }
 
-// mlx_mouse_hide(st_mlx->mlx, st_mlx->win);
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;

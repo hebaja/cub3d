@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 04:46:36 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/27 13:07:09 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:59:23 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-void	update_st_file_texture(char *elem, char *path, t_file *st_file)
+static void	update_st_file_texture(char *elem, char *path, t_file *st_file)
 {
 	if (ft_strncmp(elem, "NO", 2) == 0)
 		st_file->no_texture = ft_strtrim(path, "\n");
@@ -24,7 +24,7 @@ void	update_st_file_texture(char *elem, char *path, t_file *st_file)
 		st_file->ea_texture = ft_strtrim(path, "\n");
 }
 
-int	validate_texture_element(char *elem, char *str, t_file *st_file)
+static int	validate_texture_element(char *elem, char *str, t_file *st_file)
 {
 	int		fd;
 	char	*path;
@@ -52,7 +52,7 @@ int	validate_texture_element(char *elem, char *str, t_file *st_file)
 	return (0);
 }
 
-int	check_repeated_element(char *elem, t_file *st_file)
+static int	check_repeated_element(char *elem, t_file *st_file)
 {
 	if (ft_strcmp(elem, "NO") == 0)
 		if (st_file->no_texture != NULL)
@@ -69,7 +69,7 @@ int	check_repeated_element(char *elem, t_file *st_file)
 	return (1);
 }
 
-int	try_validate_texture(char *elem, char **args, t_file *st_file)
+static int	try_validate_texture(char *elem, char **args, t_file *st_file)
 {
 	if (!validate_texture_element(elem, args[1], st_file))
 	{

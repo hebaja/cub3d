@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/06 00:36:41 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:45:51 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
+static void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -21,7 +21,8 @@ void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color)
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
-void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
+static void	set_wall_texture(t_mlx *st_mlx, int wall_line_height,
+	int c_line_height)
 {
 	double	wall_hit_point;
 
@@ -47,7 +48,7 @@ void	set_wall_texture(t_mlx *st_mlx, int wall_line_height, int c_line_height)
 		* st_mlx->st_coord->wall_tex_step;
 }
 
-void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
+static void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 {
 	int				tex_y;
 	int				tex_offset;
@@ -61,7 +62,7 @@ void	put_wall_texture_pixel(t_mlx *st_mlx, int screen_column, int y)
 	ft_mlx_pixel_put(st_mlx->screen, screen_column, y, color);
 }
 
-void	set_current_texture(t_mlx *st_mlx)
+static void	set_current_texture(t_mlx *st_mlx)
 {
 	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
 		st_mlx->curr_texture = st_mlx->we_texture;

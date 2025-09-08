@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/06 20:21:58 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:39:57 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	set_keys_rotate(t_mlx *st_mlx)
+static void	set_keys_rotate(t_mlx *st_mlx)
 {
 	t_coord	*coord;
 
@@ -35,26 +35,28 @@ void	set_keys_rotate(t_mlx *st_mlx)
 		rotate_angle(coord, ROTATE);
 }
 
-int	mouse_move(int x, int y, t_mlx *st_mlx)
+static int	mouse_move(int x, int y, t_mlx *st_mlx)
 {
-	int  		diff_x;
-	int			center_win;
+	int	diff_x;
+	int	center_win;
 
 	(void)y;
 	center_win = st_mlx->screen_width / 2;
 	diff_x = x - center_win;
 	if (diff_x < -300 || diff_x > 300)
 	{
-		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
+		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win,
+			st_mlx->screen_height / 2);
 		return (0);
 	}
 	st_mlx->mouse_x += diff_x;
 	if (x != center_win)
-		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win, st_mlx->screen_height / 2);
+		mlx_mouse_move(st_mlx->mlx, st_mlx->win, center_win,
+			st_mlx->screen_height / 2);
 	return (0);
 }
 
-void	catch_mouse_move(t_mlx *st_mlx)
+static void	catch_mouse_move(t_mlx *st_mlx)
 {
 	int		steps;
 	double	angle;
@@ -71,7 +73,7 @@ void	catch_mouse_move(t_mlx *st_mlx)
 	}
 }
 
-int	game_loop(t_mlx *st_mlx)
+static int	game_loop(t_mlx *st_mlx)
 {
 	set_keys_rotate(st_mlx);
 	catch_mouse_move(st_mlx);
@@ -86,7 +88,7 @@ int	game_loop(t_mlx *st_mlx)
 		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
-	if (st_mlx->current_door && st_mlx->current_door->is_door_anim)
+	if (st_mlx->current_door && st_mlx->current_door->is_anim)
 		start_door_anim(st_mlx);
 	return (0);
 }

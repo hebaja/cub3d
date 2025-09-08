@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/11 13:40:02 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:39:24 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	*build_colors(void)
+static int	*build_colors(void)
 {
 	int	*colors;
 

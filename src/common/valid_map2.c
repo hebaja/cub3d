@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:06 by dbatista          #+#    #+#             */
-/*   Updated: 2025/07/23 22:59:12 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 05:02:00 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-int	get_width_map(char **map)
+static int	get_width_map(char **map)
 {
 	int	i;
 	int	len;
@@ -40,7 +40,7 @@ int	get_height_map(char **map)
 	return (i);
 }
 
-char	**fill_duplicate_map(int height, int width)
+static char	**fill_duplicate_map(int height, int width)
 {
 	int		i;
 	int		j;

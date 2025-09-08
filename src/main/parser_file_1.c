@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:49:11 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/02 22:57:19 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:37:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-int	check_color_elements_size(int rgb_values[3], char *elem)
+static int	check_color_elements_size(int rgb_values[3], char *elem)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int	check_color_elements_size(int rgb_values[3], char *elem)
 	return (1);
 }
 
-int	check_c_color_element(char elem, char *line, t_file *st_file)
+static int	check_c_color_element(char elem, char *line, t_file *st_file)
 {
 	char	**args;
 
@@ -54,7 +54,7 @@ int	check_c_color_element(char elem, char *line, t_file *st_file)
 	return (1);
 }
 
-int	check_f_color_element(char elem, char *line, t_file *st_file)
+static int	check_f_color_element(char elem, char *line, t_file *st_file)
 {
 	char	**args;
 
@@ -80,7 +80,7 @@ int	check_f_color_element(char elem, char *line, t_file *st_file)
 	return (1);
 }
 
-int	check_element(char *line, t_file *st_file)
+static int	check_element(char *line, t_file *st_file)
 {
 	if (!check_texture_element("NO", line, st_file)
 		|| !check_texture_element("SO", line, st_file)

@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:51:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/31 22:16:03 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:48:21 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	render_orb(t_mlx *st_mlx, t_spr *st_spr)
+static void	render_orb(t_mlx *st_mlx, t_spr *st_spr)
 {
 	int	y;
 	int	line;
@@ -33,7 +33,7 @@ void	render_orb(t_mlx *st_mlx, t_spr *st_spr)
 	}
 }
 
-void	set_orb_main_coord(t_mlx *st_mlx, t_spr *st_spr)
+static void	set_orb_main_coord(t_mlx *st_mlx, t_spr *st_spr)
 {
 	st_spr->curr_sprite = st_spr->sprites[st_spr->frame_pos];
 	st_spr->spr_x = st_spr->pos_x - st_mlx->st_coord->p_posx;
@@ -57,7 +57,7 @@ void	set_orb_main_coord(t_mlx *st_mlx, t_spr *st_spr)
 	st_spr->draw_end_y = st_spr->spr_height / 2 + st_mlx->screen_height / 2;
 }
 
-void	protect_orb_drawing(t_mlx *st_mlx, t_spr *st_spr)
+static void	protect_orb_drawing(t_mlx *st_mlx, t_spr *st_spr)
 {
 	if (st_spr->draw_start_y < 0)
 		st_spr->draw_start_y = 0;

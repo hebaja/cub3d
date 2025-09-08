@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 04:44:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/24 16:34:58 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:54:25 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-char	get_player_dir(char **map)
+static char	get_player_dir(char **map)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ char	get_player_dir(char **map)
 	return (res);
 }
 
-void	set_dir_vec(char dir, t_coord *st_coord)
+static void	set_dir_vec(char dir, t_coord *st_coord)
 {
 	if (dir == 'N')
 	{
@@ -58,7 +58,7 @@ void	set_dir_vec(char dir, t_coord *st_coord)
 	}
 }
 
-void	set_cam_plane(char dir, t_coord *st_coord)
+static void	set_cam_plane(char dir, t_coord *st_coord)
 {
 	if (dir == 'N')
 	{

@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:51:21 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/24 22:54:56 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:49:56 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	ft_mlx_pixel_get(t_img *st_img, int x, int y)
+static int	ft_mlx_pixel_get(t_img *st_img, int x, int y)
 {
 	char	*dst;
 

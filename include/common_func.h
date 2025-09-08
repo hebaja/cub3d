@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:27 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 23:52:05 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:06:21 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	clean_args(char **args);
 void	clean_map(char **map);
 void	expanded_map(char **map, t_file *st_file);
 void	rotate_angle(t_coord *coord, double angle);
-char	**fill_duplicate_map(int height, int width);
 int		is_blank_line(char *line);
 int		elements_complete(t_file *st_file);
 int		invalid_line(char *line);
@@ -43,10 +42,7 @@ int		valid_map(t_file	*st_file);
 int		is_map(char *line);
 int		get_height_file(char *map_path);
 int		get_height_map(char **map);
-int		get_width_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
-int		valid_character(char **map);
-void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
 
 #endif

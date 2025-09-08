@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:09:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/07 14:00:32 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:57:19 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-int	get_file_content_height(char *map_path, t_file *st_file)
+static int	get_file_content_height(char *map_path, t_file *st_file)
 {
 	int		fd;
 	char	*line;
@@ -35,7 +35,7 @@ int	get_file_content_height(char *map_path, t_file *st_file)
 	return (len);
 }
 
-char	**get_file_content(char *map_path, int height)
+static char	**get_file_content(char *map_path, int height)
 {
 	int		fd;
 	int		i;
@@ -60,7 +60,7 @@ char	**get_file_content(char *map_path, int height)
 	return (file_content);
 }
 
-int	find_line_map(char **line)
+static int	find_line_map(char **line)
 {
 	int	i;
 
@@ -84,7 +84,7 @@ int	find_line_map(char **line)
 	return (i);
 }
 
-void	alloc_map_mem(t_file *st_file)
+static void	alloc_map_mem(t_file *st_file)
 {
 	int	start;
 	int	count;

@@ -6,29 +6,21 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 22:26:51 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/04 17:05:53 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:40:06 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	try_open_door(t_mlx *st_mlx)
+static void	try_open_door(t_mlx *st_mlx)
 {
 	int	check_x;
 	int	check_y;
 
 	check_x = (int)(st_mlx->st_coord->p_posx + st_mlx->st_coord->dir_vec_x);
 	check_y = (int)(st_mlx->st_coord->p_posy + st_mlx->st_coord->dir_vec_y);
-	printf("Porta na frente: (%d, %d)\n", check_x, check_y);
 	if (st_mlx->st_file->map[check_y][check_x] == 'D')
-	{
-		st_mlx->current_door->is_door_anim = 1;	
-		print_doors(st_mlx);
-	}
-	else
-	{
-		printf("A proxima celula não é uma porta\n");
-	}
+		st_mlx->current_door->is_anim = 1;
 }
 
 int	key_press(int key, t_mlx *st_mlx)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 15:01:24 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/04 23:18:17 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:25:02 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef struct s_spr
 {
+	size_t	anim_time;
 	t_img	**sprites;
 	t_img	*curr_sprite;
-	size_t	anim_time;
 	int		x;
 	int		y;
 	int		frame_pos;
@@ -43,20 +43,20 @@ typedef struct s_spr
 
 typedef struct s_door
 {
-	int			door_map_x;
-	int			door_map_y;
-	int			door_side;
-	int			is_door_open;
-	int			is_door_anim;
-	int			door_dir;
-	int			door_offset;
-	double		perp_door_dist;
-	int			door_tex_x;
-	double		door_tex_step;
-	double		door_tex_pos;
-	int			door_line_height;
-	int			door_ceiling_height;
-	int			door_floor_height;
+	int				map_x;
+	int				map_y;
+	int				side;
+	int				is_open;
+	int				is_anim;
+	int				dir;
+	int				offset;
+	int				tex_x;
+	int				line_height;
+	int				ceiling_height;
+	int				floor_height;
+	double			perp_dist;
+	double			tex_step;
+	double			tex_pos;
 	struct s_door	*next;
 }	t_door;
 
@@ -71,6 +71,7 @@ typedef struct s_mlx
 	t_img	*ea_texture;
 	t_img	*curr_texture;
 	t_img	*door_texture;
+	t_img	*minimap;
 	int		screen_height;
 	int		screen_width;
 	int		c_color;
@@ -85,16 +86,12 @@ typedef struct s_mlx
 	int		key_down;
 	int		key_left;
 	int		key_right;
-	t_file	*st_file;
-	t_coord	*st_coord;
-	t_img	*minimap;
 	int		minimap_size;
 	int		minimap_block_size;
 	int		minimap_block_x;
 	int		minimap_block_y;
 	int		minimap_counter;
 	int		minimap_frame;
-	size_t	minimap_time;
 	int		minimap_anim_dir;
 	int		*minimap_colors;
 	int		mouse_x;
@@ -103,21 +100,19 @@ typedef struct s_mlx
 	int		is_curtain;
 	int		curtain_y;
 	int		curtain_dir;
+	int		wall_line_height;
+	int		is_door_col;
+	int		is_first_door;
+	int		wall_ceiling_height;
+	int		wall_floor_height;
 	t_spr	*st_spr1;
 	t_spr	*st_spr2;
 	double	z_buffer[1920];
-	double	d_buffer[1920];
-	
-	int			is_door_col;
-	int			is_first_door;
-	
 	t_door	*doors;
 	t_door	*current_door;
-
-	int		wall_ceiling_height;
-	int		wall_floor_height;
-
-
+	t_file	*st_file;
+	t_coord	*st_coord;
+	size_t	minimap_time;
 }	t_mlx;
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:44 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/06 21:05:41 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:46:21 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	swap_maps(t_mlx *st_mlx)
+static void	swap_maps(t_mlx *st_mlx)
 {
 	char	**map_tmp;
 	t_door	*curr_door;
@@ -20,8 +20,8 @@ void	swap_maps(t_mlx *st_mlx)
 	curr_door = st_mlx->doors;
 	while (curr_door)
 	{
-		curr_door->door_map_x = (st_mlx->st_file->map_width
-			- curr_door->door_map_x) - 2;
+		curr_door->map_x = (st_mlx->st_file->map_width
+				- curr_door->map_x) - 2;
 		curr_door = curr_door->next;
 	}
 	map_tmp = st_mlx->st_file->map;
@@ -29,7 +29,7 @@ void	swap_maps(t_mlx *st_mlx)
 	st_mlx->st_file->inv_map = map_tmp;
 }
 
-void	swap_side_texures(t_mlx *st_mlx)
+static void	swap_side_texures(t_mlx *st_mlx)
 {
 	t_img	*tmp_texture;
 
@@ -67,9 +67,9 @@ void	start_curtain_effect(t_mlx *st_mlx)
 		swap_maps(st_mlx);
 		swap_side_texures(st_mlx);
 		st_mlx->st_coord->p_posx = (st_mlx->st_file->map_width
-			- st_mlx->st_coord->p_posx) - 1;
+				- st_mlx->st_coord->p_posx) - 1;
 		st_mlx->st_spr2->pos_x = (st_mlx->st_file->map_width
-			- st_mlx->st_spr2->pos_x) - 1;
+				- st_mlx->st_spr2->pos_x) - 1;
 	}
 	if (st_mlx->curtain_dir && st_mlx->curtain_y == 0)
 	{
@@ -80,26 +80,26 @@ void	start_curtain_effect(t_mlx *st_mlx)
 
 void	start_door_anim(t_mlx *st_mlx)
 {
-	if (st_mlx->current_door->door_dir == 0)
+	if (st_mlx->current_door->dir == 0)
 	{
-		if (st_mlx->current_door->door_offset < 100)
-			st_mlx->current_door->door_offset += 1;
+		if (st_mlx->current_door->offset < 100)
+			st_mlx->current_door->offset += 1;
 		else
 		{
-			st_mlx->current_door->is_door_anim = 0;
-			st_mlx->current_door->door_dir = 1;
-			st_mlx->current_door->is_door_open = 1;
+			st_mlx->current_door->is_anim = 0;
+			st_mlx->current_door->dir = 1;
+			st_mlx->current_door->is_open = 1;
 		}
 	}
 	else
 	{
-		if (st_mlx->current_door->door_offset > 0)
-			st_mlx->current_door->door_offset -= 1;
+		if (st_mlx->current_door->offset > 0)
+			st_mlx->current_door->offset -= 1;
 		else
 		{
-			st_mlx->current_door->is_door_anim = 0;
-			st_mlx->current_door->door_dir = 0;
-			st_mlx->current_door->is_door_open = 0;
+			st_mlx->current_door->is_anim = 0;
+			st_mlx->current_door->dir = 0;
+			st_mlx->current_door->is_open = 0;
 		}
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/02 23:24:18 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:41:55 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_main.h"
 
-int	rgb_to_int(int t, int r, int g, int b)
+static int	rgb_to_int(int t, int r, int g, int b)
 {
 	int	dec;
 
@@ -20,7 +20,7 @@ int	rgb_to_int(int t, int r, int g, int b)
 	return (dec);
 }
 
-void	set_mlx_images_addr(t_mlx *st_mlx)
+static void	set_mlx_images_addr(t_mlx *st_mlx)
 {
 	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img,
 			&st_mlx->screen->bpp, &st_mlx->screen->size_line,
@@ -39,7 +39,7 @@ void	set_mlx_images_addr(t_mlx *st_mlx)
 			&st_mlx->ea_texture->endian);
 }
 
-void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
+static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 		int screen_width, int screen_height)
 {
 	st_mlx->screen = (t_img *)malloc(sizeof(t_img));
@@ -63,7 +63,7 @@ void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			&st_mlx->ea_texture->height);
 }
 
-void	init_keys(t_mlx *st_mlx)
+static void	init_keys(t_mlx *st_mlx)
 {
 	st_mlx->key_w = 0;
 	st_mlx->key_a = 0;

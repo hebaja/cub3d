@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/31 20:48:11 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:43:46 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	return (1);
 }
 
-int	valid_character(char **map)
+static int	valid_character(char **map)
 {
 	int	i;
 	int	j;

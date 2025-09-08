@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:51:01 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/22 04:21:39 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:04:11 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	find_sprite_pos(t_spr *st_spr, char **map, char c)
+static void	find_sprite_pos(t_spr *st_spr, char **map, char c)
 {
 	int		x;
 	int		y;
@@ -32,7 +32,7 @@ void	find_sprite_pos(t_spr *st_spr, char **map, char c)
 	}
 }
 
-t_img	**build_rot_orb(t_mlx *st_mlx)
+static t_img	**build_rot_orb(t_mlx *st_mlx)
 {
 	t_img	**rot_orb;	
 
@@ -56,7 +56,7 @@ t_img	**build_rot_orb(t_mlx *st_mlx)
 	return (rot_orb);
 }
 
-void	init_orb_coord(t_spr *st_spr)
+static void	init_orb_coord(t_spr *st_spr)
 {
 	st_spr->tex_x = 0;
 	st_spr->tex_y = 0;

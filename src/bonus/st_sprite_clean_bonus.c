@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 23:43:13 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/01 23:43:17 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:05:02 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	clean_st_spr(t_mlx *st_mlx, t_spr *st_spr)
+static void	clean_st_spr(t_mlx *st_mlx, t_spr *st_spr)
 {
 	int	i;
 

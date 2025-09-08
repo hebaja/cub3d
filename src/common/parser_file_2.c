@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 04:01:28 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/30 04:48:33 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:52:32 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	invalid_line(char *line)
 	return (0);
 }
 
-int	try_fill_map(char **file_content, t_file *st_file, int i)
+static int	try_fill_map(char **file_content, t_file *st_file, int i)
 {
 	if (st_file->map_finish)
 	{

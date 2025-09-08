@@ -6,13 +6,13 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/08/12 12:34:20 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:27:27 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_main.h"
 
-void	set_keys_rotate(t_mlx *st_mlx)
+static void	set_keys_rotate(t_mlx *st_mlx)
 {
 	t_coord	*coord;
 
@@ -35,7 +35,7 @@ void	set_keys_rotate(t_mlx *st_mlx)
 		rotate_angle(coord, ROTATE);
 }
 
-int	game_loop(t_mlx *st_mlx)
+static int	game_loop(t_mlx *st_mlx)
 {
 	set_keys_rotate(st_mlx);
 	ray_cast(st_mlx);

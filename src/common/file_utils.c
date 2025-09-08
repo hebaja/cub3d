@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:11:17 by hebatist          #+#    #+#             */
-/*   Updated: 2025/07/23 22:54:55 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:50:44 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,4 @@ int	is_valid_map_path(int argc, char **argv)
 			return (1);
 	}
 	return (0);
-}
-
-//Debug
-void	print_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		ft_printf("%s", map[i]);
-	ft_printf("\n");
 }

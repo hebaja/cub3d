@@ -6,41 +6,54 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:21:01 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/05 21:04:39 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/08 14:44:14 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
+static int	is_wall_door(t_mlx *st_mlx, double new_y, double new_x)
 {
+	int		map_x;
+	int		map_y;
 	t_file	*st_file;
-	char	**map;
+	t_door	*door;
+
+	map_x = (int)new_x;
+	map_y = (int)new_y;
+	st_file = st_mlx->st_file;
+	if (st_file->map[(int)(new_y + RADIUS)][(int)(new_x + RADIUS)] == '1'
+	|| st_file->map[(int)(new_y - RADIUS)][(int)(new_x - RADIUS)] == '1'
+	|| st_file->map[(int)(new_y + RADIUS)][(int)(new_x - RADIUS)] == '1'
+	|| st_file->map[(int)(new_y - RADIUS)][(int)(new_x + RADIUS)] == '1')
+		return (1);
+	if (st_file->map[map_y][map_x] == '1'
+		|| st_file->map[map_y][map_x] == ' ')
+		return (1);
+	if (st_file->map[map_y][map_x] == 'D')
+	{
+		door = find_door(map_x, map_y, st_mlx);
+		if (!door->is_open)
+			return (1);
+	}
+	return (0);
+}
+
+static int	is_not_valid_move(double new_x, double new_y, t_mlx *st_mlx)
+{
 	int		map_x;
 	int		map_y;
 
-	st_file = st_mlx->st_file;
-	map = st_file->map;
 	map_x = (int)new_x;
 	map_y = (int)new_y;
 	if (new_x < 0 || new_y < 0)
 		return (1);
-	if (map_y < 0 || map_y >= st_file->height)
+	if (map_y < 0 || map_y >= st_mlx->st_file->height)
 		return (1);
-	if (map_x < 0 || map_x >= (int)ft_strlen(map[map_y]))
+	if (map_x < 0 || map_x >= (int)ft_strlen(st_mlx->st_file->map[map_y]))
 		return (1);
-	if (map[(int)(new_y + RADIUS)][(int)(new_x + RADIUS)] == '1'
-	|| map[(int)(new_y - RADIUS)][(int)(new_x - RADIUS)] == '1'
-	|| map[(int)(new_y + RADIUS)][(int)(new_x - RADIUS)] == '1'
-	|| map[(int)(new_y - RADIUS)][(int)(new_x + RADIUS)] == '1')
+	if (is_wall_door(st_mlx, new_y, new_x))
 		return (1);
-	if (map[map_y][map_x] == '1' || map[map_y][map_x] == ' ')
-		return (1);
-	if (map[map_y][map_x] == 'D')
-	{
-		if (find_door(map_x, map_y, st_mlx)->is_door_open == 0)
-			return (1);
-	}
 	return (0);
 }
 

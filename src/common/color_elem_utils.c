@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:55:36 by hebatist          #+#    #+#             */
-/*   Updated: 2025/08/14 14:55:38 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/08 04:49:03 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_common.h"
 
-int	check_start_line(char **line, char elem)
+static int	check_start_line(char **line, char elem)
 {
 	if ((**line == 'C' || **line == 'F') && *(*line + 1) != ' ')
 	{
@@ -35,7 +35,7 @@ int	check_start_line(char **line, char elem)
 	return (1);
 }
 
-int	check_misplaced_elements(char **line, char elem)
+static int	check_misplaced_elements(char **line, char elem)
 {
 	while (**line && **line != '\n' && **line != ',')
 	{
@@ -54,7 +54,7 @@ int	check_misplaced_elements(char **line, char elem)
 	return (1);
 }
 
-int	check_last_elements(char **line, int *i, char elem)
+static int	check_last_elements(char **line, int *i, char elem)
 {
 	while (**line && **line != '\n' && ++(*i) < 2)
 	{
@@ -83,7 +83,7 @@ int	check_last_elements(char **line, int *i, char elem)
 	return (1);
 }
 
-int	check_end_line(char **line, char elem)
+static int	check_end_line(char **line, char elem)
 {
 	int	comma_flag;
 
