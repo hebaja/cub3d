@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 14:42:16 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 15:24:11 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:46:21 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	set_door_coord(t_mlx *st_mlx, int *curr_map_x, int *curr_map_y);
 void	start_door_anim(t_mlx *st_mlx);
 void	clean_sprites(t_mlx *st_mlx);
 void	ft_mlx_pixel_put(t_img *st_img, int x, int y, int color);
+void	clean_doors(t_mlx *st_mlx);
 char	**build_inv_map(t_file *st_file);
 t_spr	*build_orb(t_mlx *st_mlx, char c);
 size_t	get_current_time(void);

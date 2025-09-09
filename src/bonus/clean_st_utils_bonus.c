@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 13:07:11 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:46:38 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	clean_all(t_mlx *st_mlx)
 			free(st_mlx->st_coord);
 		clean_st_file(st_mlx->st_file);
 		clean_sprites(st_mlx);
+		clean_doors(st_mlx);
 		clean_st_mlx(st_mlx);
 	}
 }

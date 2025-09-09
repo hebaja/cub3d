@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 15:13:32 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:47:40 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static void	init_keys_and_anim(t_mlx *st_mlx)
 	st_mlx->is_door_col = 0;
 	st_mlx->is_first_door = 0;
 	st_mlx->wall_line_height = 0;
+	st_mlx->doors = NULL;
 	st_mlx->current_door = NULL;
 }
 

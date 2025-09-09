@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 20:57:07 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/08 15:08:29 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/09 01:46:03 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	get_door(t_mlx *st_mlx)
 	}
 }
 
-void	free_doors(t_mlx *st_mlx)
+void	clean_doors(t_mlx *st_mlx)
 {
 	t_door	*current;
 	t_door	*next;
