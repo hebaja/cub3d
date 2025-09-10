@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:44 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 14:46:21 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:39:45 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,15 @@ void	start_door_anim(t_mlx *st_mlx)
 	else
 	{
 		if (st_mlx->current_door->offset > 0)
+		{
 			st_mlx->current_door->offset -= 1;
+			st_mlx->current_door->is_open = 0;
+		}
 		else
 		{
 			st_mlx->current_door->is_anim = 0;
 			st_mlx->current_door->dir = 0;
-			st_mlx->current_door->is_open = 0;
+		
 		}
 	}
 }
