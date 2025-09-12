@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 15:18:04 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/12 05:19:50 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void	set_wall_texture(t_mlx *st_mlx)
 	wall_hit_point -= floor(wall_hit_point);
 	st_mlx->st_coord->wall_tex_x = (int)(wall_hit_point
 			* (double)st_mlx->curr_texture->width);
-	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x > 0)
+	if (st_mlx->st_coord->side_hit == 0 && st_mlx->st_coord->ray_dir_x < 0)
 		st_mlx->st_coord->wall_tex_x = st_mlx->curr_texture->width
 			- st_mlx->st_coord->wall_tex_x - 1;
-	if (st_mlx->st_coord->side_hit == 1 && st_mlx->st_coord->ray_dir_y < 0)
+	if (st_mlx->st_coord->side_hit == 1 && st_mlx->st_coord->ray_dir_y > 0)
 		st_mlx->st_coord->wall_tex_x = st_mlx->curr_texture->width
 			- st_mlx->st_coord->wall_tex_x - 1;
 	st_mlx->st_coord->wall_tex_step = 1.0
