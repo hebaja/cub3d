@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:15:25 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 04:45:51 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:21:06 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column)
 	{
 		if (y < c_line_height)
 			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->c_color);
-		else if (y >= c_line_height && y <= f_line_height)
+		else if (y >= c_line_height && y < f_line_height)
 			put_wall_texture_pixel(st_mlx, screen_column, y);
 		else
 			ft_mlx_pixel_put(st_mlx->screen, screen_column, y, st_mlx->f_color);

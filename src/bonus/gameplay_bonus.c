@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:55:14 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/10 20:49:31 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/12 13:55:05 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	catch_mouse_move(t_mlx *st_mlx)
 	double	angle;
 	double	angle_step;
 
-	if (st_mlx->mouse_x != 0)
+	if (st_mlx->mouse_x != 0 && !st_mlx->is_curtain)
 	{
 		angle = st_mlx->mouse_x * MOUSE_SENS;
 		steps = 5;
@@ -75,17 +75,17 @@ static void	catch_mouse_move(t_mlx *st_mlx)
 
 static int	game_loop(t_mlx *st_mlx)
 {
-	set_keys_rotate(st_mlx);
-	catch_mouse_move(st_mlx);
 	ray_cast(st_mlx);
 	check_inversion(st_mlx);
-	if (!st_mlx->is_curtain)
+	if (st_mlx->is_invert_prep)
+		prepare_for_invert(st_mlx);
+	else if (!st_mlx->is_curtain)
 	{
 		render_minimap(st_mlx);
 		set_orb(st_mlx);
+		set_keys_rotate(st_mlx);
+		catch_mouse_move(st_mlx);
 	}
-	if (st_mlx->is_invert_prep)
-		prepare_for_invert(st_mlx);
 	if (st_mlx->is_curtain)
 		start_curtain_effect(st_mlx);
 	if (st_mlx->current_door && st_mlx->current_door->is_anim)

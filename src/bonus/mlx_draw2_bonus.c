@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 03:50:04 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 15:03:59 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/12 14:18:42 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	basic_drawing(t_mlx *st_mlx, int screen_column, int y)
 	if (y < st_mlx->wall_ceiling_height)
 		ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 			ceiling_color);
-	else if (y >= st_mlx->wall_ceiling_height && y <= st_mlx->wall_floor_height)
+	else if (y >= st_mlx->wall_ceiling_height && y < st_mlx->wall_floor_height)
 		put_wall_texture_pixel(st_mlx, screen_column, y);
 	else
 		ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
@@ -41,7 +41,7 @@ static void	with_door_drawing(t_mlx *st_mlx, int screen_column, int y,
 		ft_mlx_pixel_put(st_mlx->screen, screen_column, y,
 			ceiling_color);
 	else if (y >= st_mlx->current_door->ceiling_height
-		&& y <= st_mlx->current_door->floor_height)
+		&& y < st_mlx->current_door->floor_height)
 	{
 		if (is_anim)
 		{
