@@ -22,18 +22,9 @@ t_door	*create_new_door(int x, int y)
 		put_error("Memory allocation failed for door", NULL);
 		return (NULL);
 	}
+	ft_memset(new_door, 0, sizeof(t_door));
 	new_door->map_x = x;
 	new_door->map_y = y;
-	new_door->side = 0;
-	new_door->is_open = 0;
-	new_door->is_anim = 0;
-	new_door->dir = 0;
-	new_door->offset = 0;
-	new_door->perp_dist = 0;
-	new_door->tex_x = 0;
-	new_door->tex_step = 0;
-	new_door->tex_pos = 0;
-	new_door->next = NULL;
 	return (new_door);
 }
 

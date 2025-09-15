@@ -56,28 +56,6 @@ static t_img	**build_rot_orb(t_mlx *st_mlx)
 	return (rot_orb);
 }
 
-static void	init_orb_coord(t_spr *st_spr)
-{
-	st_spr->tex_x = 0;
-	st_spr->tex_y = 0;
-	st_spr->frame_pos = 0;
-	st_spr->pos_x = st_spr->x + 0.5;
-	st_spr->pos_y = st_spr->y + 0.5;
-	st_spr->spr_x = 0.0;
-	st_spr->spr_y = 0.0;
-	st_spr->cam_spac = 0.0;
-	st_spr->transform_x = 0.0;
-	st_spr->transform_y = 0.0;
-	st_spr->spr_screen_x = 0;
-	st_spr->spr_width = 0;
-	st_spr->draw_start_x = 0;
-	st_spr->draw_end_x = 0;
-	st_spr->spr_height = 0;
-	st_spr->draw_start_y = 0;
-	st_spr->draw_end_y = 0;
-	st_spr->anim_time = 0;
-}
-
 t_spr	*build_orb(t_mlx *st_mlx, char c)
 {
 	t_spr	*st_spr;
@@ -86,11 +64,13 @@ t_spr	*build_orb(t_mlx *st_mlx, char c)
 	st_spr = (t_spr *)malloc(sizeof(t_spr));
 	if (!st_spr)
 		return (NULL);
+	ft_memset(st_spr, 0, sizeof(t_spr));
 	rot_orb = build_rot_orb(st_mlx);
 	if (!rot_orb)
 		return (NULL);
 	st_spr->sprites = rot_orb;
 	find_sprite_pos(st_spr, st_mlx->st_file->map, c);
-	init_orb_coord(st_spr);
+	st_spr->pos_x = st_spr->x + 0.5;
+	st_spr->pos_y = st_spr->y + 0.5;
 	return (st_spr);
 }

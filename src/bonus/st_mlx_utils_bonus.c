@@ -71,27 +71,6 @@ static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			&st_mlx->door_texture->height);
 }
 
-static void	init_keys_and_anim(t_mlx *st_mlx)
-{
-	st_mlx->key_w = 0;
-	st_mlx->key_a = 0;
-	st_mlx->key_s = 0;
-	st_mlx->key_d = 0;
-	st_mlx->key_left = 0;
-	st_mlx->key_right = 0;
-	st_mlx->mouse_x = 0;
-	st_mlx->is_invert = 0;
-	st_mlx->curtain_y = 0;
-	st_mlx->is_curtain = 0;
-	st_mlx->curtain_dir = 0;
-	st_mlx->is_invert_prep = 0;
-	st_mlx->is_door_col = 0;
-	st_mlx->is_first_door = 0;
-	st_mlx->wall_line_height = 0;
-	st_mlx->doors = NULL;
-	st_mlx->current_door = NULL;
-}
-
 t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 {
 	t_mlx	*st_mlx;
@@ -102,6 +81,7 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		put_error("Could not allocate memory for mlx struct", NULL);
 		return (NULL);
 	}
+	ft_memset(st_mlx, 0, sizeof(t_mlx));
 	st_mlx->mlx = mlx_init();
 	st_mlx->screen_width = 1366;
 	st_mlx->screen_height = 768;
@@ -114,7 +94,6 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
 		st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
-	init_keys_and_anim(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

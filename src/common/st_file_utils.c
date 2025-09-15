@@ -109,19 +109,12 @@ t_file	*build_st_file(char *map_path)
 		put_error("Could not allocate memory for file struct", NULL);
 		return (NULL);
 	}
+	ft_memset(st_file, 0, sizeof(t_file));
 	st_file->path = map_path;
-	st_file->map = NULL;
-	st_file->no_texture = NULL;
-	st_file->so_texture = NULL;
-	st_file->we_texture = NULL;
-	st_file->ea_texture = NULL;
-	st_file->file_content = NULL;
 	st_file->f_color[0] = -1;
 	st_file->c_color[0] = -1;
 	st_file->height = get_file_content_height(map_path, st_file);
 	st_file->file_content = get_file_content(map_path, st_file->height);
 	alloc_map_mem(st_file);
-	st_file->map_start = 0;
-	st_file->map_finish = 0;
 	return (st_file);
 }

@@ -63,16 +63,6 @@ static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 			&st_mlx->ea_texture->height);
 }
 
-static void	init_keys(t_mlx *st_mlx)
-{
-	st_mlx->key_w = 0;
-	st_mlx->key_a = 0;
-	st_mlx->key_s = 0;
-	st_mlx->key_d = 0;
-	st_mlx->key_left = 0;
-	st_mlx->key_right = 0;
-}
-
 // mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
 // 	&st_mlx->screen_height);
 
@@ -86,6 +76,7 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 		put_error("Could not allocate memory for mlx struct", NULL);
 		return (NULL);
 	}
+	ft_memset(st_mlx, 0, sizeof(t_mlx));
 	st_mlx->mlx = mlx_init();
 	st_mlx->screen_height = 1080;
 	st_mlx->screen_width = 1920;
@@ -98,7 +89,6 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
 		st_mlx->screen_height);
 	set_mlx_images_addr(st_mlx);
-	init_keys(st_mlx);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);
