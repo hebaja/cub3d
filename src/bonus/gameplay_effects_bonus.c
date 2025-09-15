@@ -102,7 +102,6 @@ void	start_door_anim(t_mlx *st_mlx)
 		{
 			st_mlx->current_door->is_anim = 0;
 			st_mlx->current_door->dir = 0;
-		
 		}
 	}
 }
