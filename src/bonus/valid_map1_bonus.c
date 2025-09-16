@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/15 22:48:48 by dbatista         ###   ########.fr       */
+/*   Updated: 2025/09/16 23:15:08 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	height = get_height_map(map);
 	while (k < last && map[i][k])
 	{
-		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D') && map[i][k + 1] == ' ')
+		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D')
+			&& map[i][k + 1] == ' ')
 			return (0);
 		if (map[i][k] == ' ')
 		{

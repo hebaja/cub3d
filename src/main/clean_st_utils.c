@@ -6,7 +6,7 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 23:02:10 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 13:07:28 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/16 23:15:49 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ static void	destroy_images(t_mlx *st_mlx)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
 	if (st_mlx->screen->img)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->screen->img);
-	if (st_mlx->no_texture)	
+	if (st_mlx->no_texture)
 		free(st_mlx->no_texture);
-	if (st_mlx->so_texture)	
+	if (st_mlx->so_texture)
 		free(st_mlx->so_texture);
-	if (st_mlx->we_texture)	
+	if (st_mlx->we_texture)
 		free(st_mlx->we_texture);
-	if (st_mlx->ea_texture)	
+	if (st_mlx->ea_texture)
 		free(st_mlx->ea_texture);
-	if (st_mlx->screen)	
+	if (st_mlx->screen)
 		free(st_mlx->screen);
 }
 

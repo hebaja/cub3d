@@ -6,13 +6,13 @@
 /*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 13:40:23 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/16 23:12:32 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-static void	set_paint_direction(t_mlx *st_mlx, int x, int y, int color)
+void	set_paint_direction(t_mlx *st_mlx, int x, int y, int color)
 {
 	if (st_mlx->st_coord->ray_dir_x > 0 && st_mlx->st_coord->ray_dir_y < 0)
 		ft_mlx_pixel_put(st_mlx->minimap,
@@ -36,7 +36,7 @@ static void	set_paint_direction(t_mlx *st_mlx, int x, int y, int color)
 			* st_mlx->minimap_block_size + st_mlx->minimap_block_y, color);
 }
 
-static void	paint_block(t_mlx *st_mlx, int x, int y, int color)
+void	paint_block(t_mlx *st_mlx, int x, int y, int color)
 {
 	st_mlx->minimap_block_x = -1;
 	while (++st_mlx->minimap_block_x < st_mlx->minimap_block_size)
@@ -47,7 +47,7 @@ static void	paint_block(t_mlx *st_mlx, int x, int y, int color)
 	}
 }
 
-static void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
+void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 {
 	int	y;
 	int	map_x;
@@ -65,9 +65,9 @@ static void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
 			animate_player(st_mlx, x, y);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
-			&& st_mlx->st_file->map[map_y][map_x] != '\0'
+			&& map_x != st_mlx->st_file->map_width
 			&& map_x >= 0 && ft_strchr("0NWSEDGg",
-			st_mlx->st_file->map[map_y][map_x]))
+				st_mlx->st_file->map[map_y][map_x]))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
 		else
 			paint_block(st_mlx, x, y, MM_OUTER_COLOR);
