@@ -1,7 +1,5 @@
 cub3d
 package.json
-maps/
-minilibx-linux/
 .clangd
 .vscode
 *.swp
