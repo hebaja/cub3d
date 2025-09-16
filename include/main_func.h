@@ -23,7 +23,6 @@ void	draw_vertical_line(t_mlx *st_mlx, int screen_column);
 void	clean_all(t_mlx *st_mlx);
 void	move_player(t_mlx *st_mlx, double move_x, double move_y);
 void	ray_cast(t_mlx *st_mlx);
-void	destroy_images(t_mlx *st_mlx);
 int		key_release(int key, t_mlx *st_mlx);
 int		key_press(int key, t_mlx *st_mlx);
 int		handle_input(int keycode, t_mlx *st_mlx);

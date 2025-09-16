@@ -33,7 +33,7 @@ void	clean_st_file(t_file *st_file)
 	}
 }
 
-void	destroy_images(t_mlx *st_mlx)
+static void	destroy_images(t_mlx *st_mlx)
 {
 	if (st_mlx->no_texture->img)
 		mlx_destroy_image(st_mlx->mlx, st_mlx->no_texture->img);

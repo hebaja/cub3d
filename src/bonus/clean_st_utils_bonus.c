@@ -35,39 +35,52 @@ void	clean_st_file(t_file *st_file)
 	}
 }
 
-static void	free_all(t_mlx *st_mlx)
+void	destroy_images(t_mlx *st_mlx)
 {
-	free(st_mlx->minimap_colors);
-	free(st_mlx->minimap);
-	free(st_mlx->screen);
-	free(st_mlx->no_texture);
-	free(st_mlx->so_texture);
-	free(st_mlx->we_texture);
-	free(st_mlx->ea_texture);
-	free(st_mlx->door_texture);
-	free(st_mlx->mlx);
-	free(st_mlx);
+	if (st_mlx->no_texture->img)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->no_texture->img);
+	if (st_mlx->so_texture->img)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->so_texture->img);
+	if (st_mlx->we_texture->img)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->we_texture->img);
+	if (st_mlx->ea_texture->img)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
+	if (st_mlx->screen->img)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->screen->img);
+	if (st_mlx->door_texture)
+		mlx_destroy_image(st_mlx->mlx, st_mlx->door_texture->img);
+	if (st_mlx->no_texture)	
+		free(st_mlx->no_texture);
+	if (st_mlx->so_texture)	
+		free(st_mlx->so_texture);
+	if (st_mlx->we_texture)	
+		free(st_mlx->we_texture);
+	if (st_mlx->ea_texture)	
+		free(st_mlx->ea_texture);
+	if (st_mlx->screen)	
+		free(st_mlx->screen);
+	if (st_mlx->door_texture)
+		free(st_mlx->door_texture);
 }
+
 
 static void	clean_st_mlx(t_mlx *st_mlx)
 {
-	if (st_mlx->screen)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->screen->img);
-	if (st_mlx->no_texture)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->no_texture->img);
-	if (st_mlx->so_texture)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->so_texture->img);
-	if (st_mlx->we_texture)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->we_texture->img);
-	if (st_mlx->ea_texture)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->ea_texture->img);
+	destroy_images(st_mlx);
 	if (st_mlx->minimap)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->minimap->img);
-	if (st_mlx->door_texture)
-		mlx_destroy_image(st_mlx->mlx, st_mlx->door_texture->img);
-	mlx_destroy_window(st_mlx->mlx, st_mlx->win);
+	{
+		if (st_mlx->minimap->img)
+			mlx_destroy_image(st_mlx->mlx, st_mlx->minimap->img);
+		free(st_mlx->minimap_colors);
+		free(st_mlx->minimap);
+	}
+	if (st_mlx->win)
+		mlx_destroy_window(st_mlx->mlx, st_mlx->win);
 	mlx_destroy_display(st_mlx->mlx);
-	free_all(st_mlx);
+	if (st_mlx->mlx)
+		free(st_mlx->mlx);
+	if (st_mlx)
+		free(st_mlx);
 }
 
 void	clean_all(t_mlx *st_mlx)

@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 05:07:07 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/08 04:41:55 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/15 23:28:46 by hebatist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ static int	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 		|| !st_mlx->ea_texture->img)
 	{
 		clean_all(st_mlx);
-		// destroy_images(st_mlx);
-		// free(st_mlx->mlx);
-		// free(st_mlx);
 		put_error("Invalid xpm image file", NULL);
 		return (0);
 	}
