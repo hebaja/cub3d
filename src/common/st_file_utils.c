@@ -56,7 +56,8 @@ static char	**get_file_content(char *map_path, int height)
 		free(str);
 		str = get_next_line(fd);
 	}
-	close(fd);
+	if (fd != -1)
+		close(fd);
 	return (file_content);
 }
 
