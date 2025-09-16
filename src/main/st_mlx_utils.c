@@ -12,14 +12,6 @@
 
 #include "../../include/cub3d_main.h"
 
-static int	rgb_to_int(int t, int r, int g, int b)
-{
-	int	dec;
-
-	dec = t << 24 | r << 16 | g << 8 | b;
-	return (dec);
-}
-
 static void	set_mlx_images_addr(t_mlx *st_mlx)
 {
 	st_mlx->screen->img_addr = mlx_get_data_addr(st_mlx->screen->img,
@@ -39,14 +31,35 @@ static void	set_mlx_images_addr(t_mlx *st_mlx)
 			&st_mlx->ea_texture->endian);
 }
 
-static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
-		int screen_width, int screen_height)
+static int	alloc_images(t_mlx *st_mlx)
 {
 	st_mlx->screen = (t_img *)malloc(sizeof(t_img));
 	st_mlx->no_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->so_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->we_texture = (t_img *)malloc(sizeof(t_img));
 	st_mlx->ea_texture = (t_img *)malloc(sizeof(t_img));
+	if (!st_mlx->screen || !st_mlx->no_texture || !st_mlx->so_texture
+		|| !st_mlx->we_texture || !st_mlx->ea_texture)
+	{
+		if (st_mlx->screen)
+			free(st_mlx->screen);
+		if (st_mlx->screen)
+			free(st_mlx->screen);
+		if (st_mlx->screen)
+			free(st_mlx->screen);
+		if (st_mlx->screen)
+			free(st_mlx->screen);
+		if (st_mlx->screen)
+			free(st_mlx->screen);
+		put_error("Problem allocating memory for images", NULL);
+		return (0);
+	}
+	return (1);
+}
+
+void	set_images(t_mlx *st_mlx, t_file *st_file,
+	int screen_width, int screen_height)
+{
 	st_mlx->screen->img = mlx_new_image(
 			st_mlx->mlx, screen_width, screen_height);
 	st_mlx->no_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
@@ -61,6 +74,28 @@ static void	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
 	st_mlx->ea_texture->img = mlx_xpm_file_to_image(st_mlx->mlx,
 			st_file->ea_texture, &st_mlx->ea_texture->width,
 			&st_mlx->ea_texture->height);
+}
+
+static int	set_mlx_images(t_mlx *st_mlx, t_file *st_file,
+		int screen_width, int screen_height)
+{
+	if (!alloc_images(st_mlx))
+		return (0);
+	set_images(st_mlx, st_file, screen_width, screen_height);
+	if (!st_mlx->screen->img || !st_mlx->no_texture->img
+		|| !st_mlx->so_texture->img || !st_mlx->we_texture->img
+		|| !st_mlx->ea_texture->img)
+	{
+		clean_all(st_mlx);
+		// destroy_images(st_mlx);
+		// free(st_mlx->mlx);
+		// free(st_mlx);
+		put_error("Invalid xpm image file", NULL);
+		return (0);
+	}
+	else
+		set_mlx_images_addr(st_mlx);
+	return (1);
 }
 
 // mlx_get_screen_size(st_mlx->mlx, &st_mlx->screen_width,
@@ -86,9 +121,9 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 			st_file->c_color[2]);
 	st_mlx->f_color = rgb_to_int(0, st_file->f_color[0], st_file->f_color[1],
 			st_file->f_color[2]);
-	set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
-		st_mlx->screen_height);
-	set_mlx_images_addr(st_mlx);
+	if (!set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
+		st_mlx->screen_height))
+		return (NULL);
 	st_mlx->st_file = st_file;
 	st_mlx->st_coord = st_coord;
 	return (st_mlx);

@@ -12,6 +12,14 @@
 
 #include "../../include/cub3d_common.h"
 
+int	rgb_to_int(int t, int r, int g, int b)
+{
+	int	dec;
+
+	dec = t << 24 | r << 16 | g << 8 | b;
+	return (dec);
+}
+
 void	open_map_error(void)
 {
 	put_perror("Map file not found");

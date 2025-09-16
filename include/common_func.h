@@ -44,5 +44,6 @@ int		get_height_file(char *map_path);
 int		get_height_map(char **map);
 int		map_flood_fill(char **map, int x, int y);
 int		get_last_valid(char *line);
+int		rgb_to_int(int t, int r, int g, int b);
 
 #endif
