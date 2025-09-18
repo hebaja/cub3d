@@ -6,7 +6,7 @@
 /*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 22:03:29 by dbatista          #+#    #+#             */
-/*   Updated: 2025/09/16 23:15:08 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/18 18:06:31 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	height = get_height_map(map);
 	while (k < last && map[i][k])
 	{
-		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D')
+		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D' || map[i][k] == 'G' || map[i][k] == 'g') 
 			&& map[i][k + 1] == ' ')
 			return (0);
 		if (map[i][k] == ' ')
@@ -29,11 +29,11 @@ static int	space_in_map(int i, int *j, int last, char **map)
 			k++;
 			while (map[i][k] == ' ')
 				k++;
-			if (ft_strchr("0NSEWD", map[i][k]))
+			if (ft_strchr("0NSEWDGg", map[i][k]))
 				return (0);
-			if (i > 0 && ft_strchr("0NSEWD", map[i - 1][k - 1]))
+			if (i > 0 && ft_strchr("0NSEWDGg", map[i - 1][k - 1]))
 				return (0);
-			if (i < height - 1 && ft_strchr("0NSEWDls", map[i + 1][k - 1]))
+			if (i < height - 1 && ft_strchr("0NSEWDGg", map[i + 1][k - 1]))
 				return (0);
 		}
 		k++;
