@@ -117,8 +117,8 @@ t_mlx	*build_st_mlx(t_file *st_file, t_coord *st_coord)
 	}
 	ft_memset(st_mlx, 0, sizeof(t_mlx));
 	st_mlx->mlx = mlx_init();
-	st_mlx->screen_width = 640;
-	st_mlx->screen_height = 480;
+	st_mlx->screen_width = 1366;
+	st_mlx->screen_height = 768;
 	if (!set_mlx_images(st_mlx, st_file, st_mlx->screen_width,
 			st_mlx->screen_height))
 		return (NULL);
