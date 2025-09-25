@@ -8,9 +8,9 @@ BONUS_CFLAGS = -Wall -Wextra -Werror -DBONUS
 
 MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
 
-NAME = cub3d
+NAME = cub3D
 
-NAME_BONUS = cub3d_bonus
+NAME_BONUS = cub3D_bonus
 
 SRC_DIR = src
 
@@ -112,6 +112,7 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 	@clear
 	@echo -n "  Cleaning"
 	@$(MAKE) -s loading
