@@ -10,6 +10,8 @@ MLX_FLAGS=-Lminilibx-linux -lmlx_Linux -lX11 -lXext
 
 NAME = cub3d
 
+NAME_BONUS = cub3d_bonus
+
 SRC_DIR = src
 
 OBJ_DIR = obj
@@ -76,7 +78,7 @@ $(NAME): $(OBJS_MAIN) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 
 bonus: $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MINILIBX)
 	@clear
-	@$(CC) $(BONUS_CFLAGS) -o $(NAME) -g -DIS_BONUS $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
+	@$(CC) $(BONUS_CFLAGS) -o $(NAME_BONUS) -g -DIS_BONUS $(OBJS_BONUS) $(OBJS_COMMON) $(LIBFT) $(MLX_FLAGS) -lm
 	@echo -n "  Compiling bonus"
 	@$(MAKE) -s loading
 	@clear
