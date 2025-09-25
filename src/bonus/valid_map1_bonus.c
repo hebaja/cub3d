@@ -21,8 +21,8 @@ static int	space_in_map(int i, int *j, int last, char **map)
 	height = get_height_map(map);
 	while (k < last && map[i][k])
 	{
-		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D' || map[i][k] == 'G' || map[i][k] == 'g') 
-			&& map[i][k + 1] == ' ')
+		if (map[i][k] && (map[i][k] == '0' || map[i][k] == 'D'
+			|| map[i][k] == 'G' || map[i][k] == 'g') && map[i][k + 1] == ' ')
 			return (0);
 		if (map[i][k] == ' ')
 		{
