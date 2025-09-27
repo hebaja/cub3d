@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hebatist <hebatist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbatista <dbatista@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:10:39 by hebatist          #+#    #+#             */
-/*   Updated: 2025/09/16 23:12:32 by hebatist         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:59:40 by dbatista         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_column(t_mlx *st_mlx, int x, int init_x, int init_y)
 			&& map_x == st_mlx->abs_player_x && map_y == st_mlx->abs_player_y)
 			animate_player(st_mlx, x, y);
 		else if (map_y >= 0 && map_y < st_mlx->st_file->map_height
-			&& !ft_strchr("\n", st_mlx->st_file->map[map_y][map_x])
+			&& map_x >= 0 && !ft_strchr("\n", st_mlx->st_file->map[map_y][map_x])
 			&& map_x >= 0 && ft_strchr("0NWSEDGg",
 				st_mlx->st_file->map[map_y][map_x]))
 			paint_block(st_mlx, x, y, MM_SPACE_COLOR);
